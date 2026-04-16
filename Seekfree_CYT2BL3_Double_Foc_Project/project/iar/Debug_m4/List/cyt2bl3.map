@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V9.40.1.364/W64 for ARM                  16/Apr/2026  13:27:20
+# IAR ELF Linker V9.40.1.364/W64 for ARM                  16/Apr/2026  18:13:19
 # Copyright 2007-2023 IAR Systems AB.
 #
 #    Output file  =
@@ -295,7 +295,7 @@ No sections matched the following patterns:
   .intvec            ro code  0x1008'0000      0x80  startup_cm4.o [26]
                             - 0x1008'0080      0x80
 
-"P1":                                      0x1'753e
+"P1":                                      0x1'74b6
   .rodata            const    0x1008'0080    0x4924  fast_foc.o [5]
   .rodata            const    0x1008'49a4    0x42c0  motor_voice.o [5]
   .text              ro code  0x1008'8c64    0x1d78  sensorless_control.o [5]
@@ -350,183 +350,181 @@ No sections matched the following patterns:
   .text              ro code  0x1009'0c1c      0x1c  U32ToDbl.o [45]
   .text              ro code  0x1009'0c38      0x2c  strstr.o [44]
   .text              ro code  0x1009'0c64      0x64  zf_common_function.o [40]
-  .text              ro code  0x1009'0cc8    0x1304  motor_control.o [5]
-  .text              ro code  0x1009'1fcc       0x6  abort.o [44]
-  .text              ro code  0x1009'1fd4      0x3c  vsnprint.o [44]
-  .text              ro code  0x1009'2010     0x120  zf_device_menc15a.o [42]
-  .text              ro code  0x1009'2130     0x394  foc_controller.o [1]
-  .text              ro code  0x1009'24c4     0x384  foc_adc.o [1]
-  .text              ro code  0x1009'2848     0x7c8  hall_gather.o [5]
-  .text              ro code  0x1009'3010      0x62  round.o [45]
-  .text              ro code  0x1009'3074      0x9c  motor_flash.o [5]
-  .text              ro code  0x1009'3110      0x28  printf.o [44]
-  .text              ro code  0x1009'3138      0x14  exit.o [47]
-  .text              ro code  0x1009'314c     0x7f4  zf_driver_spi.o [43]
-  .text              ro code  0x1009'3940     0x464  foc_svpwm.o [1]
-  .text              ro code  0x1009'3da4     0x1d4  cos_sin32.o [45]
-  .text              ro code  0x1009'3f78     0x470  zf_driver_adc.o [43]
-  .text              ro code  0x1009'43e8     0x1dc  zf_driver_flash.o [43]
-  .text              ro code  0x1009'45c4     0x1f0  cy_scb_spi.o [21]
-  .text              ro code  0x1009'47b4     0x2dc  cy_adc.o [2]
-  .text              ro code  0x1009'4a90     0x2dc  cy_mw_flash.o [11]
-  .text              ro code  0x1009'4d6c     0x2ec  cy_srom.o [25]
-  .text              ro code  0x1009'5058      0x70  strncpy.o [46]
-  .text              ro code  0x1009'50c8      0xac  cy_syslib.o [31]
-  .text              ro code  0x1009'5174     0x4d0  cy_flash.o [10]
-  .text              ro code  0x1009'5644      0x60  cy_ipc_drv.o [13]
-  .text              ro code  0x1009'56a4      0x14  cy_syslib.o [31]
-  .text              ro code  0x1009'56b8     0x678  cy_sysclk.o [28]
-  .text              ro code  0x1009'5d30     0x29c  foc_debug_log.o [1]
-  .text              ro code  0x1009'5fcc     0x144  driver_adc.o [5]
-  .text              ro code  0x1009'6110     0x170  startup.o [26]
-  .text              ro code  0x1009'6280      0xec  system_tviibe4m_cm4.o [19]
-  .text              ro code  0x1009'636c       0x8  startup_cm4.o [26]
-  .text              ro code  0x1009'6374       0x6  startup_cm4.o [26]
-  .text              ro code  0x1009'637c     0x14c  cy_interrupt_map.o [20]
-  .text              ro code  0x1009'64c8     0x11e  driver_gpio.o [5]
-  .text              ro code  0x1009'65e8     0x110  zf_device_key.o [42]
-  .text              ro code  0x1009'66f8      0x8c  main_cm4.o [39]
-  .text              ro code  0x1009'6784      0x1c  zf_common_clock.o [40]
-  .rodata            const    0x1009'67a0      0x84  cy_sysclk.o [28]
-  .rodata            const    0x1009'6824      0x84  cy_sysclk.o [28]
-  .rodata            const    0x1009'68a8      0x84  system_tviibe4m_cm4.o [19]
-  .rodata            const    0x1009'692c      0x80  cy_srom.o [25]
-  .rodata            const    0x1009'69ac      0x7c  cy_mw_flash.o [11]
-  .rodata            const    0x1009'6a28      0x74  zf_common_function.o [40]
-  .rodata            const    0x1009'6a9c      0x74  zf_driver_flash.o [43]
-  .rodata            const    0x1009'6b10      0x70  zf_common_fifo.o [40]
-  .rodata            const    0x1009'6b80      0x70  zf_device_key.o [42]
-  .rodata            const    0x1009'6bf0      0x70  zf_driver_adc.o [43]
-  .rodata            const    0x1009'6c60      0x70  zf_driver_pwm.o [43]
-  .rodata            const    0x1009'6cd0      0x70  zf_driver_spi.o [43]
-  .rodata            const    0x1009'6d40      0x70  zf_driver_uart.o [43]
-  .rodata            const    0x1009'6db0      0x44  foc_debug_log.o [1]
-  .text              ro code  0x1009'6df4      0x44  startup_cm4.o [26]
-  .text              ro code  0x1009'6e38      0x38  zero_init3.o [46]
-  .rodata            const    0x1009'6e70      0x34  foc_debug_log.o [1]
-  .rodata            const    0x1009'6ea4      0x30  motor_control.o [5]
-  .rodata            const    0x1009'6ed4      0x30  motor_control.o [5]
-  .rodata            const    0x1009'6f04      0x30  motor_control.o [5]
-  .rodata            const    0x1009'6f34      0x28  motor_control.o [5]
-  .rodata            const    0x1009'6f5c      0x28  motor_control.o [5]
-  .rodata            const    0x1009'6f84      0x28  motor_control.o [5]
-  .text              ro code  0x1009'6fac      0x28  data_init.o [46]
-  .rodata            const    0x1009'6fd4      0x24  motor_control.o [5]
-  .rodata            const    0x1009'6ff8      0x24  motor_control.o [5]
-  .text              ro code  0x1009'701c      0x22  fpinit_M.o [45]
-  .iar.init_table    const    0x1009'7040      0x20  - Linker created -
-  .text              ro code  0x1009'7060      0x20  startup_cm4.o [26]
-  .text              ro code  0x1009'7080      0x20  putchar.o [44]
-  .text              ro code  0x1009'70a0      0x1e  cy_syslib_iar.o [31]
-  .text              ro code  0x1009'70c0      0x1e  cmain.o [46]
-  .text              ro code  0x1009'70e0       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'70e4       0x4  exit.o [44]
-  .text              ro code  0x1009'70e8       0xa  cexit.o [46]
-  .rodata            const    0x1009'70f4      0x1c  foc_debug_log.o [1]
-  .rodata            const    0x1009'7110      0x1c  zf_common_debug.o [40]
-  .text              ro code  0x1009'712c      0x1c  startup_cm4.o [26]
-  .text              ro code  0x1009'7148      0x1c  cstartup_M.o [46]
-  .rodata            const    0x1009'7164      0x18  foc_debug_log.o [1]
-  .rodata            const    0x1009'717c      0x18  motor_control.o [5]
-  .rodata            const    0x1009'7194      0x18  system_tviibe4m_cm4.o [19]
-  .rodata            const    0x1009'71ac      0x18  zf_common_debug.o [40]
-  .text              ro code  0x1009'71c4      0x16  xprout.o [44]
-  .rodata            const    0x1009'71dc      0x14  cy_flash.o [10]
-  .rodata            const    0x1009'71f0      0x14  motor_control.o [5]
-  .rodata            const    0x1009'7204      0x14  motor_control.o [5]
-  .rodata            const    0x1009'7218      0x14  motor_control.o [5]
-  .rodata            const    0x1009'722c      0x10  main_cm4.o [39]
-  .rodata            const    0x1009'723c      0x10  motor_control.o [5]
-  .rodata            const    0x1009'724c      0x10  motor_control.o [5]
-  .rodata            const    0x1009'725c      0x10  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'726c      0x10  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'727c      0x10  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'728c      0x10  zf_common_debug.o [40]
-  .rodata            const    0x1009'729c      0x10  zf_common_debug.o [40]
-  .rodata            const    0x1009'72ac       0xc  motor_control.o [5]
-  .rodata            const    0x1009'72b8       0xc  motor_control.o [5]
-  .rodata            const    0x1009'72c4       0xc  motor_control.o [5]
-  .rodata            const    0x1009'72d0       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'72dc       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'72e8       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'72f4       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7300       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'730c       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7318       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7324       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7330       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'733c       0xc  zf_common_debug.o [40]
-  .rodata            const    0x1009'7348       0xc  zf_common_debug.o [40]
-  .text              ro code  0x1009'7354       0xc  cy_syslib.o [31]
-  .rodata            const    0x1009'7360       0x8  cy_mw_flash.o [11]
-  .rodata            const    0x1009'7368       0x8  cy_srom.o [25]
-  .rodata            const    0x1009'7370       0x8  motor_control.o [5]
-  .rodata            const    0x1009'7378       0x8  motor_control.o [5]
-  .rodata            const    0x1009'7380       0x8  motor_control.o [5]
-  .rodata            const    0x1009'7388       0x8  startup.o [26]
-  .rodata            const    0x1009'7390       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'7394       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'7398       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'739c       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'73a0       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'73a4       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'73a8       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'73ac       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'73b0       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'73b4       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'73b8       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'73bc       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'73c0       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'73c4       0x4  cy_ipc_drv.o [13]
-  .rodata            const    0x1009'73c8       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'73cc       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'73d0       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'73d4       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'73d8       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73dc       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73e0       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73e4       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73e8       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73ec       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73f0       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73f4       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73f8       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'73fc       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7400       0x4  cy_srom.o [25]
-  .rodata            const    0x1009'7404       0x4  cy_srom.o [25]
-  .rodata            const    0x1009'7408       0x4  cy_sysint.o [30]
-  .rodata            const    0x1009'740c       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7410       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7414       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7418       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'741c       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7420       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7424       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7428       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'742c       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7430       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7434       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7438       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'743c       0x4  zf_device_key.o [42]
-  .text              ro code  0x1009'7440       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7444       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7448       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'744c       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7450       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7454       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7458       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'745c       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7460       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7464       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7468       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'746c       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7470       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7474       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7478       0x4  startup_cm4.o [26]
-  .rodata            const    0x1009'747c       0x0  zero_init3.o [46]
-  .rodata            const    0x1009'747c       0x0  lz77_init_single.o [46]
-  Initializer bytes  const    0x1009'747c      0x9c  <for P2-1>
-                            - 0x1009'7518  0x1'7498
+  .text              ro code  0x1009'0cc8    0x1300  motor_control.o [5]
+  .text              ro code  0x1009'1fc8       0x6  abort.o [44]
+  .text              ro code  0x1009'1fd0      0x3c  vsnprint.o [44]
+  .text              ro code  0x1009'200c     0x120  zf_device_menc15a.o [42]
+  .text              ro code  0x1009'212c     0x394  foc_controller.o [1]
+  .text              ro code  0x1009'24c0     0x384  foc_adc.o [1]
+  .text              ro code  0x1009'2844     0x7c8  hall_gather.o [5]
+  .text              ro code  0x1009'300c      0x62  round.o [45]
+  .text              ro code  0x1009'3070      0x9c  motor_flash.o [5]
+  .text              ro code  0x1009'310c      0x28  printf.o [44]
+  .text              ro code  0x1009'3134      0x14  exit.o [47]
+  .text              ro code  0x1009'3148     0x7f4  zf_driver_spi.o [43]
+  .text              ro code  0x1009'393c     0x464  foc_svpwm.o [1]
+  .text              ro code  0x1009'3da0     0x1d4  cos_sin32.o [45]
+  .text              ro code  0x1009'3f74     0x470  zf_driver_adc.o [43]
+  .text              ro code  0x1009'43e4     0x1dc  zf_driver_flash.o [43]
+  .text              ro code  0x1009'45c0     0x1f0  cy_scb_spi.o [21]
+  .text              ro code  0x1009'47b0     0x2dc  cy_adc.o [2]
+  .text              ro code  0x1009'4a8c     0x2dc  cy_mw_flash.o [11]
+  .text              ro code  0x1009'4d68     0x2ec  cy_srom.o [25]
+  .text              ro code  0x1009'5054      0x70  strncpy.o [46]
+  .text              ro code  0x1009'50c4      0xac  cy_syslib.o [31]
+  .text              ro code  0x1009'5170     0x4d0  cy_flash.o [10]
+  .text              ro code  0x1009'5640      0x60  cy_ipc_drv.o [13]
+  .text              ro code  0x1009'56a0      0x14  cy_syslib.o [31]
+  .text              ro code  0x1009'56b4     0x678  cy_sysclk.o [28]
+  .text              ro code  0x1009'5d2c     0x264  foc_debug_log.o [1]
+  .text              ro code  0x1009'5f90     0x144  driver_adc.o [5]
+  .text              ro code  0x1009'60d4     0x170  startup.o [26]
+  .text              ro code  0x1009'6244      0xec  system_tviibe4m_cm4.o [19]
+  .text              ro code  0x1009'6330       0x8  startup_cm4.o [26]
+  .text              ro code  0x1009'6338       0x6  startup_cm4.o [26]
+  .text              ro code  0x1009'6340     0x14c  cy_interrupt_map.o [20]
+  .text              ro code  0x1009'648c     0x11e  driver_gpio.o [5]
+  .text              ro code  0x1009'65ac     0x110  zf_device_key.o [42]
+  .rodata            const    0x1009'66bc      0x84  cy_sysclk.o [28]
+  .rodata            const    0x1009'6740      0x84  cy_sysclk.o [28]
+  .rodata            const    0x1009'67c4      0x84  system_tviibe4m_cm4.o [19]
+  .rodata            const    0x1009'6848      0x80  cy_srom.o [25]
+  .rodata            const    0x1009'68c8      0x7c  cy_mw_flash.o [11]
+  .rodata            const    0x1009'6944      0x74  zf_common_function.o [40]
+  .rodata            const    0x1009'69b8      0x74  zf_driver_flash.o [43]
+  .rodata            const    0x1009'6a2c      0x70  zf_common_fifo.o [40]
+  .rodata            const    0x1009'6a9c      0x70  zf_device_key.o [42]
+  .rodata            const    0x1009'6b0c      0x70  zf_driver_adc.o [43]
+  .rodata            const    0x1009'6b7c      0x70  zf_driver_pwm.o [43]
+  .rodata            const    0x1009'6bec      0x70  zf_driver_spi.o [43]
+  .rodata            const    0x1009'6c5c      0x70  zf_driver_uart.o [43]
+  .text              ro code  0x1009'6ccc      0x5c  main_cm4.o [39]
+  .text              ro code  0x1009'6d28      0x1c  zf_common_clock.o [40]
+  .rodata            const    0x1009'6d44      0x44  foc_debug_log.o [1]
+  .text              ro code  0x1009'6d88      0x44  startup_cm4.o [26]
+  .text              ro code  0x1009'6dcc      0x38  zero_init3.o [46]
+  .rodata            const    0x1009'6e04      0x34  foc_debug_log.o [1]
+  .rodata            const    0x1009'6e38      0x30  motor_control.o [5]
+  .rodata            const    0x1009'6e68      0x30  motor_control.o [5]
+  .rodata            const    0x1009'6e98      0x30  motor_control.o [5]
+  .rodata            const    0x1009'6ec8      0x28  motor_control.o [5]
+  .rodata            const    0x1009'6ef0      0x28  motor_control.o [5]
+  .rodata            const    0x1009'6f18      0x28  motor_control.o [5]
+  .text              ro code  0x1009'6f40      0x28  data_init.o [46]
+  .rodata            const    0x1009'6f68      0x24  motor_control.o [5]
+  .rodata            const    0x1009'6f8c      0x24  motor_control.o [5]
+  .text              ro code  0x1009'6fb0      0x22  fpinit_M.o [45]
+  .iar.init_table    const    0x1009'6fd4      0x20  - Linker created -
+  .text              ro code  0x1009'6ff4      0x20  startup_cm4.o [26]
+  .text              ro code  0x1009'7014      0x20  putchar.o [44]
+  .text              ro code  0x1009'7040      0x1e  cy_syslib_iar.o [31]
+  .text              ro code  0x1009'7060      0x1e  cmain.o [46]
+  .text              ro code  0x1009'7080       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7084       0x4  exit.o [44]
+  .text              ro code  0x1009'7088       0xa  cexit.o [46]
+  .rodata            const    0x1009'7094      0x1c  foc_debug_log.o [1]
+  .rodata            const    0x1009'70b0      0x1c  zf_common_debug.o [40]
+  .text              ro code  0x1009'70cc      0x1c  startup_cm4.o [26]
+  .text              ro code  0x1009'70e8      0x1c  cstartup_M.o [46]
+  .rodata            const    0x1009'7104      0x18  motor_control.o [5]
+  .rodata            const    0x1009'711c      0x18  system_tviibe4m_cm4.o [19]
+  .rodata            const    0x1009'7134      0x18  zf_common_debug.o [40]
+  .text              ro code  0x1009'714c      0x16  xprout.o [44]
+  .rodata            const    0x1009'7164      0x14  cy_flash.o [10]
+  .rodata            const    0x1009'7178      0x14  motor_control.o [5]
+  .rodata            const    0x1009'718c      0x14  motor_control.o [5]
+  .rodata            const    0x1009'71a0      0x14  motor_control.o [5]
+  .rodata            const    0x1009'71b4      0x10  motor_control.o [5]
+  .rodata            const    0x1009'71c4      0x10  motor_control.o [5]
+  .rodata            const    0x1009'71d4      0x10  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'71e4      0x10  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'71f4      0x10  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7204      0x10  zf_common_debug.o [40]
+  .rodata            const    0x1009'7214      0x10  zf_common_debug.o [40]
+  .rodata            const    0x1009'7224       0xc  motor_control.o [5]
+  .rodata            const    0x1009'7230       0xc  motor_control.o [5]
+  .rodata            const    0x1009'723c       0xc  motor_control.o [5]
+  .rodata            const    0x1009'7248       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7254       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7260       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'726c       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7278       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7284       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7290       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'729c       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'72a8       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'72b4       0xc  zf_common_debug.o [40]
+  .rodata            const    0x1009'72c0       0xc  zf_common_debug.o [40]
+  .text              ro code  0x1009'72cc       0xc  cy_syslib.o [31]
+  .rodata            const    0x1009'72d8       0x8  cy_mw_flash.o [11]
+  .rodata            const    0x1009'72e0       0x8  cy_srom.o [25]
+  .rodata            const    0x1009'72e8       0x8  motor_control.o [5]
+  .rodata            const    0x1009'72f0       0x8  motor_control.o [5]
+  .rodata            const    0x1009'72f8       0x8  motor_control.o [5]
+  .rodata            const    0x1009'7300       0x8  startup.o [26]
+  .rodata            const    0x1009'7308       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'730c       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7310       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7314       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7318       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'731c       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7320       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7324       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7328       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'732c       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'7330       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'7334       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'7338       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'733c       0x4  cy_ipc_drv.o [13]
+  .rodata            const    0x1009'7340       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'7344       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'7348       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'734c       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'7350       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7354       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7358       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'735c       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7360       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7364       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7368       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'736c       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7370       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7374       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'7378       0x4  cy_srom.o [25]
+  .rodata            const    0x1009'737c       0x4  cy_srom.o [25]
+  .rodata            const    0x1009'7380       0x4  cy_sysint.o [30]
+  .rodata            const    0x1009'7384       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7388       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'738c       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7390       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7394       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7398       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'739c       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'73a0       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'73a4       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'73a8       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'73ac       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'73b0       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'73b4       0x4  zf_device_key.o [42]
+  .text              ro code  0x1009'73b8       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73bc       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73c0       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73c4       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73c8       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73cc       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73d0       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73d4       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73d8       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73dc       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73e0       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73e4       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73e8       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73ec       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'73f0       0x4  startup_cm4.o [26]
+  .rodata            const    0x1009'73f4       0x0  zero_init3.o [46]
+  .rodata            const    0x1009'73f4       0x0  lz77_init_single.o [46]
+  Initializer bytes  const    0x1009'73f4      0x9c  <for P2-1>
+                            - 0x1009'7490  0x1'7410
 
 Unused ranges:
 
@@ -535,7 +533,7 @@ Unused ranges:
    0x802'06a1   0x802'06a3        0x3
    0x803'783c   0x803'7bff      0x3c4
    0x803'7c80   0x807'dfff   0x4'6380
-  0x1009'75be  0x1040'ffff  0x37'8a42
+  0x1009'7536  0x1040'ffff  0x37'8aca
 
 
 *******************************************************************************
@@ -550,7 +548,7 @@ Zero (__iar_zero_init3)
 
 Copy/lz77 (__iar_lz77_init_single3)
     1 source range, total size 0x9c (9% of destination):
-          0x1009'747c      0x9c
+          0x1009'73f4      0x9c
     1 destination range, total size 0x6a1:
            0x802'0000     0x6a1
 
@@ -569,10 +567,10 @@ command line/config:
 G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir: [1]
     foc_adc.o                        900            32'837
     foc_controller.o                 916
-    foc_debug_log.o                  668      172   24'000
+    foc_debug_log.o                  612      148   24'000
     foc_svpwm.o                    1'124            32'769
     ------------------------------------------------------
-    Total:                         3'608      172   89'606
+    Total:                         3'552      148   89'606
 
 G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\adc_11722776235721520015.dir: [2]
     cy_adc.o                         732       32
@@ -592,14 +590,14 @@ G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\proje
     driver_gpio.o                    286                 6
     fast_foc.o                       352   18'724       80
     hall_gather.o                  1'992        1       24
-    motor_control.o                4'868      512    1'339
+    motor_control.o                4'864      512    1'339
     motor_driver_uart_control.o    1'756      156      302
     motor_flash.o                    156
     motor_voice.o                    760   17'088
     pwm_output.o                   3'072
     sensorless_control.o           7'544        1       12
     ------------------------------------------------------
-    Total:                        21'110   36'482    1'799
+    Total:                        21'106   36'482    1'799
 
 G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\cpu_15938736945165268644.dir: [6]
     ------------------------------------------------------
@@ -753,9 +751,9 @@ G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\proje
 
 G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir: [39]
     cm4_isr.o                        224
-    main_cm4.o                       140       16
+    main_cm4.o                        92
     ------------------------------------------------------
-    Total:                           364       16
+    Total:                           316
 
 G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir: [40]
     zf_common_clock.o                 28                 4
@@ -851,10 +849,10 @@ shb_l.a: [47]
     ------------------------------------------------------
     Total:                            20
 
-    Gaps                              40        6       20
+    Gaps                              52        6       20
     Linker created                             32    8'192
 ----------------------------------------------------------
-    Grand Total:                  56'746   38'766  104'632
+    Grand Total:                  56'650   38'726  104'632
 
 
 *******************************************************************************
@@ -863,68 +861,68 @@ shb_l.a: [47]
 
 Entry                       Address    Size  Type      Object
 -----                       -------    ----  ----      ------
-.iar.init_table$$Base   0x1009'7040           --   Gb  - Linker created -
-.iar.init_table$$Limit  0x1009'7060           --   Gb  - Linker created -
-?main                   0x1009'70c1          Code  Gb  cmain.o [46]
-BusFault_Handler        0x1009'7449          Code  Wk  startup_cm4.o [26]
+.iar.init_table$$Base   0x1009'6fd4           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x1009'6ff4           --   Gb  - Linker created -
+?main                   0x1009'7061          Code  Gb  cmain.o [46]
+BusFault_Handler        0x1009'73c1          Code  Wk  startup_cm4.o [26]
 CSTACK$$Base             0x807'e000           --   Gb  - Linker created -
 CSTACK$$Limit            0x808'0000           --   Gb  - Linker created -
-CopyVectorTable         0x1009'6231    0x34  Code  Lc  startup.o [26]
-CpuUserInt0_Handler     0x1009'639b    0x26  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt10_Handler    0x1009'7465          Code  Wk  startup_cm4.o [26]
-CpuUserInt11_Handler    0x1009'7469          Code  Wk  startup_cm4.o [26]
-CpuUserInt12_Handler    0x1009'746d          Code  Wk  startup_cm4.o [26]
-CpuUserInt13_Handler    0x1009'7471          Code  Wk  startup_cm4.o [26]
-CpuUserInt14_Handler    0x1009'7475          Code  Wk  startup_cm4.o [26]
-CpuUserInt15_Handler    0x1009'7479          Code  Wk  startup_cm4.o [26]
-CpuUserInt1_Handler     0x1009'63c1    0x26  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt2_Handler     0x1009'63e7    0x26  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt3_Handler     0x1009'640d     0xe  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt4_Handler     0x1009'641b     0xe  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt5_Handler     0x1009'6429    0x26  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt6_Handler     0x1009'644f    0x26  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt7_Handler     0x1009'6475    0x1e  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt8_Handler     0x1009'745d          Code  Wk  startup_cm4.o [26]
-CpuUserInt9_Handler     0x1009'7461          Code  Wk  startup_cm4.o [26]
-Cy_Adc_Channel_DeInit   0x1009'499f    0x2c  Code  Gb  cy_adc.o [2]
-Cy_Adc_Channel_Disable  0x1009'49d7     0xc  Code  Gb  cy_adc.o [2]
-Cy_Adc_Channel_Enable   0x1009'49cb     0xc  Code  Gb  cy_adc.o [2]
-Cy_Adc_Channel_Init     0x1009'4843   0x15c  Code  Gb  cy_adc.o [2]
+CopyVectorTable         0x1009'61f5    0x34  Code  Lc  startup.o [26]
+CpuUserInt0_Handler     0x1009'635f    0x26  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt10_Handler    0x1009'73dd          Code  Wk  startup_cm4.o [26]
+CpuUserInt11_Handler    0x1009'73e1          Code  Wk  startup_cm4.o [26]
+CpuUserInt12_Handler    0x1009'73e5          Code  Wk  startup_cm4.o [26]
+CpuUserInt13_Handler    0x1009'73e9          Code  Wk  startup_cm4.o [26]
+CpuUserInt14_Handler    0x1009'73ed          Code  Wk  startup_cm4.o [26]
+CpuUserInt15_Handler    0x1009'73f1          Code  Wk  startup_cm4.o [26]
+CpuUserInt1_Handler     0x1009'6385    0x26  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt2_Handler     0x1009'63ab    0x26  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt3_Handler     0x1009'63d1     0xe  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt4_Handler     0x1009'63df     0xe  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt5_Handler     0x1009'63ed    0x26  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt6_Handler     0x1009'6413    0x26  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt7_Handler     0x1009'6439    0x1e  Code  Gb  cy_interrupt_map.o [20]
+CpuUserInt8_Handler     0x1009'73d5          Code  Wk  startup_cm4.o [26]
+CpuUserInt9_Handler     0x1009'73d9          Code  Wk  startup_cm4.o [26]
+Cy_Adc_Channel_DeInit   0x1009'499b    0x2c  Code  Gb  cy_adc.o [2]
+Cy_Adc_Channel_Disable  0x1009'49d3     0xc  Code  Gb  cy_adc.o [2]
+Cy_Adc_Channel_Enable   0x1009'49c7     0xc  Code  Gb  cy_adc.o [2]
+Cy_Adc_Channel_Init     0x1009'483f   0x15c  Code  Gb  cy_adc.o [2]
 Cy_Adc_Channel_SetInterruptMask
-                        0x1009'49ef    0x7c  Code  Gb  cy_adc.o [2]
+                        0x1009'49eb    0x7c  Code  Gb  cy_adc.o [2]
 Cy_Adc_Channel_SoftwareTrigger
-                        0x1009'49e3     0xc  Code  Gb  cy_adc.o [2]
-Cy_Adc_Init             0x1009'47b5    0x8e  Code  Gb  cy_adc.o [2]
-Cy_DefaultUserHandler   0x1009'6399     0x2  Code  Gb  cy_interrupt_map.o [20]
-Cy_FlashHandler         0x1009'4b03    0x34  Code  Lc  cy_mw_flash.o [11]
-Cy_FlashInit            0x1009'4b37    0x3c  Code  Gb  cy_mw_flash.o [11]
-Cy_FlashSectorErase     0x1009'4b73    0x7e  Code  Gb  cy_mw_flash.o [11]
-Cy_FlashWriteWork       0x1009'4c7d    0xbc  Code  Gb  cy_mw_flash.o [11]
-Cy_Flash_BlankCheck     0x1009'5523    0xb4  Code  Gb  cy_flash.o [10]
-Cy_Flash_BoundsCheck    0x1009'53d1    0x24  Code  Gb  cy_flash.o [10]
+                        0x1009'49df     0xc  Code  Gb  cy_adc.o [2]
+Cy_Adc_Init             0x1009'47b1    0x8e  Code  Gb  cy_adc.o [2]
+Cy_DefaultUserHandler   0x1009'635d     0x2  Code  Gb  cy_interrupt_map.o [20]
+Cy_FlashHandler         0x1009'4aff    0x34  Code  Lc  cy_mw_flash.o [11]
+Cy_FlashInit            0x1009'4b33    0x3c  Code  Gb  cy_mw_flash.o [11]
+Cy_FlashSectorErase     0x1009'4b6f    0x7e  Code  Gb  cy_mw_flash.o [11]
+Cy_FlashWriteWork       0x1009'4c79    0xbc  Code  Gb  cy_mw_flash.o [11]
+Cy_Flash_BlankCheck     0x1009'551f    0xb4  Code  Gb  cy_flash.o [10]
+Cy_Flash_BoundsCheck    0x1009'53cd    0x24  Code  Gb  cy_flash.o [10]
 Cy_Flash_CallSromApiForFlashWrite
-                        0x1009'51a9    0x6a  Code  Lc  cy_flash.o [10]
-Cy_Flash_EraseSector    0x1009'54b3    0x70  Code  Gb  cy_flash.o [10]
+                        0x1009'51a5    0x6a  Code  Lc  cy_flash.o [10]
+Cy_Flash_EraseSector    0x1009'54af    0x70  Code  Gb  cy_flash.o [10]
 Cy_Flash_IsWorkSmallSector
-                        0x1009'5327    0x40  Code  Gb  cy_flash.o [10]
+                        0x1009'5323    0x40  Code  Gb  cy_flash.o [10]
 Cy_Flash_MainBoundsCheck
-                        0x1009'5367    0x6a  Code  Gb  cy_flash.o [10]
-Cy_Flash_ProcessOpcode  0x1009'53f5    0xbe  Code  Gb  cy_flash.o [10]
-Cy_Flash_ProgramRow     0x1009'5213    0xaa  Code  Gb  cy_flash.o [10]
+                        0x1009'5363    0x6a  Code  Gb  cy_flash.o [10]
+Cy_Flash_ProcessOpcode  0x1009'53f1    0xbe  Code  Gb  cy_flash.o [10]
+Cy_Flash_ProgramRow     0x1009'520f    0xaa  Code  Gb  cy_flash.o [10]
 Cy_Flash_WorkBoundsCheck
-                        0x1009'52bd    0x6a  Code  Gb  cy_flash.o [10]
+                        0x1009'52b9    0x6a  Code  Gb  cy_flash.o [10]
 Cy_Flashc_GetMainBankMode
-                        0x1009'5185    0x10  Code  Lc  cy_flash.o [10]
+                        0x1009'5181    0x10  Code  Lc  cy_flash.o [10]
 Cy_Flashc_GetWorkBankMode
-                        0x1009'5175    0x10  Code  Lc  cy_flash.o [10]
+                        0x1009'5171    0x10  Code  Lc  cy_flash.o [10]
 Cy_Flashc_InvalidateFlashCacheBuffer
-                        0x1009'5195    0x14  Code  Lc  cy_flash.o [10]
+                        0x1009'5191    0x14  Code  Lc  cy_flash.o [10]
 Cy_Flashc_InvalidateFlashCacheBuffer
-                        0x1009'4ad7    0x14  Code  Lc  cy_mw_flash.o [11]
+                        0x1009'4ad3    0x14  Code  Lc  cy_mw_flash.o [11]
 Cy_Flashc_MainWriteEnable
-                        0x1009'4aeb     0xc  Code  Lc  cy_mw_flash.o [11]
+                        0x1009'4ae7     0xc  Code  Lc  cy_mw_flash.o [11]
 Cy_Flashc_WorkWriteEnable
-                        0x1009'4af7     0xc  Code  Lc  cy_mw_flash.o [11]
+                        0x1009'4af3     0xc  Code  Lc  cy_mw_flash.o [11]
 Cy_GPIO_ClearInterrupt  0x1008'ce0f     0xe  Code  Lc  cy_gpio.o [12]
 Cy_GPIO_ClearInterrupt  0x1008'bf49     0xe  Code  Lc  zf_driver_exti.o [43]
 Cy_GPIO_Clr             0x1008'b0c1     0xa  Code  Lc  zf_driver_gpio.o [43]
@@ -948,50 +946,50 @@ Cy_GPIO_SetSlewRate     0x1008'cdd7    0x1a  Code  Lc  cy_gpio.o [12]
 Cy_GPIO_SetVtrip        0x1008'cdbd    0x1a  Code  Lc  cy_gpio.o [12]
 Cy_GPIO_Write           0x1008'cd89    0x18  Code  Lc  cy_gpio.o [12]
 Cy_IPC_Drv_AcquireNotify
-                        0x1009'5645     0xc  Code  Lc  cy_ipc_drv.o [13]
+                        0x1009'5641     0xc  Code  Lc  cy_ipc_drv.o [13]
 Cy_IPC_Drv_ClearInterrupt
-                        0x1009'4db7    0x14  Code  Lc  cy_srom.o [25]
+                        0x1009'4db3    0x14  Code  Lc  cy_srom.o [25]
 Cy_IPC_Drv_GetInterruptStatusMasked
-                        0x1009'4db3     0x4  Code  Lc  cy_srom.o [25]
+                        0x1009'4daf     0x4  Code  Lc  cy_srom.o [25]
 Cy_IPC_Drv_GetIntrBaseAddr
-                        0x1009'4d6d    0x34  Code  Lc  cy_srom.o [25]
+                        0x1009'4d69    0x34  Code  Lc  cy_srom.o [25]
 Cy_IPC_Drv_IsLockAcquired
-                        0x1009'4dcb     0x8  Code  Lc  cy_srom.o [25]
-Cy_IPC_Drv_LockAcquire  0x1009'5659    0x10  Code  Gb  cy_ipc_drv.o [13]
+                        0x1009'4dc7     0x8  Code  Lc  cy_srom.o [25]
+Cy_IPC_Drv_LockAcquire  0x1009'5655    0x10  Code  Gb  cy_ipc_drv.o [13]
 Cy_IPC_Drv_SendMsgWord_2
-                        0x1009'5669    0x34  Code  Gb  cy_ipc_drv.o [13]
+                        0x1009'5665    0x34  Code  Gb  cy_ipc_drv.o [13]
 Cy_IPC_Drv_SetInterruptMask
-                        0x1009'4da1    0x12  Code  Lc  cy_srom.o [25]
+                        0x1009'4d9d    0x12  Code  Lc  cy_srom.o [25]
 Cy_IPC_Drv_WriteData1Value
-                        0x1009'5655     0x4  Code  Lc  cy_ipc_drv.o [13]
-Cy_IPC_Drv_WriteDataValue
                         0x1009'5651     0x4  Code  Lc  cy_ipc_drv.o [13]
-Cy_RestoreIRQ           0x1009'6375          Code  Gb  startup_cm4.o [26]
-Cy_SCB_ClearRxFifo      0x1009'3157    0x1e  Code  Lc  zf_driver_spi.o [43]
+Cy_IPC_Drv_WriteDataValue
+                        0x1009'564d     0x4  Code  Lc  cy_ipc_drv.o [13]
+Cy_RestoreIRQ           0x1009'6339          Code  Gb  startup_cm4.o [26]
+Cy_SCB_ClearRxFifo      0x1009'3153    0x1e  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_ClearRxInterrupt
                         0x1008'ddc1     0xa  Code  Lc  zf_driver_uart.o [43]
 Cy_SCB_ClearTxInterrupt
                         0x1008'ddd7     0xa  Code  Lc  zf_driver_uart.o [43]
-Cy_SCB_GetNumInRxFifo   0x1009'314d     0xa  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_GetNumInRxFifo   0x1009'3149     0xa  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_GetNumInRxFifo   0x1008'dd6f     0xa  Code  Lc  zf_driver_uart.o [43]
-Cy_SCB_GetNumInTxFifo   0x1009'317b     0xa  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_GetNumInTxFifo   0x1009'3177     0xa  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_GetNumInTxFifo   0x1008'dd7f     0xa  Code  Lc  zf_driver_uart.o [43]
 Cy_SCB_GetRxInterruptMask
                         0x1008'ddbb     0x6  Code  Lc  zf_driver_uart.o [43]
 Cy_SCB_GetTxInterruptMask
                         0x1008'ddd1     0x6  Code  Lc  zf_driver_uart.o [43]
-Cy_SCB_GetTxSrValid     0x1009'3185     0xa  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_GetTxSrValid     0x1009'3181     0xa  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_GetTxSrValid     0x1008'dd89     0xa  Code  Lc  zf_driver_uart.o [43]
-Cy_SCB_IsTxComplete     0x1009'318f    0x22  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_IsTxComplete     0x1009'318b    0x22  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_IsTxComplete     0x1008'dd93    0x22  Code  Lc  zf_driver_uart.o [43]
 Cy_SCB_ReadRxFifo       0x1008'dd69     0x6  Code  Lc  zf_driver_uart.o [43]
-Cy_SCB_SPI_ClearRxFifo  0x1009'31cf     0x8  Code  Lc  zf_driver_spi.o [43]
-Cy_SCB_SPI_Enable       0x1009'31b1     0xa  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_SPI_ClearRxFifo  0x1009'31cb     0x8  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_SPI_Enable       0x1009'31ad     0xa  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_SPI_GetNumInRxFifo
-                        0x1009'31c7     0x8  Code  Lc  zf_driver_spi.o [43]
-Cy_SCB_SPI_Init         0x1009'45c5   0x1d8  Code  Gb  cy_scb_spi.o [21]
+                        0x1009'31c3     0x8  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_SPI_Init         0x1009'45c1   0x1d8  Code  Gb  cy_scb_spi.o [21]
 Cy_SCB_SPI_SetActiveSlaveSelect
-                        0x1009'31bb     0xc  Code  Lc  zf_driver_spi.o [43]
+                        0x1009'31b7     0xc  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_SetRxInterruptMask
                         0x1008'ddb5     0x6  Code  Lc  zf_driver_uart.o [43]
 Cy_SCB_SetTxInterruptMask
@@ -999,27 +997,27 @@ Cy_SCB_SetTxInterruptMask
 Cy_SCB_UART_DeInit      0x1008'effd    0x5c  Code  Gb  cy_scb_uart.o [21]
 Cy_SCB_UART_Enable      0x1008'dde1     0xa  Code  Lc  zf_driver_uart.o [43]
 Cy_SCB_UART_Init        0x1008'ed79   0x284  Code  Gb  cy_scb_uart.o [21]
-Cy_SCB_WriteTxFifo      0x1009'3175     0x6  Code  Lc  zf_driver_spi.o [43]
+Cy_SCB_WriteTxFifo      0x1009'3171     0x6  Code  Lc  zf_driver_spi.o [43]
 Cy_SCB_WriteTxFifo      0x1008'dd79     0x6  Code  Lc  zf_driver_uart.o [43]
-Cy_SaveIRQ              0x1009'636d          Code  Gb  startup_cm4.o [26]
-Cy_Srom_CallApi         0x1009'4dd3    0xb8  Code  Gb  cy_srom.o [25]
+Cy_SaveIRQ              0x1009'6331          Code  Gb  startup_cm4.o [26]
+Cy_Srom_CallApi         0x1009'4dcf    0xb8  Code  Gb  cy_srom.o [25]
 Cy_Srom_CallApi_NonBlock
-                        0x1009'4e8b    0x66  Code  Gb  cy_srom.o [25]
+                        0x1009'4e87    0x66  Code  Gb  cy_srom.o [25]
 Cy_Srom_ConvertRespToStatus
-                        0x1009'4f57    0x1e  Code  Gb  cy_srom.o [25]
-Cy_Srom_GetApiResponse  0x1009'4f21    0x36  Code  Gb  cy_srom.o [25]
+                        0x1009'4f53    0x1e  Code  Gb  cy_srom.o [25]
+Cy_Srom_GetApiResponse  0x1009'4f1d    0x36  Code  Gb  cy_srom.o [25]
 Cy_Srom_GetResponseType
-                        0x1009'4ef1    0x30  Code  Gb  cy_srom.o [25]
+                        0x1009'4eed    0x30  Code  Gb  cy_srom.o [25]
 Cy_Srom_ISR_ResponseIPC
-                        0x1009'4fd1    0x58  Code  Lc  cy_srom.o [25]
+                        0x1009'4fcd    0x58  Code  Lc  cy_srom.o [25]
 Cy_Srom_SetResponseHandler
-                        0x1009'4f75    0x5a  Code  Gb  cy_srom.o [25]
+                        0x1009'4f71    0x5a  Code  Gb  cy_srom.o [25]
 Cy_SysClk_CheckDividerExisting
                         0x1008'b3ad    0x34  Code  Lc  pwm_output.o [5]
 Cy_SysClk_CheckDividerExisting
                         0x1008'8c65    0x34  Code  Lc  sensorless_control.o [5]
 Cy_SysClk_CheckDividerExisting
-                        0x1009'3f79    0x34  Code  Lc  zf_driver_adc.o [43]
+                        0x1009'3f75    0x34  Code  Lc  zf_driver_adc.o [43]
 Cy_SysClk_CheckDividerExisting
                         0x1008'd9b5    0x34  Code  Lc  zf_driver_delay.o [43]
 Cy_SysClk_CheckDividerExisting
@@ -1027,63 +1025,63 @@ Cy_SysClk_CheckDividerExisting
 Cy_SysClk_CheckDividerExisting
                         0x1008'a9dd    0x34  Code  Lc  zf_driver_pwm.o [43]
 Cy_SysClk_CheckDividerExisting
-                        0x1009'31d7    0x34  Code  Lc  zf_driver_spi.o [43]
+                        0x1009'31d3    0x34  Code  Lc  zf_driver_spi.o [43]
 Cy_SysClk_CheckDividerExisting
                         0x1008'c1e9    0x34  Code  Lc  zf_driver_timer.o [43]
 Cy_SysClk_CheckDividerExisting
                         0x1008'dc29    0x34  Code  Lc  zf_driver_uart.o [43]
 Cy_SysClk_ClkPathGetSource
-                        0x1009'57cf    0x54  Code  Gb  cy_sysclk.o [28]
-Cy_SysClk_EcoGetStatus  0x1009'56b9    0x1a  Code  Lc  cy_sysclk.o [28]
+                        0x1009'57cb    0x54  Code  Gb  cy_sysclk.o [28]
+Cy_SysClk_EcoGetStatus  0x1009'56b5    0x1a  Code  Lc  cy_sysclk.o [28]
 Cy_SysClk_FastClkGetDivider
-                        0x1009'57c3     0xc  Code  Lc  cy_sysclk.o [28]
+                        0x1009'57bf     0xc  Code  Lc  cy_sysclk.o [28]
 Cy_SysClk_FllGetConfiguration
-                        0x1009'5823    0x7e  Code  Gb  cy_sysclk.o [28]
+                        0x1009'581f    0x7e  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_FllGetLockStatus
-                        0x1009'56d3     0xc  Code  Lc  cy_sysclk.o [28]
+                        0x1009'56cf     0xc  Code  Lc  cy_sysclk.o [28]
 Cy_SysClk_GetCoreFrequency
-                        0x1009'5d03     0x8  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5cff     0x8  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetEcoFrequency
-                        0x1009'596d    0x32  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5969    0x32  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetExtFrequency
-                        0x1009'59a1    0x1e  Code  Gb  cy_sysclk.o [28]
+                        0x1009'599d    0x1e  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetFastFrequency
-                        0x1009'5cd5    0x2e  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5cd1    0x2e  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetFllInputFrequency
-                        0x1009'5ac9     0xc  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5ac5     0xc  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetFllOutputFrequency
-                        0x1009'5af1    0x78  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5aed    0x78  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetHfClkFrequency
-                        0x1009'5c5b    0x7a  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5c57    0x7a  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetIlo0Frequency
-                        0x1009'59c1    0x32  Code  Gb  cy_sysclk.o [28]
+                        0x1009'59bd    0x32  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetIlo1Frequency
-                        0x1009'59f3    0x32  Code  Gb  cy_sysclk.o [28]
+                        0x1009'59ef    0x32  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetImoFrequency
-                        0x1009'593b    0x32  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5937    0x32  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetPathFrequency
-                        0x1009'5c29    0x32  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5c25    0x32  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetPathSourceFrequency
-                        0x1009'5a65    0x64  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5a61    0x64  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetPllInputFrequency
-                        0x1009'5ad5    0x1c  Code  Gb  cy_sysclk.o [28]
-Cy_SysClk_GetPllNo      0x1009'56e1    0x14  Code  Lc  cy_sysclk.o [28]
+                        0x1009'5ad1    0x1c  Code  Gb  cy_sysclk.o [28]
+Cy_SysClk_GetPllNo      0x1009'56dd    0x14  Code  Lc  cy_sysclk.o [28]
 Cy_SysClk_GetPllOutputFrequency
-                        0x1009'5b69    0xba  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5b65    0xba  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_GetWcoFrequency
-                        0x1009'5a25    0x32  Code  Gb  cy_sysclk.o [28]
+                        0x1009'5a21    0x32  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_HfClockGetDivider
-                        0x1009'5781    0x42  Code  Lc  cy_sysclk.o [28]
+                        0x1009'577d    0x42  Code  Lc  cy_sysclk.o [28]
 Cy_SysClk_HfClockGetSource
-                        0x1009'572d    0x54  Code  Lc  cy_sysclk.o [28]
+                        0x1009'5729    0x54  Code  Lc  cy_sysclk.o [28]
 Cy_SysClk_InitGetFreqParams
-                        0x1009'5921    0x1a  Code  Gb  cy_sysclk.o [28]
+                        0x1009'591d    0x1a  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_PeriphAssignDivider
                         0x1008'b44b    0x3a  Code  Lc  pwm_output.o [5]
 Cy_SysClk_PeriphAssignDivider
                         0x1008'8d03    0x3a  Code  Lc  sensorless_control.o [5]
 Cy_SysClk_PeriphAssignDivider
-                        0x1009'4017    0x3a  Code  Lc  zf_driver_adc.o [43]
+                        0x1009'4013    0x3a  Code  Lc  zf_driver_adc.o [43]
 Cy_SysClk_PeriphAssignDivider
                         0x1008'da4f    0x38  Code  Lc  zf_driver_delay.o [43]
 Cy_SysClk_PeriphAssignDivider
@@ -1091,7 +1089,7 @@ Cy_SysClk_PeriphAssignDivider
 Cy_SysClk_PeriphAssignDivider
                         0x1008'aa7b    0x3a  Code  Lc  zf_driver_pwm.o [43]
 Cy_SysClk_PeriphAssignDivider
-                        0x1009'3297    0x3a  Code  Lc  zf_driver_spi.o [43]
+                        0x1009'3293    0x3a  Code  Lc  zf_driver_spi.o [43]
 Cy_SysClk_PeriphAssignDivider
                         0x1008'c283    0x38  Code  Lc  zf_driver_timer.o [43]
 Cy_SysClk_PeriphAssignDivider
@@ -1101,7 +1099,7 @@ Cy_SysClk_PeriphEnableDivider
 Cy_SysClk_PeriphEnableDivider
                         0x1008'8d3d    0x3c  Code  Lc  sensorless_control.o [5]
 Cy_SysClk_PeriphEnableDivider
-                        0x1009'4051    0x3c  Code  Lc  zf_driver_adc.o [43]
+                        0x1009'404d    0x3c  Code  Lc  zf_driver_adc.o [43]
 Cy_SysClk_PeriphEnableDivider
                         0x1008'da87    0x3a  Code  Lc  zf_driver_delay.o [43]
 Cy_SysClk_PeriphEnableDivider
@@ -1109,7 +1107,7 @@ Cy_SysClk_PeriphEnableDivider
 Cy_SysClk_PeriphEnableDivider
                         0x1008'aab5    0x3c  Code  Lc  zf_driver_pwm.o [43]
 Cy_SysClk_PeriphEnableDivider
-                        0x1009'32d1    0x3c  Code  Lc  zf_driver_spi.o [43]
+                        0x1009'32cd    0x3c  Code  Lc  zf_driver_spi.o [43]
 Cy_SysClk_PeriphEnableDivider
                         0x1008'c2bb    0x3a  Code  Lc  zf_driver_timer.o [43]
 Cy_SysClk_PeriphEnableDivider
@@ -1119,7 +1117,7 @@ Cy_SysClk_PeriphSetDivider
 Cy_SysClk_PeriphSetDivider
                         0x1008'8c99    0x6a  Code  Lc  sensorless_control.o [5]
 Cy_SysClk_PeriphSetDivider
-                        0x1009'3fad    0x6a  Code  Lc  zf_driver_adc.o [43]
+                        0x1009'3fa9    0x6a  Code  Lc  zf_driver_adc.o [43]
 Cy_SysClk_PeriphSetDivider
                         0x1008'd9e9    0x66  Code  Lc  zf_driver_delay.o [43]
 Cy_SysClk_PeriphSetDivider
@@ -1129,34 +1127,34 @@ Cy_SysClk_PeriphSetDivider
 Cy_SysClk_PeriphSetDivider
                         0x1008'c21d    0x66  Code  Lc  zf_driver_timer.o [43]
 Cy_SysClk_PeriphSetFracDivider
-                        0x1009'320b    0x8c  Code  Lc  zf_driver_spi.o [43]
+                        0x1009'3207    0x8c  Code  Lc  zf_driver_spi.o [43]
 Cy_SysClk_PeriphSetFracDivider
                         0x1008'dc5d    0x8c  Code  Lc  zf_driver_uart.o [43]
 Cy_SysClk_PllGetConfiguration
-                        0x1009'58b5    0x48  Code  Gb  cy_sysclk.o [28]
+                        0x1009'58b1    0x48  Code  Gb  cy_sysclk.o [28]
 Cy_SysClk_PllGetLockStatus
-                        0x1009'56f5    0x28  Code  Lc  cy_sysclk.o [28]
-Cy_SysClk_WcoOkay       0x1009'571d     0xe  Code  Lc  cy_sysclk.o [28]
+                        0x1009'56f1    0x28  Code  Lc  cy_sysclk.o [28]
+Cy_SysClk_WcoOkay       0x1009'5719     0xe  Code  Lc  cy_sysclk.o [28]
 Cy_SysInt_InitIRQ       0x1008'd959    0x38  Code  Gb  cy_sysint.o [30]
 Cy_SysInt_SetSystemIrqVector
                         0x1008'd991    0x12  Code  Gb  cy_sysint.o [30]
 Cy_SysInt_SystemIrqUserTableRamPointer
                          0x802'05fc     0x4  Data  Gb  cy_interrupt_map.o [20]
 Cy_SysLib_CleanCoreDCacheByAddr
-                        0x1009'5173     0x2  Code  Gb  cy_syslib.o [31]
-Cy_SysLib_DelayCycles   0x1009'70a1          Code  Gb  cy_syslib_iar.o [31]
+                        0x1009'516f     0x2  Code  Gb  cy_syslib.o [31]
+Cy_SysLib_DelayCycles   0x1009'7041          Code  Gb  cy_syslib_iar.o [31]
 Cy_SysLib_EnterCriticalSection
-                        0x1009'70b1          Code  Gb  cy_syslib_iar.o [31]
+                        0x1009'7051          Code  Gb  cy_syslib_iar.o [31]
 Cy_SysLib_ExitCriticalSection
-                        0x1009'70b9          Code  Gb  cy_syslib_iar.o [31]
-Cy_SysLib_FaultHandler  0x1009'50cd    0x90  Code  Gb  cy_syslib.o [31]
-Cy_SysLib_Halt          0x1009'50c9     0x4  Code  Gb  cy_syslib.o [31]
+                        0x1009'7059          Code  Gb  cy_syslib_iar.o [31]
+Cy_SysLib_FaultHandler  0x1009'50c9    0x90  Code  Gb  cy_syslib.o [31]
+Cy_SysLib_Halt          0x1009'50c5     0x4  Code  Gb  cy_syslib.o [31]
 Cy_SysLib_InvalidateCoreDCacheByAddr
-                        0x1009'5171     0x2  Code  Gb  cy_syslib.o [31]
+                        0x1009'516d     0x2  Code  Gb  cy_syslib.o [31]
 Cy_SysLib_ProcessingFault
-                        0x1009'56a5    0x14  Code  Wk  cy_syslib.o [31]
-Cy_SysLib_SvcHandler    0x1009'7355     0xc  Code  Wk  cy_syslib.o [31]
-Cy_SystemInitFpuEnable  0x1009'631d    0x1e  Code  Gb  system_tviibe4m_cm4.o [19]
+                        0x1009'56a1    0x14  Code  Wk  cy_syslib.o [31]
+Cy_SysLib_SvcHandler    0x1009'72cd     0xc  Code  Wk  cy_syslib.o [31]
+Cy_SystemInitFpuEnable  0x1009'62e1    0x1e  Code  Gb  system_tviibe4m_cm4.o [19]
 Cy_SystemIrqUserTable    0x802'0000   0x5fc  Data  Gb  cy_interrupt_map.o [20]
 Cy_Tcpwm_Counter_ClearTC_Intr
                         0x1008'c1cd    0x10  Code  Gb  cy_tcpwm_counter.o [37]
@@ -1178,44 +1176,44 @@ Cy_Tcpwm_Pwm_Disable    0x1008'd94d     0xa  Code  Gb  cy_tcpwm_pwm.o [37]
 Cy_Tcpwm_Pwm_Enable     0x1008'd943     0xa  Code  Gb  cy_tcpwm_pwm.o [37]
 Cy_Tcpwm_Pwm_Init       0x1008'd701   0x1e8  Code  Gb  cy_tcpwm_pwm.o [37]
 Cy_Tcpwm_TriggerStart   0x1008'c1dd     0xc  Code  Gb  cy_tcpwm.o [37]
-Cy_WorkFlashBlankCheck  0x1009'4bf1    0x8c  Code  Gb  cy_mw_flash.o [11]
+Cy_WorkFlashBlankCheck  0x1009'4bed    0x8c  Code  Gb  cy_mw_flash.o [11]
 Cy_u32StartupStackEndAddress
-                        0x1009'6e34          Data  Gb  startup_cm4.o [26]
+                        0x1009'6dc8          Data  Gb  startup_cm4.o [26]
 Cy_u32StartupStackStartAddress
-                        0x1009'6e30          Data  Gb  startup_cm4.o [26]
-DebugMon_Handler        0x1009'7451          Code  Wk  startup_cm4.o [26]
+                        0x1009'6dc4          Data  Gb  startup_cm4.o [26]
+DebugMon_Handler        0x1009'73c9          Code  Wk  startup_cm4.o [26]
 HEAP_STACK$$Base         0x807'e000           --   Gb  - Linker created -
 HEAP_STACK$$Limit        0x808'0000           --   Gb  - Linker created -
-HardFault_Handler       0x1009'7061          Code  Wk  startup_cm4.o [26]
-InitRamEcc              0x1009'6121    0xfe  Code  Lc  startup.o [26]
-InitRamEccClearArea     0x1009'621f    0x12  Code  Lc  startup.o [26]
-MemManage_Handler       0x1009'7445          Code  Wk  startup_cm4.o [26]
-NMI_Handler             0x1009'7441          Code  Wk  startup_cm4.o [26]
-PendSV_Handler          0x1009'7455          Code  Wk  startup_cm4.o [26]
-Region$$Table$$Base     0x1009'7040           --   Gb  - Linker created -
-Region$$Table$$Limit    0x1009'7060           --   Gb  - Linker created -
-Reset_Handler           0x1009'6df5          Code  Wk  startup_cm4.o [26]
-SVC_Handler             0x1009'712d          Code  Wk  startup_cm4.o [26]
-Startup_Init            0x1009'6111    0x10  Code  Gb  startup.o [26]
-SysTick_Handler         0x1009'7459          Code  Wk  startup_cm4.o [26]
+HardFault_Handler       0x1009'6ff5          Code  Wk  startup_cm4.o [26]
+InitRamEcc              0x1009'60e5    0xfe  Code  Lc  startup.o [26]
+InitRamEccClearArea     0x1009'61e3    0x12  Code  Lc  startup.o [26]
+MemManage_Handler       0x1009'73bd          Code  Wk  startup_cm4.o [26]
+NMI_Handler             0x1009'73b9          Code  Wk  startup_cm4.o [26]
+PendSV_Handler          0x1009'73cd          Code  Wk  startup_cm4.o [26]
+Region$$Table$$Base     0x1009'6fd4           --   Gb  - Linker created -
+Region$$Table$$Limit    0x1009'6ff4           --   Gb  - Linker created -
+Reset_Handler           0x1009'6d89          Code  Wk  startup_cm4.o [26]
+SVC_Handler             0x1009'70cd          Code  Wk  startup_cm4.o [26]
+Startup_Init            0x1009'60d5    0x10  Code  Gb  startup.o [26]
+SysTick_Handler         0x1009'73d1          Code  Wk  startup_cm4.o [26]
 SystemCoreClock          0x803'77f0     0x4  Data  Gb  system_tviibe4m_cm4.o [19]
-SystemCoreClockUpdate   0x1009'6289    0x94  Code  Gb  system_tviibe4m_cm4.o [19]
-SystemInit              0x1009'6281     0x8  Code  Gb  system_tviibe4m_cm4.o [19]
-UsageFault_Handler      0x1009'744d          Code  Wk  startup_cm4.o [26]
+SystemCoreClockUpdate   0x1009'624d    0x94  Code  Gb  system_tviibe4m_cm4.o [19]
+SystemInit              0x1009'6245     0x8  Code  Gb  system_tviibe4m_cm4.o [19]
+UsageFault_Handler      0x1009'73c5          Code  Wk  startup_cm4.o [26]
 _LC                     0x1008'f08d     0x6  Code  Lc  xprintffull_nomb.o [44]
 _LitobFullNoMb          0x1008'fd59   0x114  Code  Lc  xprintffull_nomb.o [44]
 _PrintfFullNoMb         0x1008'f093   0xc98  Code  Gb  xprintffull_nomb.o [44]
-_Prout                  0x1009'71c5    0x16  Code  Gb  xprout.o [44]
+_Prout                  0x1009'714d    0x16  Code  Gb  xprout.o [44]
 _PutcharsFullNoMb       0x1008'fec5    0x2e  Code  Lc  xprintffull_nomb.o [44]
 _SNProut                0x1008'c953    0x1a  Code  Gb  xsnprout.o [44]
 _SProut                 0x1008'cd33     0xa  Code  Gb  xsprout.o [44]
-__NVIC_ClearPendingIRQ  0x1009'637d    0x1c  Code  Lc  cy_interrupt_map.o [20]
+__NVIC_ClearPendingIRQ  0x1009'6341    0x1c  Code  Lc  cy_interrupt_map.o [20]
 __NVIC_ClearPendingIRQ  0x1008'b367    0x1e  Code  Lc  pwm_output.o [5]
 __NVIC_ClearPendingIRQ  0x1008'cef1    0x1c  Code  Lc  zf_common_interrupt.o [40]
-__NVIC_EnableIRQ        0x1009'4a91    0x1e  Code  Lc  cy_mw_flash.o [11]
+__NVIC_EnableIRQ        0x1009'4a8d    0x1e  Code  Lc  cy_mw_flash.o [11]
 __NVIC_EnableIRQ        0x1008'b349    0x1e  Code  Lc  pwm_output.o [5]
 __NVIC_EnableIRQ        0x1008'ced5    0x1c  Code  Lc  zf_common_interrupt.o [40]
-__NVIC_SetPriority      0x1009'4aaf    0x28  Code  Lc  cy_mw_flash.o [11]
+__NVIC_SetPriority      0x1009'4aab    0x28  Code  Lc  cy_mw_flash.o [11]
 __NVIC_SetPriority      0x1008'b385    0x28  Code  Lc  pwm_output.o [5]
 __NVIC_SetPriority      0x1008'cf0d    0x24  Code  Lc  zf_common_interrupt.o [40]
 __Vectors               0x1008'0000           --   Gb  startup_cm4.o [26]
@@ -1241,62 +1239,62 @@ __aeabi_memcpy8         0x1008'ff5d          Code  Gb  ABImemcpy.o [46]
 __aeabi_memset          0x1008'cccd          Code  Gb  ABImemset.o [46]
 __aeabi_ui2d            0x1009'0c1d          Code  Gb  U32ToDbl.o [45]
 __aeabi_uldivmod        0x1008'eb49          Code  Gb  I64DivMod.o [46]
-__cmain                 0x1009'70c1          Code  Gb  cmain.o [46]
+__cmain                 0x1009'7061          Code  Gb  cmain.o [46]
 __ecc_init_sram_end_address {Abs}
                          0x807'ffff          Data  Gb  <internal module>
 __ecc_init_sram_start_address {Abs}
                          0x802'0000          Data  Gb  <internal module>
-__exit                  0x1009'3139    0x14  Code  Gb  exit.o [47]
+__exit                  0x1009'3135    0x14  Code  Gb  exit.o [47]
 __iar_Fail_s            0x1009'0711    0x1c  Code  Gb  xfail_s.o [44]
 __iar_Memchr            0x1009'0751          Code  Gb  memchr.o [46]
 __iar_Memset            0x1008'cccd          Code  Gb  ABImemset.o [46]
 __iar_Memset4_word      0x1009'06c1          Code  Gb  ABImemset48.o [46]
 __iar_Memset8_word      0x1009'06c1          Code  Gb  ABImemset48.o [46]
 __iar_Memset_word       0x1008'ccd5          Code  Gb  ABImemset.o [46]
-__iar_Sin32             0x1009'3da5   0x18c  Code  Lc  cos_sin32.o [45]
+__iar_Sin32             0x1009'3da1   0x18c  Code  Lc  cos_sin32.o [45]
 __iar_Strchr            0x1009'06f9          Code  Gb  strchr.o [46]
-__iar_cos32             0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
-__iar_cos_medium32      0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
-__iar_cos_mediumf       0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
-__iar_data_init3        0x1009'6fad    0x28  Code  Gb  data_init.o [46]
+__iar_cos32             0x1009'3f6d     0x4  Code  Gb  cos_sin32.o [45]
+__iar_cos_medium32      0x1009'3f6d     0x4  Code  Gb  cos_sin32.o [45]
+__iar_cos_mediumf       0x1009'3f6d     0x4  Code  Gb  cos_sin32.o [45]
+__iar_data_init3        0x1009'6f41    0x28  Code  Gb  data_init.o [46]
 __iar_frexp             0x1009'07b5          Code  Gb  frexp.o [45]
 __iar_frexpl            0x1009'07b5          Code  Gb  frexp.o [45]
-__iar_init_vfp          0x1009'701d          Code  Gb  fpinit_M.o [45]
+__iar_init_vfp          0x1009'6fb1          Code  Gb  fpinit_M.o [45]
 __iar_ldexp64           0x1009'0819          Code  Gb  ldexp.o [45]
 __iar_lz77_init_single3
                         0x1008'c60f    0x7e  Code  Gb  lz77_init_single.o [46]
-__iar_program_start     0x1009'7149          Code  Gb  cstartup_M.o [46]
-__iar_round64           0x1009'3021          Code  Gb  round.o [45]
+__iar_program_start     0x1009'70e9          Code  Gb  cstartup_M.o [46]
+__iar_round64           0x1009'301d          Code  Gb  round.o [45]
 __iar_scalbln64         0x1009'0819          Code  Gb  ldexp.o [45]
 __iar_scalbn64          0x1009'0819          Code  Gb  ldexp.o [45]
-__iar_sin32             0x1009'3f75     0x4  Code  Gb  cos_sin32.o [45]
-__iar_sin_medium32      0x1009'3f75     0x4  Code  Gb  cos_sin32.o [45]
-__iar_sin_mediumf       0x1009'3f75     0x4  Code  Gb  cos_sin32.o [45]
+__iar_sin32             0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
+__iar_sin_medium32      0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
+__iar_sin_mediumf       0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
 __iar_softfp___iar_frexp64
                         0x1009'07a9          Code  Gb  frexp.o [45]
 __iar_softfp_frexp      0x1009'07a9          Code  Gb  frexp.o [45]
 __iar_softfp_frexpl     0x1009'07a9          Code  Gb  frexp.o [45]
 __iar_vfp___iar_round64
-                        0x1009'3011          Code  Gb  round.o [45]
-__iar_vfp_round         0x1009'3011          Code  Gb  round.o [45]
-__iar_vfp_roundl        0x1009'3011          Code  Gb  round.o [45]
-__iar_zero_init3        0x1009'6e39    0x38  Code  Gb  zero_init3.o [46]
-__low_level_init        0x1009'70e1          Code  Gb  startup_cm4.o [26]
+                        0x1009'300d          Code  Gb  round.o [45]
+__iar_vfp_round         0x1009'300d          Code  Gb  round.o [45]
+__iar_vfp_roundl        0x1009'300d          Code  Gb  round.o [45]
+__iar_zero_init3        0x1009'6dcd    0x38  Code  Gb  zero_init3.o [46]
+__low_level_init        0x1009'7081          Code  Gb  startup_cm4.o [26]
 __ramVectors             0x803'7c00          Data  Gb  startup_cm4.o [26]
 __vector_table          0x1008'0000          Data  Gb  startup_cm4.o [26]
 __vector_table_0x1c     0x1008'001c          Data  Gb  startup_cm4.o [26]
 __write                 0x1008'd5ed    0x12  Code  Gb  zf_common_debug.o [40]
-_call_main              0x1009'70cd          Code  Gb  cmain.o [46]
-_exit                   0x1009'70e9          Code  Gb  cexit.o [46]
-abort                   0x1009'1fcd     0x6  Code  Gb  abort.o [44]
-adc_convert             0x1009'416f    0x5e  Code  Gb  zf_driver_adc.o [43]
-adc_init                0x1009'4209   0x1b4  Code  Gb  zf_driver_adc.o [43]
+_call_main              0x1009'706d          Code  Gb  cmain.o [46]
+_exit                   0x1009'7089          Code  Gb  cexit.o [46]
+abort                   0x1009'1fc9     0x6  Code  Gb  abort.o [44]
+adc_convert             0x1009'416b    0x5e  Code  Gb  zf_driver_adc.o [43]
+adc_init                0x1009'4205   0x1b4  Code  Gb  zf_driver_adc.o [43]
 adc_mean_filter_convert
-                        0x1009'41cd    0x3c  Code  Gb  zf_driver_adc.o [43]
+                        0x1009'41c9    0x3c  Code  Gb  zf_driver_adc.o [43]
 adc_resolution           0x803'75d0    0x48  Data  Lc  zf_driver_adc.o [43]
 assert_interrupt_config
                         0x1008'cf69     0xc  Code  Gb  zf_common_interrupt.o [40]
-battery_check           0x1009'5fcd    0xbc  Code  Gb  driver_adc.o [5]
+battery_check           0x1009'5f91    0xbc  Code  Gb  driver_adc.o [5]
 battery_check::error_count_num
                          0x803'77cc     0x4  Data  Lc  driver_adc.o [5]
 battery_check::warning_count_num
@@ -1304,8 +1302,8 @@ battery_check::warning_count_num
 battery_value            0x803'76e8    0x1c  Data  Gb  driver_adc.o [5]
 calibration_uart0_printf
                         0x1009'0cdb    0x20  Code  Lc  motor_control.o [5]
-clock_init              0x1009'6785    0x16  Code  Gb  zf_common_clock.o [40]
-cosf                    0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
+clock_init              0x1009'6d29    0x16  Code  Gb  zf_common_clock.o [40]
+cosf                    0x1009'3f6d     0x4  Code  Gb  cos_sin32.o [45]
 cs_pin_save              0x803'781c     0x4  Data  Gb  zf_driver_spi.o [43]
 cy_assertFileName        0x803'771c    0x18  Data  Gb  cy_syslib.o [31]
 cy_assertLine            0x803'77c8     0x4  Data  Gb  cy_syslib.o [31]
@@ -1332,19 +1330,19 @@ debug_uart_data          0x803'7837     0x1  Data  Gb  zf_common_debug.o [40]
 debug_uart_fifo          0x803'774c    0x18  Data  Gb  zf_common_debug.o [40]
 debug_uart_str_output   0x1008'd2ff     0xc  Code  Lc  zf_common_debug.o [40]
 delay_clk                0x802'069f     0x1  Data  Lc  zf_driver_delay.o [43]
-driver_adc_init         0x1009'60c9    0x22  Code  Gb  driver_adc.o [5]
-driver_adc_loop         0x1009'6089    0x40  Code  Gb  driver_adc.o [5]
+driver_adc_init         0x1009'608d    0x22  Code  Gb  driver_adc.o [5]
+driver_adc_loop         0x1009'604d    0x40  Code  Gb  driver_adc.o [5]
 driver_cmd_forthwith    0x1009'1c35    0xf2  Code  Gb  motor_control.o [5]
-driver_cmd_loop         0x1009'1d5d   0x1f0  Code  Gb  motor_control.o [5]
+driver_cmd_loop         0x1009'1d59   0x1f0  Code  Gb  motor_control.o [5]
 driver_fifo_buffer       0x803'73e8    0x80  Data  Gb  motor_driver_uart_control.o [5]
-driver_gpio_init        0x1009'65d1    0x16  Code  Gb  driver_gpio.o [5]
-driver_gpio_loop        0x1009'64c9    0xee  Code  Gb  driver_gpio.o [5]
+driver_gpio_init        0x1009'6595    0x16  Code  Gb  driver_gpio.o [5]
+driver_gpio_loop        0x1009'648d    0xee  Code  Gb  driver_gpio.o [5]
 driver_gpio_loop::high_freq_count
                          0x802'069c     0x1  Data  Lc  driver_gpio.o [5]
 driver_gpio_loop::low_freq_count
                          0x802'069d     0x1  Data  Lc  driver_gpio.o [5]
 driver_timer_mode        0x803'7824     0x4  Data  Lc  zf_driver_timer.o [43]
-exit                    0x1009'70e5     0x4  Code  Gb  exit.o [44]
+exit                    0x1009'7085     0x4  Code  Gb  exit.o [44]
 exti_disable            0x1008'bfe9    0x22  Code  Gb  zf_driver_exti.o [43]
 exti_enable             0x1008'bfc7    0x22  Code  Gb  zf_driver_exti.o [43]
 exti_flag_get           0x1008'bf7b    0x4c  Code  Gb  zf_driver_exti.o [43]
@@ -1358,41 +1356,41 @@ fifo_read_element       0x1008'e781    0xb8  Code  Gb  zf_common_fifo.o [40]
 fifo_used               0x1008'e539    0x22  Code  Gb  zf_common_fifo.o [40]
 fifo_write_buffer       0x1008'e5dd   0x1a4  Code  Gb  zf_common_fifo.o [40]
 fifo_write_element      0x1008'e55b    0x82  Code  Gb  zf_common_fifo.o [40]
-flash_check             0x1009'43e9    0x42  Code  Gb  zf_driver_flash.o [43]
-flash_erase_page        0x1009'442b    0x36  Code  Gb  zf_driver_flash.o [43]
-flash_init              0x1009'45a3    0x10  Code  Gb  zf_driver_flash.o [43]
+flash_check             0x1009'43e5    0x42  Code  Gb  zf_driver_flash.o [43]
+flash_erase_page        0x1009'4427    0x36  Code  Gb  zf_driver_flash.o [43]
+flash_init              0x1009'459f    0x10  Code  Gb  zf_driver_flash.o [43]
 flash_init_flag          0x803'7839     0x1  Data  Lc  zf_driver_flash.o [43]
 flash_read_page_to_buffer
-                        0x1009'44df    0x74  Code  Gb  zf_driver_flash.o [43]
+                        0x1009'44db    0x74  Code  Gb  zf_driver_flash.o [43]
 flash_union_buffer       0x803'6464   0x800  Data  Gb  zf_driver_flash.o [43]
-flash_write_page        0x1009'4461    0x7e  Code  Gb  zf_driver_flash.o [43]
+flash_write_page        0x1009'445d    0x7e  Code  Gb  zf_driver_flash.o [43]
 flash_write_page_from_buffer
-                        0x1009'4553    0x50  Code  Gb  zf_driver_flash.o [43]
+                        0x1009'454f    0x50  Code  Gb  zf_driver_flash.o [43]
 flash_write_state        0x803'783a     0x1  Data  Gb  zf_driver_flash.o [43]
 foc_calc_left_electrical_angle_deg
-                        0x1009'2679    0x70  Code  Gb  foc_adc.o [1]
-foc_clarke_transform    0x1009'25e5    0x22  Code  Lc  foc_adc.o [1]
-foc_clear_group         0x1009'26e9    0x2c  Code  Lc  foc_adc.o [1]
-foc_closed_loop_init    0x1009'2223   0x146  Code  Gb  foc_controller.o [1]
-foc_closed_loop_reset   0x1009'2369    0x42  Code  Gb  foc_controller.o [1]
+                        0x1009'2675    0x70  Code  Gb  foc_adc.o [1]
+foc_clarke_transform    0x1009'25e1    0x22  Code  Lc  foc_adc.o [1]
+foc_clear_group         0x1009'26e5    0x2c  Code  Lc  foc_adc.o [1]
+foc_closed_loop_init    0x1009'221f   0x146  Code  Gb  foc_controller.o [1]
+foc_closed_loop_reset   0x1009'2365    0x42  Code  Gb  foc_controller.o [1]
 foc_closed_loop_set_id_ref
-                        0x1009'23b5     0xa  Code  Gb  foc_controller.o [1]
+                        0x1009'23b1     0xa  Code  Gb  foc_controller.o [1]
 foc_closed_loop_set_speed_ref
-                        0x1009'23ab     0xa  Code  Gb  foc_controller.o [1]
-foc_closed_loop_step    0x1009'23c1    0xfc  Code  Gb  foc_controller.o [1]
+                        0x1009'23a7     0xa  Code  Gb  foc_controller.o [1]
+foc_closed_loop_step    0x1009'23bd    0xfc  Code  Gb  foc_controller.o [1]
 foc_cos_lut              0x802'46a4  0x4000  Data  Lc  foc_adc.o [1]
 foc_cos_lut              0x802'c6a4  0x4000  Data  Lc  foc_svpwm.o [1]
 foc_current_adc_calibrate
-                        0x1009'27c9    0x14  Code  Gb  foc_adc.o [1]
-foc_current_adc_init    0x1009'27e1    0x2e  Code  Gb  foc_adc.o [1]
+                        0x1009'27c5    0x14  Code  Gb  foc_adc.o [1]
+foc_current_adc_init    0x1009'27dd    0x2e  Code  Gb  foc_adc.o [1]
 foc_current_adc_sample_left_isr
-                        0x1009'280f     0xa  Code  Gb  foc_adc.o [1]
+                        0x1009'280b     0xa  Code  Gb  foc_adc.o [1]
 foc_current_data         0x803'7618    0x40  Data  Gb  foc_adc.o [1]
 foc_current_dq_update_left
-                        0x1009'2765    0x60  Code  Gb  foc_adc.o [1]
+                        0x1009'2761    0x60  Code  Gb  foc_adc.o [1]
 foc_current_per_count    0x803'77d8     0x4  Data  Lc  foc_adc.o [1]
 foc_debug_capture_and_send
-                        0x1009'5d31   0x29c  Code  Gb  foc_debug_log.o [1]
+                        0x1009'5d2d   0x264  Code  Gb  foc_debug_log.o [1]
 foc_debug_ia_points_ma   0x803'06a4   0xfa0  Data  Lc  foc_debug_log.o [1]
 foc_debug_ib_points_ma   0x803'1644   0xfa0  Data  Lc  foc_debug_log.o [1]
 foc_debug_ic_points_ma   0x803'25e4   0xfa0  Data  Lc  foc_debug_log.o [1]
@@ -1400,44 +1398,44 @@ foc_debug_id_points_ma   0x803'3584   0xfa0  Data  Lc  foc_debug_log.o [1]
 foc_debug_iq_points_ma   0x803'4524   0xfa0  Data  Lc  foc_debug_log.o [1]
 foc_debug_speed_points_rpm
                          0x803'54c4   0xfa0  Data  Lc  foc_debug_log.o [1]
-foc_degree_to_radian    0x1009'2655     0xa  Code  Lc  foc_adc.o [1]
-foc_degree_to_radian    0x1009'3ae5     0xa  Code  Lc  foc_svpwm.o [1]
+foc_degree_to_radian    0x1009'2651     0xa  Code  Lc  foc_adc.o [1]
+foc_degree_to_radian    0x1009'3ae1     0xa  Code  Lc  foc_svpwm.o [1]
 foc_inv_clarke_transform
-                        0x1009'3aad    0x36  Code  Lc  foc_svpwm.o [1]
-foc_inv_park_transform  0x1009'3a5f    0x4c  Code  Lc  foc_svpwm.o [1]
-foc_limit_range         0x1009'3af9    0x22  Code  Lc  foc_svpwm.o [1]
-foc_limit_value         0x1009'2131    0x22  Code  Lc  foc_controller.o [1]
-foc_lut_angle_to_index  0x1009'24c5    0x4e  Code  Lc  foc_adc.o [1]
-foc_lut_angle_to_index  0x1009'3941    0x4e  Code  Lc  foc_svpwm.o [1]
-foc_lut_cos             0x1009'25b5    0x2e  Code  Lc  foc_adc.o [1]
-foc_lut_cos             0x1009'3a31    0x2e  Code  Lc  foc_svpwm.o [1]
-foc_lut_sin             0x1009'2587    0x2e  Code  Lc  foc_adc.o [1]
-foc_lut_sin             0x1009'3a03    0x2e  Code  Lc  foc_svpwm.o [1]
-foc_max3                0x1009'3b1b    0x1e  Code  Lc  foc_svpwm.o [1]
-foc_min3                0x1009'3b39    0x1e  Code  Lc  foc_svpwm.o [1]
+                        0x1009'3aa9    0x36  Code  Lc  foc_svpwm.o [1]
+foc_inv_park_transform  0x1009'3a5b    0x4c  Code  Lc  foc_svpwm.o [1]
+foc_limit_range         0x1009'3af5    0x22  Code  Lc  foc_svpwm.o [1]
+foc_limit_value         0x1009'212d    0x22  Code  Lc  foc_controller.o [1]
+foc_lut_angle_to_index  0x1009'24c1    0x4e  Code  Lc  foc_adc.o [1]
+foc_lut_angle_to_index  0x1009'393d    0x4e  Code  Lc  foc_svpwm.o [1]
+foc_lut_cos             0x1009'25b1    0x2e  Code  Lc  foc_adc.o [1]
+foc_lut_cos             0x1009'3a2d    0x2e  Code  Lc  foc_svpwm.o [1]
+foc_lut_sin             0x1009'2583    0x2e  Code  Lc  foc_adc.o [1]
+foc_lut_sin             0x1009'39ff    0x2e  Code  Lc  foc_svpwm.o [1]
+foc_max3                0x1009'3b17    0x1e  Code  Lc  foc_svpwm.o [1]
+foc_min3                0x1009'3b35    0x1e  Code  Lc  foc_svpwm.o [1]
 foc_output_array        0x1008'0080  0x4924  Data  Gb  fast_foc.o [5]
-foc_park_transform      0x1009'2607    0x4c  Code  Lc  foc_adc.o [1]
-foc_pi_init             0x1009'2153    0x22  Code  Gb  foc_controller.o [1]
-foc_pi_reset            0x1009'2175     0xa  Code  Gb  foc_controller.o [1]
-foc_pi_update           0x1009'2181    0xa2  Code  Gb  foc_controller.o [1]
-foc_raw_to_current      0x1009'265f    0x1a  Code  Lc  foc_adc.o [1]
+foc_park_transform      0x1009'2603    0x4c  Code  Lc  foc_adc.o [1]
+foc_pi_init             0x1009'214f    0x22  Code  Gb  foc_controller.o [1]
+foc_pi_reset            0x1009'2171     0xa  Code  Gb  foc_controller.o [1]
+foc_pi_update           0x1009'217d    0xa2  Code  Gb  foc_controller.o [1]
+foc_raw_to_current      0x1009'265b    0x1a  Code  Lc  foc_adc.o [1]
 foc_sample_left_ac_only
-                        0x1009'2715    0x4e  Code  Lc  foc_adc.o [1]
+                        0x1009'2711    0x4e  Code  Lc  foc_adc.o [1]
 foc_sin_lut              0x802'06a4  0x4000  Data  Lc  foc_adc.o [1]
 foc_sin_lut              0x802'86a4  0x4000  Data  Lc  foc_svpwm.o [1]
-foc_svpwm_generate      0x1009'3b59   0x14a  Code  Gb  foc_svpwm.o [1]
-foc_svpwm_to_compare    0x1009'3cc9    0x64  Code  Gb  foc_svpwm.o [1]
-foc_trig_lut_init       0x1009'2515    0x72  Code  Lc  foc_adc.o [1]
-foc_trig_lut_init       0x1009'3991    0x72  Code  Lc  foc_svpwm.o [1]
+foc_svpwm_generate      0x1009'3b55   0x14a  Code  Gb  foc_svpwm.o [1]
+foc_svpwm_to_compare    0x1009'3cc5    0x64  Code  Gb  foc_svpwm.o [1]
+foc_trig_lut_init       0x1009'2511    0x72  Code  Lc  foc_adc.o [1]
+foc_trig_lut_init       0x1009'398d    0x72  Code  Lc  foc_svpwm.o [1]
 foc_trig_lut_inited      0x803'7831     0x1  Data  Lc  foc_adc.o [1]
 foc_trig_lut_inited      0x803'7832     0x1  Data  Lc  foc_svpwm.o [1]
-foc_voltage_to_svpwm    0x1009'3d2d    0x78  Code  Gb  foc_svpwm.o [1]
+foc_voltage_to_svpwm    0x1009'3d29    0x78  Code  Gb  foc_svpwm.o [1]
 func_str_to_int         0x1009'0c65    0x60  Code  Gb  zf_common_function.o [40]
 g_NB_ModeEnabled         0x803'782f     0x1  Data  Lc  cy_mw_flash.o [11]
 g_completeFlag           0x803'782e     0x1  Data  Lc  cy_mw_flash.o [11]
 g_dummy                  0x803'77c4     0x4  Data  Lc  cy_srom.o [25]
 g_scratch                0x803'77a0    0x10  Data  Lc  cy_srom.o [25]
-get_adc_pin             0x1009'408d    0xe2  Code  Lc  zf_driver_adc.o [43]
+get_adc_pin             0x1009'4089    0xe2  Code  Lc  zf_driver_adc.o [43]
 get_pwm_ch              0x1008'ad01    0xfe  Code  Lc  zf_driver_pwm.o [43]
 get_pwm_pin             0x1008'aaf1   0x100  Code  Lc  zf_driver_pwm.o [43]
 get_pwm_pin_hsiom       0x1008'abf1   0x110  Code  Lc  zf_driver_pwm.o [43]
@@ -1448,8 +1446,8 @@ gpio_init               0x1008'b15b    0x88  Code  Gb  zf_driver_gpio.o [43]
 gpio_loop_count          0x803'77d4     0x4  Data  Gb  driver_gpio.o [5]
 gpio_set_level          0x1008'b0d5    0x44  Code  Gb  zf_driver_gpio.o [43]
 gpio_toggle_level       0x1008'b13b    0x20  Code  Gb  zf_driver_gpio.o [43]
-hall_gather             0x1009'2849    0xd0  Code  Gb  hall_gather.o [5]
-hall_gather_init        0x1009'2ea9   0x13c  Code  Gb  hall_gather.o [5]
+hall_gather             0x1009'2845    0xd0  Code  Gb  hall_gather.o [5]
+hall_gather_init        0x1009'2ea5   0x13c  Code  Gb  hall_gather.o [5]
 hall_hw_order            0x802'0600     0x8  Data  Gb  hall_gather.o [5]
 hall_hw_order_transition
                          0x802'0608     0x8  Data  Gb  hall_gather.o [5]
@@ -1462,12 +1460,12 @@ interrupt_global_enable
 interrupt_global_flag    0x803'7808     0x4  Data  Lc  zf_common_interrupt.o [40]
 interrupt_init          0x1008'cf81    0x36  Code  Gb  zf_common_interrupt.o [40]
 interrupt_set_priority  0x1008'cf75     0xc  Code  Gb  zf_common_interrupt.o [40]
-key_clear_state         0x1009'668f     0xa  Code  Gb  zf_device_key.o [42]
-key_get_state           0x1009'6687     0x8  Code  Gb  zf_device_key.o [42]
-key_index               0x1009'743c     0x4  Data  Lc  zf_device_key.o [42]
-key_init                0x1009'6699    0x4a  Code  Gb  zf_device_key.o [42]
+key_clear_state         0x1009'6653     0xa  Code  Gb  zf_device_key.o [42]
+key_get_state           0x1009'664b     0x8  Code  Gb  zf_device_key.o [42]
+key_index               0x1009'73b4     0x4  Data  Lc  zf_device_key.o [42]
+key_init                0x1009'665d    0x4a  Code  Gb  zf_device_key.o [42]
 key_press_time           0x803'77b0    0x10  Data  Lc  zf_device_key.o [42]
-key_scanner             0x1009'65e9    0x9e  Code  Gb  zf_device_key.o [42]
+key_scanner             0x1009'65ad    0x9e  Code  Gb  zf_device_key.o [42]
 key_state                0x803'7810     0x4  Data  Lc  zf_device_key.o [42]
 ldexp                   0x1009'0819          Code  Gb  ldexp.o [45]
 ldexpl                  0x1009'0819          Code  Gb  ldexp.o [45]
@@ -1479,15 +1477,15 @@ left_mos_q3q6_open      0x1008'be1d    0x1c  Code  Gb  pwm_output.o [5]
 left_mos_q5q2_open      0x1008'be39    0x1c  Code  Gb  pwm_output.o [5]
 left_mos_q5q4_open      0x1008'be55    0x1c  Code  Gb  pwm_output.o [5]
 magnetic_encoder_get_offset
-                        0x1009'2011    0x38  Code  Lc  zf_device_menc15a.o [42]
-main                    0x1009'66f9    0x8c  Code  Gb  main_cm4.o [39]
+                        0x1009'200d    0x38  Code  Lc  zf_device_menc15a.o [42]
+main                    0x1009'6ccd    0x5c  Code  Gb  main_cm4.o [39]
 memchr                  0x1009'0751          Code  Gb  memchr.o [46]
 menc15a_absolute_data    0x803'7814     0x4  Data  Gb  zf_device_menc15a.o [42]
 menc15a_absolute_offset_data
                          0x803'7818     0x4  Data  Gb  zf_device_menc15a.o [42]
 menc15a_get_absolute_data
-                        0x1009'2049    0x78  Code  Gb  zf_device_menc15a.o [42]
-menc15a_init            0x1009'20c1    0x52  Code  Gb  zf_device_menc15a.o [42]
+                        0x1009'2045    0x78  Code  Gb  zf_device_menc15a.o [42]
+menc15a_init            0x1009'20bd    0x52  Code  Gb  zf_device_menc15a.o [42]
 motor_bldc_control_init
                         0x1009'1b8d    0x1c  Code  Gb  motor_control.o [5]
 motor_both_zero_calibration
@@ -1495,7 +1493,7 @@ motor_both_zero_calibration
 motor_commutation       0x1008'93e5   0x194  Code  Gb  sensorless_control.o [5]
 motor_control_init      0x1009'1bc9    0x64  Code  Gb  motor_control.o [5]
 motor_direction_calculate
-                        0x1009'2919    0x4a  Code  Gb  hall_gather.o [5]
+                        0x1009'2915    0x4a  Code  Gb  hall_gather.o [5]
 motor_driver_control_callback
                         0x1009'0607    0x3e  Code  Gb  motor_driver_uart_control.o [5]
 motor_driver_control_loop
@@ -1512,9 +1510,9 @@ motor_driver_send_reduction_angle
 motor_driver_send_speed
                         0x1009'04bd    0x3e  Code  Gb  motor_driver_uart_control.o [5]
 motor_driver_uart_init  0x1009'0645    0x26  Code  Gb  motor_driver_uart_control.o [5]
-motor_flash_init        0x1009'3105     0xc  Code  Gb  motor_flash.o [5]
-motor_flash_read        0x1009'3075    0x3c  Code  Gb  motor_flash.o [5]
-motor_flash_write       0x1009'30b1    0x46  Code  Gb  motor_flash.o [5]
+motor_flash_init        0x1009'3101     0xc  Code  Gb  motor_flash.o [5]
+motor_flash_read        0x1009'3071    0x3c  Code  Gb  motor_flash.o [5]
+motor_flash_write       0x1009'30ad    0x46  Code  Gb  motor_flash.o [5]
 motor_foc_control_init  0x1009'1ab1    0xce  Code  Gb  motor_control.o [5]
 motor_left               0x803'6c64   0x244  Data  Gb  motor_control.o [5]
 motor_left_channel_set  0x1008'b76f    0x7a  Code  Gb  pwm_output.o [5]
@@ -1523,11 +1521,11 @@ motor_left_foc_closed_loop
                          0x803'7344    0xa4  Data  Lc  motor_control.o [5]
 motor_left_foc_driver    0x803'7698    0x28  Data  Gb  fast_foc.o [5]
 motor_left_hall_callback
-                        0x1009'2c61    0xc6  Code  Gb  hall_gather.o [5]
+                        0x1009'2c5d    0xc6  Code  Gb  hall_gather.o [5]
 motor_left_hall_callback::left_protect_count
                          0x803'77dc     0x4  Data  Lc  hall_gather.o [5]
-motor_left_hall_isr     0x1009'2ba1    0xba  Code  Gb  hall_gather.o [5]
-motor_left_hall_output  0x1009'2965   0x11a  Code  Gb  hall_gather.o [5]
+motor_left_hall_isr     0x1009'2b9d    0xba  Code  Gb  hall_gather.o [5]
+motor_left_hall_output  0x1009'2961   0x11a  Code  Gb  hall_gather.o [5]
 motor_left_output_init  0x1008'b4c1   0x212  Code  Gb  pwm_output.o [5]
 motor_left_phase_check  0x1008'b7e9   0x110  Code  Gb  pwm_output.o [5]
 motor_left_sensorless_delay_isr
@@ -1556,12 +1554,12 @@ motor_right_channel_set
 motor_right_duty_set    0x1008'bb0f    0x8a  Code  Gb  pwm_output.o [5]
 motor_right_foc_driver   0x803'76c0    0x28  Data  Gb  fast_foc.o [5]
 motor_right_hall_callback
-                        0x1009'2ddf    0xc6  Code  Gb  hall_gather.o [5]
+                        0x1009'2ddb    0xc6  Code  Gb  hall_gather.o [5]
 motor_right_hall_callback::right_protect_count
                          0x803'77e0     0x4  Data  Lc  hall_gather.o [5]
-motor_right_hall_isr    0x1009'2d29    0xb6  Code  Gb  hall_gather.o [5]
+motor_right_hall_isr    0x1009'2d25    0xb6  Code  Gb  hall_gather.o [5]
 motor_right_hall_output
-                        0x1009'2a81   0x120  Code  Gb  hall_gather.o [5]
+                        0x1009'2a7d   0x120  Code  Gb  hall_gather.o [5]
 motor_right_output_init
                         0x1008'b8f9   0x216  Code  Gb  pwm_output.o [5]
 motor_right_phase_check
@@ -1600,9 +1598,9 @@ pit0_ch2_isr            0x1008'ea31     0xa  Code  Gb  cm4_isr.o [39]
 pit_init                0x1008'd0f1   0x1bc  Code  Gb  zf_driver_pit.o [43]
 pit_isr_flag_clear      0x1008'd0c7    0x2a  Code  Gb  zf_driver_pit.o [43]
 pit_isr_func             0x802'0628    0x3c  Data  Gb  zf_driver_pit.o [43]
-printf                  0x1009'3111    0x28  Code  Gb  printf.o [44]
-programSizeBytesLut     0x1009'71dc    0x14  Data  Lc  cy_flash.o [10]
-putchar                 0x1009'7081    0x20  Code  Gb  putchar.o [44]
+printf                  0x1009'310d    0x28  Code  Gb  printf.o [44]
+programSizeBytesLut     0x1009'7164    0x14  Data  Lc  cy_flash.o [10]
+putchar                 0x1009'7015    0x20  Code  Gb  putchar.o [44]
 pwm_all_channel_close   0x1008'adff    0x1a  Code  Gb  zf_driver_pwm.o [43]
 pwm_init                0x1008'aed9   0x1b4  Code  Gb  zf_driver_pwm.o [43]
 pwm_set_duty            0x1008'ae19    0xc0  Code  Gb  zf_driver_pwm.o [43]
@@ -1615,8 +1613,8 @@ right_mos_q3q2_open     0x1008'bec1    0x1c  Code  Gb  pwm_output.o [5]
 right_mos_q3q6_open     0x1008'bedd    0x1c  Code  Gb  pwm_output.o [5]
 right_mos_q5q2_open     0x1008'bef9    0x1c  Code  Gb  pwm_output.o [5]
 right_mos_q5q4_open     0x1008'bf15    0x1c  Code  Gb  pwm_output.o [5]
-round                   0x1009'3021          Code  Gb  round.o [45]
-roundl                  0x1009'3021          Code  Gb  round.o [45]
+round                   0x1009'301d          Code  Gb  round.o [45]
+roundl                  0x1009'301d          Code  Gb  round.o [45]
 sar_adc                  0x802'061c     0xc  Data  Lc  zf_driver_adc.o [43]
 scalbln                 0x1009'0819          Code  Gb  ldexp.o [45]
 scalblnl                0x1009'0819          Code  Gb  ldexp.o [45]
@@ -1646,27 +1644,27 @@ sensorless_start_sine::sine_duty
 sensorless_start_sine::traction_time_use
                          0x802'0614     0x4  Data  Lc  sensorless_control.o [5]
 sensorless_trig_init    0x1008'a76d   0x240  Code  Gb  sensorless_control.o [5]
-sinf                    0x1009'3f75     0x4  Code  Gb  cos_sin32.o [45]
-spi_get_clk_hsiom       0x1009'33b5    0x28  Code  Lc  zf_driver_spi.o [43]
-spi_get_clk_pin         0x1009'330d    0x28  Code  Lc  zf_driver_spi.o [43]
-spi_get_cs_hsiom        0x1009'3431    0x2c  Code  Lc  zf_driver_spi.o [43]
-spi_get_cs_pin          0x1009'3389    0x2c  Code  Lc  zf_driver_spi.o [43]
-spi_get_miso_hsiom      0x1009'3405    0x2c  Code  Lc  zf_driver_spi.o [43]
-spi_get_miso_pin        0x1009'335d    0x2c  Code  Lc  zf_driver_spi.o [43]
-spi_get_module_clock    0x1009'345d    0x26  Code  Lc  zf_driver_spi.o [43]
-spi_get_mosi_hsiom      0x1009'33dd    0x28  Code  Lc  zf_driver_spi.o [43]
-spi_get_mosi_pin        0x1009'3335    0x28  Code  Lc  zf_driver_spi.o [43]
-spi_init                0x1009'36e9   0x242  Code  Gb  zf_driver_spi.o [43]
+sinf                    0x1009'3f71     0x4  Code  Gb  cos_sin32.o [45]
+spi_get_clk_hsiom       0x1009'33b1    0x28  Code  Lc  zf_driver_spi.o [43]
+spi_get_clk_pin         0x1009'3309    0x28  Code  Lc  zf_driver_spi.o [43]
+spi_get_cs_hsiom        0x1009'342d    0x2c  Code  Lc  zf_driver_spi.o [43]
+spi_get_cs_pin          0x1009'3385    0x2c  Code  Lc  zf_driver_spi.o [43]
+spi_get_miso_hsiom      0x1009'3401    0x2c  Code  Lc  zf_driver_spi.o [43]
+spi_get_miso_pin        0x1009'3359    0x2c  Code  Lc  zf_driver_spi.o [43]
+spi_get_module_clock    0x1009'3459    0x26  Code  Lc  zf_driver_spi.o [43]
+spi_get_mosi_hsiom      0x1009'33d9    0x28  Code  Lc  zf_driver_spi.o [43]
+spi_get_mosi_pin        0x1009'3331    0x28  Code  Lc  zf_driver_spi.o [43]
+spi_init                0x1009'36e5   0x242  Code  Gb  zf_driver_spi.o [43]
 spi_module               0x802'0664    0x10  Data  Gb  zf_driver_spi.o [43]
 spi_read_16bit_register
-                        0x1009'35f5    0xe2  Code  Gb  zf_driver_spi.o [43]
+                        0x1009'35f1    0xe2  Code  Gb  zf_driver_spi.o [43]
 sprintf                 0x1008'e4c5    0x40  Code  Gb  sprintf.o [44]
 strchr                  0x1009'06f9          Code  Gb  strchr.o [46]
 strlen                  0x1008'e48d          Code  Gb  strlen.o [46]
-strncpy                 0x1009'5059          Code  Gb  strncpy.o [46]
+strncpy                 0x1009'5055          Code  Gb  strncpy.o [46]
 strstr                  0x1009'0c39    0x2c  Code  Gb  strstr.o [44]
 switch_transition_length
-                        0x1009'3483   0x15e  Code  Lc  zf_driver_spi.o [43]
+                        0x1009'347f   0x15e  Code  Lc  zf_driver_spi.o [43]
 switch_transition_length::now_length
                          0x803'7820     0x4  Data  Lc  zf_driver_spi.o [43]
 system_clock             0x803'7804     0x4  Data  Gb  zf_common_clock.o [40]
@@ -1699,7 +1697,7 @@ uart_write_buffer       0x1008'e011    0x1e  Code  Gb  zf_driver_uart.o [43]
 uart_write_byte         0x1008'dfe9    0x28  Code  Gb  zf_driver_uart.o [43]
 uart_write_string       0x1008'e02f    0x22  Code  Gb  zf_driver_uart.o [43]
 voice_data              0x1008'49a4  0x42c0  Data  Gb  motor_voice.o [5]
-vsnprintf               0x1009'1fd5    0x3c  Code  Gb  vsnprint.o [44]
+vsnprintf               0x1009'1fd1    0x3c  Code  Gb  vsnprint.o [44]
 zf_debug_assert_enable   0x802'069e     0x1  Data  Lc  zf_common_debug.o [40]
 zf_debug_init_flag       0x803'7836     0x1  Data  Lc  zf_common_debug.o [40]
 
@@ -1753,8 +1751,8 @@ zf_debug_init_flag       0x803'7836     0x1  Data  Lc  zf_common_debug.o [40]
 [47] = shb_l.a
 [48] = zf_device_config.a
 
-   56'746 bytes of readonly  code memory
-   38'766 bytes of readonly  data memory
+   56'650 bytes of readonly  code memory
+   38'726 bytes of readonly  data memory
   104'632 bytes of readwrite data memory
 
 Errors: none
