@@ -45,8 +45,8 @@ motor_struct motor_right;
 // 左电机FOC闭环参数（20kHz电流环，2kHz速度环）
 #define LEFT_FOC_CURRENT_LOOP_HZ      (20000)
 #define LEFT_FOC_SPEED_LOOP_HZ        (2000)
-#define LEFT_FOC_SPEED_KP             (0.003f)
-#define LEFT_FOC_SPEED_KI             (0.00005f)
+#define LEFT_FOC_SPEED_KP             (0.1338f)
+#define LEFT_FOC_SPEED_KI             (0.09424f)
 #define LEFT_FOC_ID_KP                (0.05f)
 #define LEFT_FOC_ID_KI                (0.0006f)
 #define LEFT_FOC_IQ_KP                (0.05f)

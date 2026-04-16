@@ -42,7 +42,7 @@
 #define BAT_ADC                         (ADC0_CH18_P07_2)               // 电池电压检测引脚
 
 
-#define VOLTAGE_CONVERSION_COEFFICIENT  (0.00886446)                    // 电池电压转换系数 12位ADC采集值 直接乘以该值则可得出电池电压 
+#define VOLTAGE_CONVERSION_COEFFICIENT  (0.01613281)                    // 电池电压转换系数 12位ADC采集值 直接乘以该值则可得出电池电压 
 
 
 typedef enum

@@ -48,6 +48,9 @@
 
 int main(void)
 {
+    uint16 voltage_send_elapsed_ms = 0;
+    char uart0_tx_buffer[64];
+
     clock_init(SYSTEM_CLOCK_160M);                                              // 时钟配置及系统初始化<务必保留>
     
     debug_init();                                                               // 调试串口初始化
@@ -74,6 +77,17 @@ int main(void)
         driver_adc_loop();                                                      // 驱动 ADC 循环检测函数
         driver_gpio_loop();                                                     // 驱动 GPIO 循环检测函数
         driver_cmd_loop();                                                      // 驱动 控制指令 循环响应函数
+
+        // 在主循环中按100ms周期发送一次当前电池电压
+        voltage_send_elapsed_ms += DRIVER_RESPONSE_CYCLE;
+        if(voltage_send_elapsed_ms >= 100)
+        {
+            // 直接发送 driver_adc_loop 计算后的电池电压
+            sprintf(uart0_tx_buffer, "VBAT:%.3fV\r\n", battery_value.battery_voltage);
+            uart_write_string(UART_0, uart0_tx_buffer);
+            voltage_send_elapsed_ms -= 100;
+        }
+
         system_delay_ms(DRIVER_RESPONSE_CYCLE);                                 // 主循环延时
     }
 }

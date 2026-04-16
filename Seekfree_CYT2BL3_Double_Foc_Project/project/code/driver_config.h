@@ -113,7 +113,7 @@
 
 #define  BATTERY_PROTECT_VALUE_MIN      (3.5f)          // 允许的单节电芯最小电压 低于此值将直接关闭电机  驱动板蓝灯高频闪烁(100ms）
          
-#define  BATTERY_RECTIFY_COEFFICIENT    (0.9959968)     // 电池电压校准系数 根据实际硬件调整    
+#define  BATTERY_RECTIFY_COEFFICIENT    (0.941265)     // 电池电压校准系数 按均值13.2797V对齐实测12.5V修正    
 /**************************** 电池保护 ****************************/
 
 
