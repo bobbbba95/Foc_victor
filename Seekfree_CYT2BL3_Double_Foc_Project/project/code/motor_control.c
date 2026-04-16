@@ -57,107 +57,35 @@ motor_struct motor_right;
 #define LEFT_FOC_STARTUP_ALIGN_DUTY_DIV (30)
 #define LEFT_FOC_STARTUP_ALIGN_TIME_MS (200)
 #define LEFT_FOC_STARTUP_RELEASE_TIME_MS (30)
-// 当前系统观测到“正占空比对应负速度”，因此闭环内将速度反馈乘以 -1 做口径对齐
-// 若后续速度口径已统一为正占空比->正速度，可改为 (1.0f)
-#define LEFT_FOC_SPEED_FEEDBACK_SIGN  (-1.0f)
+// 左电机速度在拟合时已乘以rotation_direction做方向对齐
+// 因此闭环速度反馈无需额外反相
+#define LEFT_FOC_SPEED_FEEDBACK_SIGN  (1.0f)
 
 static foc_closed_loop_t motor_left_foc_closed_loop;
-static float motor_left_speed_ref_rpm_cmd = 0.0f;
-static uint8 motor_left_speed_ref_enable = 0;
 
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     设置左电机速度参考（RPM）并使能速度参考输入
+// 参数说明     speed_ref_rpm     左电机目标转速（RPM）
+// 返回参数     void
+// 使用示例     motor_left_speed_ref_set(300.0f);
+// 备注信息     该接口为对外包装接口，内部转调 foc_closed_loop_set_speed_ref* 系列接口
+//-------------------------------------------------------------------------------------------------------------------
 void motor_left_speed_ref_set(float speed_ref_rpm)
 {
-    motor_left_speed_ref_rpm_cmd = speed_ref_rpm;
-    motor_left_speed_ref_enable = 1;
-}
-
-void motor_left_speed_ref_clear(void)
-{
-    motor_left_speed_ref_rpm_cmd = 0.0f;
-    motor_left_speed_ref_enable = 0;
+    foc_closed_loop_set_speed_ref(&motor_left_foc_closed_loop, speed_ref_rpm);
+    foc_closed_loop_set_speed_ref_enable(&motor_left_foc_closed_loop, 1);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
-// 函数简介     校准信息通过 UART0 输出
-// 参数说明     format             格式化字符串
-// 返回参数     void
-// 使用示例     calibration_uart0_printf("zero:%d\r\n", value);
-// 备注信息     仅用于校准流程日志输出，避免依赖 printf 重定向
-//-------------------------------------------------------------------------------------------------------------------
-static void calibration_uart0_printf(const char *format, ...)
-{
-    char tx_buffer[160];
-    va_list args;
-
-    va_start(args, format);
-    vsnprintf(tx_buffer, sizeof(tx_buffer), format, args);
-    va_end(args);
-
-    uart_write_string(UART_0, tx_buffer);
-}
-
-//-------------------------------------------------------------------------------------------------------------------
-// 函数简介     左电机上电一次性A相对齐校准
+// 函数简介     清除左电机速度参考并关闭速度参考输入
 // 参数说明     void
 // 返回参数     void
-// 备注信息     通过A相小占空比将转子拉到固定电角，再刷新左电机运行零点
+// 使用示例     motor_left_speed_ref_clear();
+// 备注信息     调用后速度参考归零，ISR将回退到兼容速度目标路径
 //-------------------------------------------------------------------------------------------------------------------
-static void motor_left_startup_align_calibration(void)
+void motor_left_speed_ref_clear(void)
 {
-#if LEFT_FOC_STARTUP_ALIGN_ENABLE
-    int32 encoder_aligned = 0;
-    int32 encoder_per_electrical = 0;
-    uint16 align_duty = 0;
-
-    if(motor_left.encoder_state == ENCODER_ERROR || motor_left.pole_pairs <= 0)
-    {
-        return;
-    }
-
-    align_duty = (uint16)(OUTPUT_DUTY_MAX / LEFT_FOC_STARTUP_ALIGN_DUTY_DIV);
-    if(align_duty == 0)
-    {
-        align_duty = 1;
-    }
-
-    motor_left_duty_set(align_duty, 0, 0);
-    system_delay_ms(LEFT_FOC_STARTUP_ALIGN_TIME_MS);
-
-    encoder_aligned = menc15a_get_absolute_data(menc15a_1_module);
-    if(motor_left.rotation_direction == -1)
-    {
-        encoder_aligned = ENCODER_PRECISION - encoder_aligned;
-    }
-
-    encoder_per_electrical = ENCODER_PRECISION / motor_left.pole_pairs;
-    if(encoder_per_electrical > 0)
-    {
-        while(encoder_aligned < 0)
-        {
-            encoder_aligned += ENCODER_PRECISION;
-        }
-        while(encoder_aligned >= ENCODER_PRECISION)
-        {
-            encoder_aligned -= ENCODER_PRECISION;
-        }
-
-        motor_left.zero_location = (int16)(encoder_aligned % encoder_per_electrical);
-
-        // 保持fast_foc结构体零点与运行时零点一致，避免后续调试口径不一致
-        fast_foc_init(&motor_left_foc_driver,
-                      ENCODER_PRECISION,
-                      OUTPUT_DUTY_MAX,
-                      motor_left.pole_pairs,
-                      motor_left.zero_location,
-                      motor_left.rotation_direction);
-    }
-
-    motor_left_duty_set(0, 0, 0);
-    system_delay_ms(LEFT_FOC_STARTUP_RELEASE_TIME_MS);
-
-    foc_closed_loop_reset(&motor_left_foc_closed_loop);
-    calibration_uart0_printf("left startup align ok, zero:%d\r\n", motor_left.zero_location);
-#endif
+    foc_closed_loop_clear_speed_ref(&motor_left_foc_closed_loop);
 }
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -169,69 +97,22 @@ static void motor_left_startup_align_calibration(void)
 //-------------------------------------------------------------------------------------------------------------------
 void motor_left_update_isr(void)
 {
+    // 中断执行主流程（左电机）：
+    // 1) 入口保护检查（失控/过载）
+    // 2) 按驱动模式分支执行（FAST_FOC / HALL / SENSORLESS）
+    // 3) FAST_FOC分支内完成采样、估速、闭环计算与最终输出保护
     static uint8  left_speed_count = 0;                                         // 速度拟合计次
 
     static uint32 left_protect_count = 0;                                       // 输出保护计次
     float electrical_angle_deg = 0.0f;
-    float bus_voltage_now = 12.0f;
+    float bus_voltage_now = 12.0f;                                              //基础参考值，后续会被实际采样值覆盖
     float speed_ref_rpm = 0.0f;
     
-#if MOTOR_LOSE_CONTROL_PROTECT  == DRIVER_ENABLE && USER_CONTROL_MODE == 0   
-    
-    if(++ motor_left.lose_control_protect_count > (MOTOR_LOSE_CONTROL_TIME * 20))
-    {
-        motor_left.motor_duty       = 0.0f;
-    }
-    
-#endif
-    
-#if MOTOR_OVERLOAD_PROTECT      == DRIVER_ENABLE 
-    
-    if(func_abs(motor_left.motor_duty) > MOTOR_OVERLOAD_DUTY_MIN && motor_left.driver_mode != SENSORLESS)
-    {
-        float speed_ratio = func_limit_ab((func_abs(motor_left.motor_speed_filter) / (FOC_MOTOR_KV_NUM * battery_value.battery_voltage)), 0.0f, 1.0f);
         
-        motor_left.overload_conefficient = (func_abs(motor_left.motor_duty) - speed_ratio) / (func_abs(motor_left.motor_duty) + speed_ratio);
-
-        if(motor_left.overload_conefficient >= MOTOR_OVERLOAD_COEFFICIENT)          // 判断是否过载 
-        {
-            motor_left.overload_count ++;
-            
-            if(MOTOR_DRIVER_MODE == HALL_SIX_STEP_MODE)
-            {
-                if(motor_left.overload_count > (MOTOR_OVERLOAD_TIME))
-                {
-                    motor_left.overload_count = (MOTOR_OVERLOAD_TIME);
-                    
-                    motor_left.motor_protect_state = PROTECT_MODE;              // 条件成立  进入输出保护状态
-                    motor_left.motor_protect_cause = OVERLOAD_PROTECT;
-                }
-            }
-            else
-            {
-                if(motor_left.overload_count > (MOTOR_OVERLOAD_TIME * 20))
-                {
-                    motor_left.overload_count = (MOTOR_OVERLOAD_TIME * 20);
-                    
-                    motor_left.motor_protect_state = PROTECT_MODE;              // 条件成立  进入输出保护状态
-                    motor_left.motor_protect_cause = OVERLOAD_PROTECT;
-                }
-            }
-        }
-        else
-        {
-            motor_left.overload_count = 0;                                     // 否则清空保护计次
-        }
-    }
-    else
-    {
-        motor_left.overload_conefficient = 0;
-    }
-    
-#endif    
-        
+    // ------------------------------ 按驱动模式执行 ------------------------------
     if(motor_left.driver_mode == FAST_FOC)
     {
+        // FAST_FOC路径：使用dq电流反馈 + 编码器角度做闭环计算
         Cy_Tcpwm_Counter_ClearTC_Intr(MOTOR_LEFT_A_PHASE_TCPWM_TIMER);              // 清除中断标志位  
 
         foc_current_adc_sample_left_isr();                                            // PWM中断内执行电流采样
@@ -244,11 +125,12 @@ void motor_left_update_isr(void)
         
         motor_left.menc15a_reduction_integral += motor_left.menc15a_value_offset;   // 用于计算减速后的角度
         
+        // 每1ms执行一次速度拟合与堵转判定（减少高速中断内抖动影响）
         if(++ left_speed_count >= (FPWM / 1000))                                    // 每毫秒拟合一次速度
         {
             left_speed_count = 0;
             
-            motor_left.motor_speed = (motor_left.menc15a_offset_integral * 1.8310546875f);    // 速度数据拟合
+            motor_left.motor_speed = (motor_left.menc15a_offset_integral * 1.8310546875f * (float)motor_left.rotation_direction);    // 速度数据拟合（乘以DIR统一方向口径）
             
             motor_left.motor_speed_filter = ((motor_left.motor_speed_filter * 19.0f + motor_left.motor_speed) / 20.0f);  // 速度数据低通滤波
             
@@ -256,7 +138,10 @@ void motor_left_update_isr(void)
                
             if(motor_left.locked_value.protect_flag)
             {
-                if(func_abs(motor_left.motor_speed_filter) < 10.0f && func_abs(motor_left.motor_duty) >= motor_left.locked_value.protect_duty_max)  // 判断是否堵转  占空比大于10%并且无转速数据持续 500ms
+                // 堵转保护（闭环口径）：速度长期接近0，且电流环q轴目标长期较高
+                // 仅在每1ms速度更新点做一次判定，避免高速中断内抖动误触发
+                if(func_abs(motor_left.motor_speed_filter) < 10.0f &&
+                   func_abs(motor_left_foc_closed_loop.current_loop.iq_ref) >= (LEFT_FOC_IQ_LIMIT_A * 0.35f))
                 {
                     left_protect_count ++;
                     
@@ -275,6 +160,7 @@ void motor_left_update_isr(void)
             }
         }
         
+        // 由编码器值计算电角度，并刷新dq电流反馈
         electrical_angle_deg = foc_calc_left_electrical_angle_deg(motor_left.menc15a_value_now,
                                                                    motor_left.zero_location,
                                                                    motor_left.pole_pairs,
@@ -287,25 +173,29 @@ void motor_left_update_isr(void)
                                    motor_left.rotation_direction,
                                    0);
 
+        // 读取母线电压；异常低值时回退到默认12V，防止调制计算异常
         bus_voltage_now = battery_value.battery_voltage;
         if(bus_voltage_now < 1.0f)
         {
             bus_voltage_now = 12.0f;
         }
 
-        // 优先使用RPM速度目标接口；未启用时兼容旧逻辑(由占空比推导速度目标)
-        if(motor_left_speed_ref_enable)
+        // 左电机闭环仅使用速度参考接口，不再混用 duty 推导速度目标
+        // 若未使能速度参考，则按 0RPM 处理
+        if(motor_left_foc_closed_loop.speed_loop.speed_ref_enable)
         {
-            speed_ref_rpm = motor_left_speed_ref_rpm_cmd;
+            speed_ref_rpm = motor_left_foc_closed_loop.speed_loop.speed_ref_rpm;
         }
         else
         {
-            speed_ref_rpm = motor_left.motor_duty * FOC_MOTOR_KV_NUM * bus_voltage_now;
+            speed_ref_rpm = 0.0f;
         }
-
+        
+        // 写入本周期闭环目标：速度目标 + id目标
         foc_closed_loop_set_speed_ref(&motor_left_foc_closed_loop, speed_ref_rpm);
         foc_closed_loop_set_id_ref(&motor_left_foc_closed_loop, 0.0f);
 
+        // 执行一次闭环迭代，输出三相compare值
         foc_closed_loop_step(&motor_left_foc_closed_loop,
                              foc_current_data.motor_a.id,
                              foc_current_data.motor_a.iq,
@@ -313,7 +203,9 @@ void motor_left_update_isr(void)
                              electrical_angle_deg,
                              bus_voltage_now,
                              OUTPUT_DUTY_MAX);
-       
+
+        // 最终输出保护门：任一保护成立则立即三相清零，优先保证安全
+        // 条件包括：软件保护态、编码器异常、电池保护异常
         if(motor_left.motor_protect_state       == PROTECT_MODE   || 
            motor_left.encoder_state             == ENCODER_ERROR  ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
@@ -329,16 +221,18 @@ void motor_left_update_isr(void)
     }
     else if(motor_left.driver_mode == HALL_SIX_STEP)
     {
+        // 霍尔六步路径：走霍尔回调，不进入FOC闭环计算
         Cy_Tcpwm_Counter_ClearTC_Intr((volatile stc_TCPWM_GRP_CNT_t*) &TCPWM0->GRP[1].CNT[(LEFT_MOTOR_PIT_TIMER - 3)]);              // 清除中断标志位  
         
         motor_left_hall_callback();                                                 // 左侧电机霍尔采集回调
     }
     else
     {
+        // 无感路径：走无感中断流程，不进入FOC闭环计算
         Cy_Tcpwm_Counter_ClearTC_Intr((volatile stc_TCPWM_GRP_CNT_t*) &TCPWM0->GRP[1].CNT[(LEFT_MOTOR_PIT_TIMER - 3)]);              // 清除中断标志位  
         
 #if MOTOR_LOSE_CONTROL_PROTECT  == DRIVER_ENABLE && USER_CONTROL_MODE == 0     
-    
+    // 失控保护：若上层长时间未刷新控制指令，则将占空比强制拉回0
     if(++ motor_right.lose_control_protect_count > (MOTOR_LOSE_CONTROL_TIME * 20))
     {
         motor_right.motor_duty       = 0.0f;
@@ -359,22 +253,19 @@ void motor_left_update_isr(void)
 //-------------------------------------------------------------------------------------------------------------------
 void motor_right_update_isr(void)
 {       
+    // 中断执行主流程（右电机）：
+    // 1) 入口保护检查（失控/过载）
+    // 2) 按驱动模式分支执行（FAST_FOC / HALL / SENSORLESS）
+    // 3) FAST_FOC分支内完成估速、前馈角补偿与最终输出保护
 
     static uint8  right_speed_count = 0;                                        // 速度拟合计次
 
     static uint32 right_protect_count = 0;                                      // 输出保护计次
 
-#if MOTOR_LOSE_CONTROL_PROTECT  == DRIVER_ENABLE && USER_CONTROL_MODE == 0     
-    
-    if(++ motor_right.lose_control_protect_count > (MOTOR_LOSE_CONTROL_TIME * 20))
-    {
-        motor_right.motor_duty       = 0.0f;
-    }
-    
-#endif
     
 #if MOTOR_OVERLOAD_PROTECT      == DRIVER_ENABLE 
-    
+    // ------------------------------ 入口保护：过载保护 ------------------------------
+    // 过载保护：占空比较大但速度跟不上时，认为电机可能处于重载/卡滞状态
     if(func_abs(motor_right.motor_duty) > MOTOR_OVERLOAD_DUTY_MIN && motor_left.driver_mode != SENSORLESS)
     {
         float speed_ratio = func_limit_ab((func_abs(motor_right.motor_speed_filter) / (FOC_MOTOR_KV_NUM * battery_value.battery_voltage)), 0.0f, 1.0f);
@@ -387,6 +278,7 @@ void motor_right_update_isr(void)
             
             if(MOTOR_DRIVER_MODE == HALL_SIX_STEP_MODE)
             {
+                // 霍尔模式按较低环频计次阈值判定
                 if(motor_right.overload_count > (MOTOR_OVERLOAD_TIME))
                 {
                     motor_right.overload_count = (MOTOR_OVERLOAD_TIME);
@@ -397,6 +289,7 @@ void motor_right_update_isr(void)
             }
             else
             {
+                // FOC模式按20kHz环频折算判定时间
                 if(motor_right.overload_count > (MOTOR_OVERLOAD_TIME * 20))
                 {
                     motor_right.overload_count = (MOTOR_OVERLOAD_TIME * 20);
@@ -418,8 +311,10 @@ void motor_right_update_isr(void)
     
 #endif   
     
+    // ------------------------------ 按驱动模式执行 ------------------------------
     if(motor_right.driver_mode == FAST_FOC)
     {
+        // FAST_FOC路径：右电机沿用fast_foc模块进行角度补偿和三相输出计算
         Cy_Tcpwm_Counter_ClearTC_Intr(MOTOR_RIGHT_A_PHASE_TCPWM_TIMER);             // 清除中断标志位  
                                                                                     
         motor_right.menc15a_value_now = menc15a_get_absolute_data(menc15a_2_module);// 采集左侧电机磁编码器数值
@@ -430,6 +325,7 @@ void motor_right_update_isr(void)
                                    
         motor_right.menc15a_reduction_integral += motor_right.menc15a_value_offset; // 用于计算减速后的角度
         
+        // 每1ms执行一次速度拟合与堵转判定（20kHz中断下计20次）
         if(++ right_speed_count >= 20)                                              // 每毫秒拟合一次速度 
         {
             right_speed_count = 0;
@@ -442,6 +338,8 @@ void motor_right_update_isr(void)
 
             if(motor_right.locked_value.protect_flag)
             {
+                // 堵转保护：占空比已达到保护门限，但速度长期接近0
+                // 仅在每1ms速度更新点做一次判定，避免高速中断内抖动误触发
                 if(func_abs(motor_right.motor_speed_filter) < 10.0f && func_abs(motor_right.motor_duty) >= motor_right.locked_value.protect_duty_max)  // 判断是否堵转  占空比大于 10% 并且无转速数据持续 500ms
                 {
                     right_protect_count ++;
@@ -461,6 +359,7 @@ void motor_right_update_isr(void)
             }
         }
           
+        // 根据转速估计动态前馈补偿角，转速越高补偿越大
         float speed_offset = func_limit_ab((func_abs(motor_right.motor_speed_filter) / (FOC_MOTOR_KV_NUM * 12.0f)), 0.0f, 1.0f);
         
         motor_right.forward_preact_angle  = (uint8)(speed_offset * (float)FOC_FORWARD_PREACT_ANGLE);
@@ -471,7 +370,9 @@ void motor_right_update_isr(void)
                            motor_right.menc15a_value_now, 
                            motor_right.motor_duty > 0 ? motor_right.motor_duty : -motor_right.motor_duty, 
                            motor_right.motor_duty > 0 ? (motor_right.forward_traction_angle + motor_right.forward_preact_angle): -(motor_right.reversal_traction_angle + motor_right.reversal_preact_angle));  
-        
+
+        // 最终输出保护门：任一保护成立则立即三相清零，优先保证安全
+        // 条件包括：软件保护态、编码器异常、电池保护异常
         if(motor_right.motor_protect_state      == PROTECT_MODE         || 
            motor_right.encoder_state            == ENCODER_ERROR        ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
@@ -485,12 +386,14 @@ void motor_right_update_isr(void)
     }
     else if(motor_right.driver_mode == HALL_SIX_STEP)
     {
+        // 霍尔六步路径：走霍尔回调，不进入FAST_FOC计算
         Cy_Tcpwm_Counter_ClearTC_Intr((volatile stc_TCPWM_GRP_CNT_t*) &TCPWM0->GRP[1].CNT[(RIGHT_MOTOR_PIT_TIMER - 3)]);             // 清除中断标志位  
         
         motor_right_hall_callback();                                                // 右侧电机霍尔采集回调
     }
     else
     {
+        // 无感路径：走无感中断流程，不进入FAST_FOC计算
         Cy_Tcpwm_Counter_ClearTC_Intr((volatile stc_TCPWM_GRP_CNT_t*) &TCPWM0->GRP[1].CNT[(RIGHT_MOTOR_PIT_TIMER - 3)]);             // 清除中断标志位  
         
         sensorless_motor_isr();
@@ -795,6 +698,7 @@ void motor_foc_control_init(void)
                          LEFT_FOC_SPEED_LOOP_HZ,
                          LEFT_FOC_IQ_LIMIT_A,
                          LEFT_FOC_VDQ_LIMIT_V);
+    foc_closed_loop_clear_speed_ref(&motor_left_foc_closed_loop);
     foc_closed_loop_set_id_ref(&motor_left_foc_closed_loop, 0.0f);
       
     fast_foc_init(&motor_left_foc_driver,  ENCODER_PRECISION, OUTPUT_DUTY_MAX, motor_left.pole_pairs,  motor_left.zero_location,  motor_left.rotation_direction );     // 左侧电机 FAST_FOC 功能初始化
@@ -1074,6 +978,89 @@ void driver_cmd_loop(void)
         default:break;
     }
 #endif   
+}
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     校准信息通过 UART0 输出
+// 参数说明     format             格式化字符串
+// 返回参数     void
+// 使用示例     calibration_uart0_printf("zero:%d\r\n", value);
+// 备注信息     仅用于校准流程日志输出，避免依赖 printf 重定向
+//-------------------------------------------------------------------------------------------------------------------
+void calibration_uart0_printf(const char *format, ...)
+{
+    char tx_buffer[160];
+    va_list args;
+
+    va_start(args, format);
+    vsnprintf(tx_buffer, sizeof(tx_buffer), format, args);
+    va_end(args);
+
+    uart_write_string(UART_0, tx_buffer);
+}
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     左电机上电一次性A相对齐校准
+// 参数说明     void
+// 返回参数     void
+// 备注信息     通过A相小占空比将转子拉到固定电角，再刷新左电机运行零点
+//-------------------------------------------------------------------------------------------------------------------
+void motor_left_startup_align_calibration(void)
+{
+#if LEFT_FOC_STARTUP_ALIGN_ENABLE
+    int32 encoder_aligned = 0;
+    int32 encoder_per_electrical = 0;
+    uint16 align_duty = 0;
+
+    if(motor_left.encoder_state == ENCODER_ERROR || motor_left.pole_pairs <= 0)
+    {
+        return;
+    }
+
+    align_duty = (uint16)(OUTPUT_DUTY_MAX / LEFT_FOC_STARTUP_ALIGN_DUTY_DIV);
+    if(align_duty == 0)
+    {
+        align_duty = 1;
+    }
+
+    motor_left_duty_set(align_duty, 0, 0);
+    system_delay_ms(LEFT_FOC_STARTUP_ALIGN_TIME_MS);
+
+    encoder_aligned = menc15a_get_absolute_data(menc15a_1_module);
+    if(motor_left.rotation_direction == -1)
+    {
+        encoder_aligned = ENCODER_PRECISION - encoder_aligned;
+    }
+
+    encoder_per_electrical = ENCODER_PRECISION / motor_left.pole_pairs;
+    if(encoder_per_electrical > 0)
+    {
+        while(encoder_aligned < 0)
+        {
+            encoder_aligned += ENCODER_PRECISION;
+        }
+        while(encoder_aligned >= ENCODER_PRECISION)
+        {
+            encoder_aligned -= ENCODER_PRECISION;
+        }
+
+        motor_left.zero_location = (int16)(encoder_aligned % encoder_per_electrical);
+
+        // 保持fast_foc结构体零点与运行时零点一致，避免后续调试口径不一致
+        fast_foc_init(&motor_left_foc_driver,
+                      ENCODER_PRECISION,
+                      OUTPUT_DUTY_MAX,
+                      motor_left.pole_pairs,
+                      motor_left.zero_location,
+                      motor_left.rotation_direction);
+    }
+
+    motor_left_duty_set(0, 0, 0);
+    system_delay_ms(LEFT_FOC_STARTUP_RELEASE_TIME_MS);
+
+    foc_closed_loop_reset(&motor_left_foc_closed_loop);
+    calibration_uart0_printf("left startup align ok, zero:%d\r\n", motor_left.zero_location);
+#endif
 }
 
 
