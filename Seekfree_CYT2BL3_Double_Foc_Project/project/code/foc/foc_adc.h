@@ -42,6 +42,10 @@ typedef struct
     foc_current_group_t motor_b;
 }foc_current_data_t;
 
+// 变量简介    全局电流采样与dq变换结果
+// 备注信息    在 foc_adc.c 中定义，其他模块通过 extern 访问
+extern volatile foc_current_data_t foc_current_data;
+
 
 // 函数简介    FOC电流采样ADC初始化
 // 传入参数    void

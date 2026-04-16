@@ -7,6 +7,12 @@
 // 数学常量：统一在变换库中定义，避免多处硬编码导致口径漂移
 #define FOC_INV_SQRT3       (0.57735026919f)     // 1/sqrt(3)
 #define FOC_SQRT3_OVER_2    (0.86602540378f)     // sqrt(3)/2
+#define FOC_PI              (3.14159265359f)
+#define FOC_TWO_PI          (6.28318530718f)
+
+// sin/cos查表参数：4096点覆盖0~2pi，角分辨率约0.0879度
+#define FOC_SIN_COS_LUT_SIZE        (4096)
+#define FOC_SIN_COS_LUT_INV_TWO_PI  ((float)FOC_SIN_COS_LUT_SIZE / FOC_TWO_PI)
 
 // 约定说明（必须统一）：
 // 1) Clarke:  alpha = ia, beta = (ia + 2*ib)/sqrt(3)
@@ -49,6 +55,76 @@ typedef struct
     float beta_err;
 }foc_transform_check_result_t;
 
+static uint8 foc_trig_lut_inited = 0;
+static float foc_sin_lut[FOC_SIN_COS_LUT_SIZE];
+static float foc_cos_lut[FOC_SIN_COS_LUT_SIZE];
+
+// 角度映射到LUT索引：[0, 2pi) -> [0, FOC_SIN_COS_LUT_SIZE)
+static inline uint16 foc_lut_angle_to_index(float electrical_angle_rad)
+{
+    float angle_temp = electrical_angle_rad;
+    int32 index = 0;
+
+    while(angle_temp < 0.0f)
+    {
+        angle_temp += FOC_TWO_PI;
+    }
+    while(angle_temp >= FOC_TWO_PI)
+    {
+        angle_temp -= FOC_TWO_PI;
+    }
+
+    index = (int32)(angle_temp * FOC_SIN_COS_LUT_INV_TWO_PI + 0.5f);
+    if(index >= FOC_SIN_COS_LUT_SIZE)
+    {
+        index = 0;
+    }
+
+    return (uint16)index;
+}
+
+// 显式建表初始化函数：建议系统初始化阶段调用一次
+static inline void foc_trig_lut_init(void)
+{
+    uint16 i = 0;
+
+    if(foc_trig_lut_inited)
+    {
+        return;
+    }
+
+    for(i = 0; i < FOC_SIN_COS_LUT_SIZE; i ++)
+    {
+        float angle = (float)i * FOC_TWO_PI / (float)FOC_SIN_COS_LUT_SIZE;
+        foc_sin_lut[i] = sinf(angle);
+        foc_cos_lut[i] = cosf(angle);
+    }
+
+    foc_trig_lut_inited = 1;
+}
+
+// sin查表函数（与cos查表分离，便于单独调用）
+static inline float foc_lut_sin(float electrical_angle_rad)
+{
+    if(0 == foc_trig_lut_inited)
+    {
+        foc_trig_lut_init();
+    }
+
+    return foc_sin_lut[foc_lut_angle_to_index(electrical_angle_rad)];
+}
+
+// cos查表函数（与sin查表分离，便于单独调用）
+static inline float foc_lut_cos(float electrical_angle_rad)
+{
+    if(0 == foc_trig_lut_inited)
+    {
+        foc_trig_lut_init();
+    }
+
+    return foc_cos_lut[foc_lut_angle_to_index(electrical_angle_rad)];
+}
+
 static inline foc_clarke_result_t foc_clarke_transform(float ia, float ib, float ic)
 {
     foc_clarke_result_t result;
@@ -63,8 +139,8 @@ static inline foc_clarke_result_t foc_clarke_transform(float ia, float ib, float
 static inline foc_park_result_t foc_park_transform(float alpha, float beta, float electrical_angle_rad)
 {
     foc_park_result_t result;
-    float sin_theta = sinf(electrical_angle_rad);
-    float cos_theta = cosf(electrical_angle_rad);
+    float sin_theta = foc_lut_sin(electrical_angle_rad);
+    float cos_theta = foc_lut_cos(electrical_angle_rad);
 
     result.id = alpha * cos_theta + beta * sin_theta;
     result.iq = -alpha * sin_theta + beta * cos_theta;
@@ -75,8 +151,8 @@ static inline foc_park_result_t foc_park_transform(float alpha, float beta, floa
 static inline foc_inv_park_result_t foc_inv_park_transform(float vd, float vq, float electrical_angle_rad)
 {
     foc_inv_park_result_t result;
-    float sin_theta = sinf(electrical_angle_rad);
-    float cos_theta = cosf(electrical_angle_rad);
+    float sin_theta = foc_lut_sin(electrical_angle_rad);
+    float cos_theta = foc_lut_cos(electrical_angle_rad);
 
     result.alpha = vd * cos_theta - vq * sin_theta;
     result.beta = vd * sin_theta + vq * cos_theta;

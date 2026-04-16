@@ -172,6 +172,9 @@ void foc_current_adc_calibrate(uint16 sample_count)
 // 备注信息     初始化A/C两路ADC并计算电流换算系数
 void foc_current_adc_init(void)
 {
+    // 先构建三角函数查找表，避免控制环首周期触发建表
+    foc_trig_lut_init();
+
     // 仅初始化A/C两路电流采样ADC，分辨率统一12bit
     adc_init(FOC_ADC_PHASE_A_CH, ADC_12BIT);
     adc_init(FOC_ADC_PHASE_C_CH, ADC_12BIT);
