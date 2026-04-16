@@ -43,26 +43,23 @@ motor_struct motor_left;
 motor_struct motor_right;
 
 // 左电机FOC闭环参数（20kHz电流环，2kHz速度环）
-#define LEFT_FOC_CURRENT_LOOP_HZ      (20000)
-#define LEFT_FOC_SPEED_LOOP_HZ        (2000)
-#define LEFT_FOC_SPEED_KP             (0.0450f)
-#define LEFT_FOC_SPEED_KI             (0.0000f)
-#define LEFT_FOC_ID_KP               (0.1338f)
+#define LEFT_FOC_CURRENT_LOOP_HZ       (20000)
+#define LEFT_FOC_SPEED_LOOP_HZ         (2000)
+#define LEFT_FOC_SPEED_KP              (0.0450f)
+#define LEFT_FOC_SPEED_KI              (0.0000f)
+#define LEFT_FOC_ID_KP                 (0.1338f)
 #define LEFT_FOC_ID_KI                 (0.09424f)
-#define LEFT_FOC_IQ_KP                (0.1338f)
-#define LEFT_FOC_IQ_KI                (0.09424f)
-#define LEFT_FOC_IQ_LIMIT_A           (5.0f)
-#define LEFT_FOC_VDQ_LIMIT_V          (1.8f)
-#define LEFT_FOC_STARTUP_ALIGN_ENABLE (1)
-#define LEFT_FOC_STARTUP_ALIGN_DUTY_DIV (30)
-#define LEFT_FOC_STARTUP_ALIGN_TIME_MS (200)
-#define LEFT_FOC_STARTUP_RELEASE_TIME_MS (30)
+#define LEFT_FOC_IQ_KP                 (0.1338f)
+#define LEFT_FOC_IQ_KI                 (0.09424f)
+#define LEFT_FOC_IQ_LIMIT_A            (5.0f)
+#define LEFT_FOC_VDQ_LIMIT_V           (1.8f)
+#define LEFT_FOC_STARTUP_ALIGN_ENABLE     (1)
+#define LEFT_FOC_STARTUP_ALIGN_DUTY_DIV   (30)
+#define LEFT_FOC_STARTUP_ALIGN_TIME_MS    (200)
+#define LEFT_FOC_STARTUP_RELEASE_TIME_MS  (30)
 // 左电机速度在拟合时已乘以rotation_direction做方向对齐
 // 因此闭环速度反馈无需额外反相
-#define LEFT_FOC_SPEED_FEEDBACK_SIGN  (1.0f)
-
 static foc_closed_loop_t motor_left_foc_closed_loop;
-
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     设置左电机速度参考（RPM）并使能速度参考输入
 // 参数说明     speed_ref_rpm     左电机目标转速（RPM）
@@ -75,7 +72,6 @@ void motor_left_speed_ref_set(float speed_ref_rpm)
     foc_closed_loop_set_speed_ref(&motor_left_foc_closed_loop, speed_ref_rpm);
     foc_closed_loop_set_speed_ref_enable(&motor_left_foc_closed_loop, 1);
 }
-
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     清除左电机速度参考并关闭速度参考输入
 // 参数说明     void
@@ -88,6 +84,29 @@ void motor_left_speed_ref_clear(void)
     foc_closed_loop_clear_speed_ref(&motor_left_foc_closed_loop);
 }
 
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     设置左电机力矩参考（q轴电流Iq，单位A）
+// 参数说明     iq_ref_a          左电机目标q轴电流（A）
+// 返回参数     void
+// 使用示例     motor_left_torque_ref_set(1.5f);
+// 备注信息     调用后关闭速度环输入，进入直接电流（力矩）控制路径
+//-------------------------------------------------------------------------------------------------------------------
+void motor_left_torque_ref_set(float iq_ref_a)
+{
+    foc_closed_loop_set_iq_ref(&motor_left_foc_closed_loop, iq_ref_a);
+}
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     清除左电机力矩参考（Iq=0）
+// 参数说明     void
+// 返回参数     void
+// 使用示例     motor_left_torque_ref_clear();
+// 备注信息     仅清零Iq参考，不自动恢复速度环输入
+//-------------------------------------------------------------------------------------------------------------------
+void motor_left_torque_ref_clear(void)
+{
+    foc_closed_loop_set_iq_ref(&motor_left_foc_closed_loop, 0.0f);
+}
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     左电机更新中断
 // 参数说明     void
@@ -102,13 +121,10 @@ void motor_left_update_isr(void)
     // 2) 按驱动模式分支执行（FAST_FOC / HALL / SENSORLESS）
     // 3) FAST_FOC分支内完成采样、估速、闭环计算与最终输出保护
     static uint8  left_speed_count = 0;                                         // 速度拟合计次
-
     static uint32 left_protect_count = 0;                                       // 输出保护计次
     float electrical_angle_deg = 0.0f;
     float bus_voltage_now = 12.0f;                                              //基础参考值，后续会被实际采样值覆盖
     float speed_ref_rpm = 0.0f;
-    
-        
     // ------------------------------ 按驱动模式执行 ------------------------------
     if(motor_left.driver_mode == FAST_FOC)
     {
@@ -135,7 +151,7 @@ void motor_left_update_isr(void)
             motor_left.motor_speed_filter = ((motor_left.motor_speed_filter * 19.0f + motor_left.motor_speed) / 20.0f);  // 速度数据低通滤波
             
             motor_left.menc15a_offset_integral = 0;                                 // 偏移积分归零
-               
+            
             if(motor_left.locked_value.protect_flag)
             {
                 // 堵转保护（闭环口径）：速度长期接近0，且电流环q轴目标长期较高
@@ -179,7 +195,6 @@ void motor_left_update_isr(void)
         {
             bus_voltage_now = 12.0f;
         }
-
         // 左电机闭环仅使用速度参考接口，不再混用 duty 推导速度目标
         // 若未使能速度参考，则按 0RPM 处理
         if(motor_left_foc_closed_loop.speed_loop.speed_ref_enable)
@@ -190,20 +205,17 @@ void motor_left_update_isr(void)
         {
             speed_ref_rpm = 0.0f;
         }
-        
         // 写入本周期闭环目标：速度目标 + id目标
         foc_closed_loop_set_speed_ref(&motor_left_foc_closed_loop, speed_ref_rpm);
         foc_closed_loop_set_id_ref(&motor_left_foc_closed_loop, 0.0f);
-
         // 执行一次闭环迭代，输出三相compare值
         foc_closed_loop_step(&motor_left_foc_closed_loop,
                              foc_current_data.motor_a.id,
                              foc_current_data.motor_a.iq,
-                             motor_left.motor_speed_filter * LEFT_FOC_SPEED_FEEDBACK_SIGN,
+                             motor_left.motor_speed_filter,
                              electrical_angle_deg,
                              bus_voltage_now,
                              OUTPUT_DUTY_MAX);
-
         // 最终输出保护门：任一保护成立则立即三相清零，优先保证安全
         // 条件包括：软件保护态、编码器异常、电池保护异常
         if(motor_left.motor_protect_state       == PROTECT_MODE   || 

@@ -67,8 +67,7 @@ int main(void)
     
     interrupt_global_enable(0);							                            // 开启全局中断
     
-    motor_left_speed_ref_set(TARGET_SPEED_RPM);                                 // 直接下发速度目标（RPM）
-    // 进行1000* 1ms 的采样，采样完成停止电机
+    motor_left_torque_ref_set(1);    
     //目前采样数据为Ia,ib,ic,id,iq和速度，单位分别为mA和RPM，方便上位机直接画图与比对
     foc_debug_capture_and_send(SAMPLE_COUNT, 1, (int32)TARGET_SPEED_RPM);       
 
@@ -77,7 +76,6 @@ int main(void)
         driver_adc_loop();                                                      // 驱动 ADC 循环检测函数
         driver_gpio_loop();                                                     // 驱动 GPIO 循环检测函数
         driver_cmd_loop();                                                      // 驱动 控制指令 循环响应函数
-
         system_delay_ms(DRIVER_RESPONSE_CYCLE);                                 // 主循环延时
     }
 }

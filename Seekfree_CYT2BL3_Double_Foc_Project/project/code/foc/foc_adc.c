@@ -1,24 +1,19 @@
 #include "foc_adc.h"
 #include "foc_transform.h"
 #include "zf_common_headfile.h"
-
 // 仅保留两路相电流采样：A相(P18.1) + C相(P12.1)
 #define FOC_ADC_PHASE_A_CH (ADC2_CH01_P18_1)
 #define FOC_ADC_PHASE_C_CH (ADC1_CH05_P12_1)
-
-
 // 变量简介    全局电流采样与dq变换结果
 // 备注信息    在中断与控制环中被共同访问，使用 volatile 防止编译器优化误判
 extern volatile foc_current_data_t foc_current_data;
 // 全局电流采样与dq电流结果
 volatile foc_current_data_t foc_current_data;
-
 // ADC每个计数对应的电流值(A/count)
 static float foc_current_per_count = 0.0f;
-
 // 函数简介     ADC原始值转换电流值
 // 传入参数     raw      ADC原始采样值
-//              offset   ADC零点偏置
+//             offset   ADC零点偏置
 // 返回参数     float    电流值(A)
 // 使用示例     ia = foc_raw_to_current(raw_ia, offset_ia);
 // 备注信息     使用线性比例换算，比例系数由 foc_current_adc_init 计算
@@ -27,7 +22,6 @@ static float foc_raw_to_current(uint16 raw, int16 offset)
     int32 delta = (int32)raw - (int32)offset;
     return (float)delta * foc_current_per_count;
 }
-
 // 函数简介     计算左电机电角度(度)
 // 传入参数     encoder_now         当前机械编码器值
 //              zero_location       机械零点偏移

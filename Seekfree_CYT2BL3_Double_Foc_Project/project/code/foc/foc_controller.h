@@ -171,6 +171,15 @@ void foc_closed_loop_clear_speed_ref(foc_closed_loop_t *ctrl);
 
 void foc_closed_loop_set_id_ref(foc_closed_loop_t *ctrl, float id_ref);
 
+// 设置q轴电流目标（A），用于力矩环模式
+// 参数说明：
+// ctrl   闭环实例
+// iq_ref q轴电流目标，单位A
+// 备注信息：
+// 1) 该接口会将 speed_ref_enable 置0，切换为“直接电流（力矩）控制”
+// 2) iq_ref 会按 iq_limit 做限幅
+void foc_closed_loop_set_iq_ref(foc_closed_loop_t *ctrl, float iq_ref);
+
 // 每次在电流环中断调用（例如20kHz）
 // 1) 速度环按分频触发，更新 iq_ref
 // 2) 电流环每次执行，更新 vd/vq

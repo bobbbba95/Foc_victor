@@ -320,6 +320,30 @@ void foc_closed_loop_set_id_ref(foc_closed_loop_t *ctrl, float id_ref)
     ctrl->current_loop.id_ref = id_ref;
 }
 
+// 函数作用：设置q轴电流目标（A），用于力矩环模式。
+// 如何调用：上层希望直接控制力矩（Iq）时调用。
+// 参数说明：
+// ctrl   闭环实例
+// iq_ref q轴电流目标，单位A
+// 内部逻辑：
+// 1) 限幅到 [-iq_limit, iq_limit]
+// 2) 关闭速度环输入，使控制器进入“直接电流环”路径
+// 3) 同步写入 speed_loop.iq_ref，便于调试查看
+void foc_closed_loop_set_iq_ref(foc_closed_loop_t *ctrl, float iq_ref)
+{
+    if(NULL == ctrl)
+    {
+        return;
+    }
+
+    ctrl->current_loop.iq_ref = foc_limit_value(iq_ref,
+                                                -ctrl->speed_loop.iq_limit,
+                                                 ctrl->speed_loop.iq_limit);
+
+    ctrl->speed_loop.iq_ref = ctrl->current_loop.iq_ref;
+    ctrl->speed_loop.speed_ref_enable = 0;
+}
+
 // 函数作用：执行一次完整双环闭环迭代，并生成三相PWM比较值。
 // 如何调用：应在电流环中断中固定频率调用（例如20kHz）。
 // 参数说明：
@@ -364,20 +388,32 @@ void foc_closed_loop_step(foc_closed_loop_t *ctrl,
     ctrl->electrical_angle_deg = electrical_angle_deg;
     ctrl->bus_voltage = bus_voltage;
 
-    // 速度环分频执行：20kHz ISR下，divider=10即2kHz
-    ctrl->speed_loop.counter ++;
-    if(ctrl->speed_loop.counter >= ctrl->speed_loop.divider)
+    // 速度模式：速度环分频执行（20kHz ISR下，divider=10即2kHz）
+    if(ctrl->speed_loop.speed_ref_enable)
     {
-        ctrl->speed_loop.counter = 0;
+        ctrl->speed_loop.counter ++;
+        if(ctrl->speed_loop.counter >= ctrl->speed_loop.divider)
+        {
+            ctrl->speed_loop.counter = 0;
 
-        speed_err = ctrl->speed_loop.speed_ref_rpm - ctrl->speed_loop.speed_fb_rpm;
-        ctrl->speed_loop.iq_ref = foc_pi_update(&ctrl->speed_loop.speed_pi, speed_err);
-        ctrl->speed_loop.iq_ref = foc_limit_value(ctrl->speed_loop.iq_ref,
-                                                  -ctrl->speed_loop.iq_limit,
-                                                   ctrl->speed_loop.iq_limit);
+            speed_err = ctrl->speed_loop.speed_ref_rpm - ctrl->speed_loop.speed_fb_rpm;
+            ctrl->speed_loop.iq_ref = foc_pi_update(&ctrl->speed_loop.speed_pi, speed_err);
+            ctrl->speed_loop.iq_ref = foc_limit_value(ctrl->speed_loop.iq_ref,
+                                                      -ctrl->speed_loop.iq_limit,
+                                                       ctrl->speed_loop.iq_limit);
+        }
+
+        ctrl->current_loop.iq_ref = ctrl->speed_loop.iq_ref;
     }
-
-    ctrl->current_loop.iq_ref = ctrl->speed_loop.iq_ref;
+    else
+    {
+        // 力矩模式：跳过速度环，直接使用 current_loop.iq_ref
+        ctrl->speed_loop.counter = 0;
+        ctrl->current_loop.iq_ref = foc_limit_value(ctrl->current_loop.iq_ref,
+                                                    -ctrl->speed_loop.iq_limit,
+                                                     ctrl->speed_loop.iq_limit);
+        ctrl->speed_loop.iq_ref = ctrl->current_loop.iq_ref;
+    }
 
     // 电流环每次执行（20kHz）
     id_err = ctrl->current_loop.id_ref - ctrl->current_loop.id_fb;

@@ -81,8 +81,8 @@ void foc_debug_capture_and_send(uint16 sample_count,
     bus_voltage_avg_mv = (int32)(bus_voltage_sum_mv / sample_count);
 
     // 第二阶段：采样结束后停车，避免发送期间电机继续变化影响复现实验
-    motor_left_speed_ref_set(0.0f);
-
+    //motor_left_speed_ref_set(0.0f);
+    motor_left_torque_ref_set(0.0f);
     // 第三阶段：先发日志头，告知上位机本次数据规模与目标转速
     sprintf(uart0_tx_buffer, "LOG,CNT:%d,TARGET_RPM:%ld\r\n",
             sample_count,
