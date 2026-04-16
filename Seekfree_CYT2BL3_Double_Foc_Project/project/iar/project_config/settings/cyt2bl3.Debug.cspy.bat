@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"G:\IAR\common\bin\cspybat" -f "G:\SmartCar\Project\CYT2BL3_Brushless_Driver_Project-master\CYT2BL3_Brushless_Driver_Project-master\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" --backend -f "G:\SmartCar\Project\CYT2BL3_Brushless_Driver_Project-master\CYT2BL3_Brushless_Driver_Project-master\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
+"G:\IAR\common\bin\cspybat" -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" --backend -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"G:\IAR\common\bin\cspybat" -f "G:\SmartCar\Project\CYT2BL3_Brushless_Driver_Project-master\CYT2BL3_Brushless_Driver_Project-master\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" "--debug_file=%~1" --backend -f "G:\SmartCar\Project\CYT2BL3_Brushless_Driver_Project-master\CYT2BL3_Brushless_Driver_Project-master\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
+"G:\IAR\common\bin\cspybat" -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" "--debug_file=%~1" --backend -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
 
 @echo off 
 :end

@@ -35,9 +35,9 @@
 
 #include "zf_common_headfile.h"
 #include "foc_adc.h"
+#include "foc_debug_log.h"
 
-#define SAMPLE_COUNT             (1000)
-
+#define SAMPLE_COUNT             (1000)      //采样点数，不允许超过1K
 #define TARGET_SPEED_RPS         (5.0f)      // 目标转速：r/s，改这里即可
 #define TARGET_SPEED_RPM         (TARGET_SPEED_RPS * 60.0f)
 // 打开新的工程或者工程移动了位置务必执行以下操作
@@ -48,16 +48,6 @@
 
 int main(void)
 {
-    uint16 sample_index = 0;
-    int32 ia_points_ma[SAMPLE_COUNT] = {0};
-    int32 ib_points_ma[SAMPLE_COUNT] = {0};
-    int32 ic_points_ma[SAMPLE_COUNT] = {0};
-    int32 id_points_ma[SAMPLE_COUNT] = {0};
-    int32 iq_points_ma[SAMPLE_COUNT] = {0};
-    int32 speed_points_rpm[SAMPLE_COUNT] = {0};
-    uint16 send_index = 0;
-    char uart0_tx_buffer[128];
-
     clock_init(SYSTEM_CLOCK_160M);                                              // 时钟配置及系统初始化<务必保留>
     
     debug_init();                                                               // 调试串口初始化
@@ -74,48 +64,10 @@ int main(void)
     
     interrupt_global_enable(0);							                            // 开启全局中断
     
-    printf("system init complete\r\n");                                      // 输出系统初始化完成信息
-
     motor_left_speed_ref_set(TARGET_SPEED_RPM);                                 // 直接下发速度目标（RPM）
-
-    // 前1s每1ms记录一次三相电流、dq电流和电机速度
-    for(sample_index = 0; sample_index < SAMPLE_COUNT; sample_index ++)
-    {
-        driver_adc_loop();                                                      // 驱动 ADC 循环检测函数
-        driver_gpio_loop();                                                     // 驱动 GPIO 循环检测函数
-        driver_cmd_loop();                                                      // 驱动 控制指令 循环响应函数
-
-        ia_points_ma[sample_index] = (int32)(foc_current_data.motor_a.ia * 1000.0f);
-        ib_points_ma[sample_index] = (int32)(foc_current_data.motor_a.ib * 1000.0f);
-        ic_points_ma[sample_index] = (int32)(foc_current_data.motor_a.ic * 1000.0f);
-        id_points_ma[sample_index] = (int32)(foc_current_data.motor_a.id * 1000.0f);
-        iq_points_ma[sample_index] = (int32)(foc_current_data.motor_a.iq * 1000.0f);
-        speed_points_rpm[sample_index] = (int32)motor_left.motor_speed_filter;
-
-        system_delay_ms(1);
-    }
-
-    motor_left_speed_ref_set(0.0f);                                              // 转动1秒后停止
-
-        sprintf(uart0_tx_buffer, "LOG,CNT:%d,TARGET_RPM:%d\r\n",
-            SAMPLE_COUNT,
-            (int32)TARGET_SPEED_RPM);
-    uart_write_string(UART_0, uart0_tx_buffer);
-
-    // 一次性发送：先采完1s，再集中输出1000条数据
-    for(send_index = 0; send_index < SAMPLE_COUNT; send_index ++)
-    {
-        sprintf(uart0_tx_buffer,
-                "T:%d,IA:%ld,IB:%ld,IC:%ld,ID:%ld,IQ:%ld,SPD:%ld\r\n",
-                send_index,
-                ia_points_ma[send_index],
-                ib_points_ma[send_index],
-                ic_points_ma[send_index],
-                id_points_ma[send_index],
-                iq_points_ma[send_index],
-                speed_points_rpm[send_index]);
-        uart_write_string(UART_0, uart0_tx_buffer);
-    }
+    // 进行1000* 1ms 的采样，采样完成停止电机
+    //目前采样数据为Ia,ib,ic,id,iq和速度，单位分别为mA和RPM，方便上位机直接画图与比对
+    foc_debug_capture_and_send(SAMPLE_COUNT, 1, (int32)TARGET_SPEED_RPM);       
 
     for(;;)
     {

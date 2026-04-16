@@ -6,16 +6,37 @@
 #define FOC_ADC_PHASE_A_CH (ADC2_CH01_P18_1)
 #define FOC_ADC_PHASE_C_CH (ADC1_CH05_P12_1)
 
+
+// 变量简介    全局电流采样与dq变换结果
+// 备注信息    在中断与控制环中被共同访问，使用 volatile 防止编译器优化误判
+extern volatile foc_current_data_t foc_current_data;
+// 全局电流采样与dq电流结果
 volatile foc_current_data_t foc_current_data;
 
+// ADC每个计数对应的电流值(A/count)
 static float foc_current_per_count = 0.0f;
 
+// 函数简介     ADC原始值转换电流值
+// 传入参数     raw      ADC原始采样值
+//              offset   ADC零点偏置
+// 返回参数     float    电流值(A)
+// 使用示例     ia = foc_raw_to_current(raw_ia, offset_ia);
+// 备注信息     使用线性比例换算，比例系数由 foc_current_adc_init 计算
 static float foc_raw_to_current(uint16 raw, int16 offset)
 {
     int32 delta = (int32)raw - (int32)offset;
     return (float)delta * foc_current_per_count;
 }
 
+// 函数简介     计算左电机电角度(度)
+// 传入参数     encoder_now         当前机械编码器值
+//              zero_location       机械零点偏移
+//              pole_pairs          电机极对数
+//              rotation_direction  旋转方向(1/-1)
+//              traction_angle      牵引角(兼容参数)
+// 返回参数     float               单电周期电角度[0,360)
+// 使用示例     angle_deg = foc_calc_left_electrical_angle_deg(enc, zero, pp, dir, angle);
+// 备注信息     先做方向修正与零点修正，再映射到单电周期
 float foc_calc_left_electrical_angle_deg(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle)
 {
     (void)traction_angle;
@@ -55,6 +76,11 @@ float foc_calc_left_electrical_angle_deg(int32 encoder_now, int16 zero_location,
     return (float)encoder_temp * 360.0f / (float)encoder_per_electrical;
 }
 
+// 函数简介     清零并初始化单电机电流数据结构
+// 传入参数     group    目标电流数据结构指针
+// 返回参数     void
+// 使用示例     foc_clear_group(&foc_current_data.motor_a);
+// 备注信息     偏置默认置为12bit中点(2048)
 static void foc_clear_group(volatile foc_current_group_t *group)
 {
     group->raw_via = 0;
@@ -72,6 +98,11 @@ static void foc_clear_group(volatile foc_current_group_t *group)
     group->iq = 0.0f;
 }
 
+// 函数简介     左电机两电阻采样(A/C相)并重构B相
+// 传入参数     group    目标电流数据结构指针
+// 返回参数     void
+// 使用示例     foc_sample_left_ac_only(&foc_current_data.motor_a);
+// 备注信息     基于 ia + ib + ic = 0 计算 ib
 static void foc_sample_left_ac_only(volatile foc_current_group_t *group)
 {
     group->raw_via = adc_convert(FOC_ADC_PHASE_A_CH);
@@ -84,6 +115,15 @@ static void foc_sample_left_ac_only(volatile foc_current_group_t *group)
     group->ib = -(group->ia + group->ic);
 }
 
+// 函数简介     左电机dq电流更新
+// 传入参数     encoder_now         当前编码器值
+//              zero_location       电角度零点
+//              pole_pairs          极对数
+//              rotation_direction  旋转方向(1/-1)
+//              traction_angle      牵引角(兼容参数)
+// 返回参数     void
+// 使用示例     foc_current_dq_update_left(enc, zero, pp, dir, angle);
+// 备注信息     内部流程: 电角度计算 -> Clarke -> Park -> 写回id/iq
 void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle)
 {
     float electrical_angle_deg = 0.0f;
@@ -106,6 +146,11 @@ void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 po
     foc_current_data.motor_a.iq = park_result.iq;
 }
 
+// 函数简介     电流采样偏置校准
+// 传入参数     sample_count  期望校准样本数(当前未使用)
+// 返回参数     void
+// 使用示例     foc_current_adc_calibrate(FOC_CURRENT_CALIB_SAMPLES);
+// 备注信息     当前策略为固定中点偏置，保留接口便于后续切换动态标定
 void foc_current_adc_calibrate(uint16 sample_count)
 {
     // 按需求关闭零漂标定：统一使用12bit中点固定偏置
@@ -120,6 +165,11 @@ void foc_current_adc_calibrate(uint16 sample_count)
     foc_current_data.motor_b.offset_vib = 2048;
 }
 
+// 函数简介     FOC电流采样ADC初始化
+// 传入参数     void
+// 返回参数     void
+// 使用示例     foc_current_adc_init();
+// 备注信息     初始化A/C两路ADC并计算电流换算系数
 void foc_current_adc_init(void)
 {
     // 仅初始化A/C两路电流采样ADC，分辨率统一12bit
@@ -134,11 +184,21 @@ void foc_current_adc_init(void)
     foc_clear_group(&foc_current_data.motor_b);
 }
 
+// 函数简介     左电机采样中断服务函数
+// 传入参数     void
+// 返回参数     void
+// 使用示例     在PWM中断调用 foc_current_adc_sample_left_isr();
+// 备注信息     完成一次A/C相采样与B相重构
 void foc_current_adc_sample_left_isr(void)
 {
     foc_sample_left_ac_only(&foc_current_data.motor_a);
 }
 
+// 函数简介     右电机采样中断服务函数
+// 传入参数     void
+// 返回参数     void
+// 使用示例     在PWM中断调用 foc_current_adc_sample_right_isr();
+// 备注信息     当前右路无硬件采样，数据固定置零
 void foc_current_adc_sample_right_isr(void)
 {
     // 右电机无电流采样，所有数据固定为0
