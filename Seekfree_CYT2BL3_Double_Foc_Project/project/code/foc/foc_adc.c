@@ -1,0 +1,154 @@
+#include "foc_adc.h"
+#include "foc_transform.h"
+#include "zf_common_headfile.h"
+
+// 仅保留两路相电流采样：A相(P18.1) + C相(P12.1)
+#define FOC_ADC_PHASE_A_CH (ADC2_CH01_P18_1)
+#define FOC_ADC_PHASE_C_CH (ADC1_CH05_P12_1)
+
+volatile foc_current_data_t foc_current_data;
+
+static float foc_current_per_count = 0.0f;
+
+static float foc_raw_to_current(uint16 raw, int16 offset)
+{
+    int32 delta = (int32)raw - (int32)offset;
+    return (float)delta * foc_current_per_count;
+}
+
+float foc_calc_left_electrical_angle_deg(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle)
+{
+    (void)traction_angle;
+    int32 encoder_now_temp = encoder_now;
+    int32 encoder_max = ENCODER_PRECISION;
+    int32 encoder_temp = 0;
+    int32 encoder_per_electrical = 0;
+
+    if(pole_pairs <= 0)
+    {
+        return 0.0f;
+    }
+
+    encoder_per_electrical = encoder_max / pole_pairs;
+    if(encoder_per_electrical <= 0)
+    {
+        return 0.0f;
+    }
+
+    if(rotation_direction == -1)
+    {
+        encoder_now_temp = encoder_max - encoder_now_temp;
+    }
+
+    encoder_temp = encoder_now_temp - zero_location;
+
+    while(encoder_temp < 0)
+    {
+        encoder_temp += encoder_max;
+    }
+    while(encoder_temp >= encoder_max)
+    {
+        encoder_temp -= encoder_max;
+    }
+
+    encoder_temp = encoder_temp % encoder_per_electrical;
+    return (float)encoder_temp * 360.0f / (float)encoder_per_electrical;
+}
+
+static void foc_clear_group(volatile foc_current_group_t *group)
+{
+    group->raw_via = 0;
+    group->raw_vib = 0;
+    group->raw_vic = 0;
+
+    group->offset_via = 2048;  // ADC 12bit 中点作为偏置
+    group->offset_vib = 2048;
+    group->offset_vic = 2048;
+
+    group->ia = 0.0f;
+    group->ib = 0.0f;
+    group->ic = 0.0f;
+    group->id = 0.0f;
+    group->iq = 0.0f;
+}
+
+static void foc_sample_left_ac_only(volatile foc_current_group_t *group)
+{
+    group->raw_via = adc_convert(FOC_ADC_PHASE_A_CH);
+    group->raw_vic = adc_convert(FOC_ADC_PHASE_C_CH);
+    group->raw_vib = 0;
+
+    group->ia = foc_raw_to_current(group->raw_via, group->offset_via);
+    group->ic = foc_raw_to_current(group->raw_vic, group->offset_vic);
+    // 两电阻采样重构B相电流：ia + ib + ic = 0
+    group->ib = -(group->ia + group->ic);
+}
+
+void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle)
+{
+    float electrical_angle_deg = 0.0f;
+    float electrical_angle_rad = 0.0f;
+    foc_clarke_result_t clarke_result;
+    foc_park_result_t park_result;
+
+    electrical_angle_deg = foc_calc_left_electrical_angle_deg(encoder_now, zero_location, pole_pairs, rotation_direction, traction_angle);
+    electrical_angle_rad = foc_degree_to_radian(electrical_angle_deg);
+
+    clarke_result = foc_clarke_transform(foc_current_data.motor_a.ia,
+                                         foc_current_data.motor_a.ib,
+                                         foc_current_data.motor_a.ic);
+
+    park_result = foc_park_transform(clarke_result.alpha,
+                                     clarke_result.beta,
+                                     electrical_angle_rad);
+
+    foc_current_data.motor_a.id = park_result.id;
+    foc_current_data.motor_a.iq = park_result.iq;
+}
+
+void foc_current_adc_calibrate(uint16 sample_count)
+{
+    // 按需求关闭零漂标定：统一使用12bit中点固定偏置
+    (void)sample_count;
+
+    foc_current_data.motor_a.offset_via = 2048;
+    foc_current_data.motor_a.offset_vic = 2048;
+    foc_current_data.motor_a.offset_vib = 2048;
+
+    foc_current_data.motor_b.offset_via = 2048;
+    foc_current_data.motor_b.offset_vic = 2048;
+    foc_current_data.motor_b.offset_vib = 2048;
+}
+
+void foc_current_adc_init(void)
+{
+    // 仅初始化A/C两路电流采样ADC，分辨率统一12bit
+    adc_init(FOC_ADC_PHASE_A_CH, ADC_12BIT);
+    adc_init(FOC_ADC_PHASE_C_CH, ADC_12BIT);
+
+    // I = V / (R * Gain)，V = ADC * Vref / 4095
+    foc_current_per_count = (FOC_ADC_VREF / FOC_ADC_FULL_SCALE) / (FOC_CURRENT_SHUNT_OHM * FOC_CURRENT_AMP_GAIN);
+
+    // 使用12bit中点作为固定偏置，不进行动态零漂校准
+    foc_clear_group(&foc_current_data.motor_a);
+    foc_clear_group(&foc_current_data.motor_b);
+}
+
+void foc_current_adc_sample_left_isr(void)
+{
+    foc_sample_left_ac_only(&foc_current_data.motor_a);
+}
+
+void foc_current_adc_sample_right_isr(void)
+{
+    // 右电机无电流采样，所有数据固定为0
+    foc_current_data.motor_b.raw_via = 0;
+    foc_current_data.motor_b.raw_vib = 0;
+    foc_current_data.motor_b.raw_vic = 0;
+
+    foc_current_data.motor_b.ia = 0.0f;
+    foc_current_data.motor_b.ib = 0.0f;
+    foc_current_data.motor_b.ic = 0.0f;
+    foc_current_data.motor_b.id = 0.0f;
+    foc_current_data.motor_b.iq = 0.0f;
+}
