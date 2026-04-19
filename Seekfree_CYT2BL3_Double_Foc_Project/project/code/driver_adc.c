@@ -100,6 +100,7 @@ void driver_adc_loop(void)
     uint16 adc_data = 0;                                                        // 定义 临时 ADC 采集数据 存储位置
     
     adc_data = adc_mean_filter_convert(BAT_ADC, 5);                             // 5次均值采样
+    battery_value.battery_adc_raw = adc_data;                                    // 保存原始ADC采样值(滤波后)
     
     battery_value.battery_voltage  = adc_data * VOLTAGE_CONVERSION_COEFFICIENT * battery_value.voltage_rectify_coefficient;     // 计算实际电压  ADC数据 * 转换系数 * 矫正系数
     
@@ -117,6 +118,8 @@ void driver_adc_loop(void)
 void driver_adc_init(void)
 {
     adc_init(BAT_ADC, ADC_12BIT);                                               // 初始化 电池电压采集端口
+
+    battery_value.battery_adc_raw               = 0;                            // 初始化原始ADC值
     
     battery_value.voltage_rectify_coefficient   = BATTERY_RECTIFY_COEFFICIENT;  // 配置电池电压矫正系数
     

@@ -76,6 +76,19 @@ int main(void)
         driver_adc_loop();                                                      // 驱动 ADC 循环检测函数
         driver_gpio_loop();                                                     // 驱动 GPIO 循环检测函数
         driver_cmd_loop();                                                      // 驱动 控制指令 循环响应函数
+
+        // 每100ms通过UART0输出一次电池电压和原始ADC采样值
+        voltage_send_elapsed_ms += DRIVER_RESPONSE_CYCLE;
+        if(voltage_send_elapsed_ms >= 100)
+        {
+            voltage_send_elapsed_ms = 0;
+            sprintf(uart0_tx_buffer,
+                    "VBAT:%.2fV, ADC_RAW:%u\r\n",
+                    battery_value.battery_voltage,
+                    battery_value.battery_adc_raw);
+            uart_write_string(UART_0, uart0_tx_buffer);
+        }
+
         system_delay_ms(DRIVER_RESPONSE_CYCLE);                                 // 主循环延时
     }
 }

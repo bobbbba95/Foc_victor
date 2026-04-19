@@ -96,5 +96,12 @@ void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 po
 // 使用示例    angle_deg = foc_calc_left_electrical_angle_deg(enc, zero, pp, dir, angle);
 // 备注信息    返回范围为单电周期 [0, 360)
 float foc_calc_left_electrical_angle_deg(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle);
+// 函数简介     ADC原始值转换电流值
+// 传入参数     raw      ADC原始采样值
+//             offset   ADC零点偏置
+// 返回参数     float    电流值(A)
+// 使用示例     ia = foc_raw_to_current(raw_ia, offset_ia);
+// 备注信息     使用线性比例换算，比例系数由 foc_current_adc_init 计算
+static float foc_raw_to_current(uint16 raw, int16 offset);
 
 #endif

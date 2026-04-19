@@ -39,10 +39,10 @@
 #include "zf_common_headfile.h"
 
 
-#define BAT_ADC                         (ADC0_CH18_P07_2)               // 电池电压检测引脚
+#define BAT_ADC                         (ADC1_CH22_P14_2)               // 电池电压检测引脚
 
 
-#define VOLTAGE_CONVERSION_COEFFICIENT  (0.01613281)                    // 电池电压转换系数 12位ADC采集值 直接乘以该值则可得出电池电压 
+#define VOLTAGE_CONVERSION_COEFFICIENT  (0.00491455)                    // 电池电压转换系数 12位ADC采集值 直接乘以该值则可得出电池电压 
 
 
 typedef enum
@@ -66,6 +66,8 @@ typedef struct
     float                       worning_voltage;                        // 单节电芯警报电压值       默认3.9
     
     float                       voltage_rectify_coefficient;            // 电池电压校准系数 根据实际硬件调整 默认0.9959968
+
+    uint16                      battery_adc_raw;                        // 电池电压原始ADC采样值(滤波后)
 
     float                       battery_voltage;                        // 电池当前电压
     
