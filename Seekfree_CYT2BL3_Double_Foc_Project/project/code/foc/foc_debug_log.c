@@ -63,13 +63,13 @@ void foc_debug_capture_and_send(uint16 sample_count,
         }
 
         // 电流从 A 转换为 mA，统一使用 int32 便于串口文本输出
-        foc_debug_ia_points_ma[sample_index] = (int32)(foc_current_data.motor_a.ia * 1000.0f);
-        foc_debug_ib_points_ma[sample_index] = (int32)(foc_current_data.motor_a.ib * 1000.0f);
-        foc_debug_ic_points_ma[sample_index] = (int32)(foc_current_data.motor_a.ic * 1000.0f);
-        foc_debug_id_points_ma[sample_index] = (int32)(foc_current_data.motor_a.id * 1000.0f);
-        foc_debug_iq_points_ma[sample_index] = (int32)(foc_current_data.motor_a.iq * 1000.0f);
+        foc_debug_ia_points_ma[sample_index] = (int32)(foc_current_data.motor_b.ia * 1000.0f);
+        foc_debug_ib_points_ma[sample_index] = (int32)(foc_current_data.motor_b.ib * 1000.0f);
+        foc_debug_ic_points_ma[sample_index] = (int32)(foc_current_data.motor_b.ic * 1000.0f);
+        foc_debug_id_points_ma[sample_index] = (int32)(foc_current_data.motor_b.id * 1000.0f);
+        foc_debug_iq_points_ma[sample_index] = (int32)(foc_current_data.motor_b.iq * 1000.0f);
         // 速度取滤波后的机械转速（RPM）
-        foc_debug_speed_points_rpm[sample_index] = (int32)motor_left.motor_speed_filter;
+        foc_debug_speed_points_rpm[sample_index] = (int32)motor_right.motor_speed_filter;
         // 统计采样期间母线电压均值（单位 mV）
         bus_voltage_sum_mv += (int32)(battery_value.battery_voltage * 1000.0f);
 

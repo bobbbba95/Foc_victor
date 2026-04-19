@@ -271,17 +271,20 @@ void motor_right_update_isr(void)
     // 3) FAST_FOC分支内完成估速、前馈角补偿与最终输出保护
 
     static uint8  right_speed_count = 0;                                        // 速度拟合计次
-
     static uint32 right_protect_count = 0;                                      // 输出保护计次
-
+    float electrical_angle_deg = 0.0f;
+    float bus_voltage_now = 12.0f;                                              //基础参考值，后续会被实际采样值覆盖
+    float speed_ref_rpm = 0.0f;
     
     
     // ------------------------------ 按驱动模式执行 ------------------------------
     if(motor_right.driver_mode == FAST_FOC)
     {
         // FAST_FOC路径：右电机沿用fast_foc模块进行角度补偿和三相输出计算
-        Cy_Tcpwm_Counter_ClearTC_Intr(MOTOR_RIGHT_A_PHASE_TCPWM_TIMER);             // 清除中断标志位  
-                                                                                    
+        Cy_Tcpwm_Counter_ClearTC_Intr(MOTOR_RIGHT_A_PHASE_TCPWM_TIMER);
+        // 清除中断标志位  
+        foc_current_adc_sample_right_isr();                                            // PWM中断内执行电流采样
+                                                 
         motor_right.menc15a_value_now = menc15a_get_absolute_data(menc15a_2_module);// 采集左侧电机磁编码器数值
                                                                                     
         motor_right.menc15a_value_offset = menc15a_absolute_offset_data[1];         // 获取磁编码器较上一次的偏移值
@@ -323,7 +326,25 @@ void motor_right_update_isr(void)
                 }
             }
         }
-          
+                  // 由编码器值计算电角度，并刷新dq电流反馈
+        electrical_angle_deg = foc_calc_right_electrical_angle_deg(motor_right.menc15a_value_now,
+                                                                   motor_right.zero_location,
+                                                                   motor_right.pole_pairs,
+                                                                   motor_right.rotation_direction,
+                                                                   0);
+
+        foc_current_dq_update_right(motor_right.menc15a_value_now,
+                                    motor_right.zero_location,
+                                    motor_right.pole_pairs,
+                                    motor_right.rotation_direction,
+                                    0);
+
+        // 读取母线电压；异常低值时回退到默认12V，防止调制计算异常
+        bus_voltage_now = battery_value.battery_voltage;
+        if(bus_voltage_now < 1.0f)
+        {
+            bus_voltage_now = 12.0f;
+        }
         // 根据转速估计动态前馈补偿角，转速越高补偿越大
         float speed_offset = func_limit_ab((func_abs(motor_right.motor_speed_filter) / (FOC_MOTOR_KV_NUM * 12.0f)), 0.0f, 1.0f);
         
@@ -584,7 +605,7 @@ void motor_zero_calibration(void)
     
     motor_left_phase_check(200);                                                // 左侧三相 MOS 及 预驱 功能检测 由于没有检测三相电流 因此需要人为判断是否响三声
     
-   // motor_right_phase_check(200);                                               // 右侧三相 MOS 及 预驱 功能检测 由于没有检测三相电流 因此需要人为判断是否响三声
+   motor_right_phase_check(200);                                               // 右侧三相 MOS 及 预驱 功能检测 由于没有检测三相电流 因此需要人为判断是否响三声
     
     if(motor_left.driver_mode == FAST_FOC)                                      // 只有在 FAST-FOC 模式下才需要矫正零点
     {       

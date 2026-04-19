@@ -85,7 +85,16 @@ void foc_current_adc_sample_right_isr(void);
 // 使用示例    foc_current_dq_update_left(enc, zero, pp, dir, angle);
 // 备注信息    内部执行 Clarke + Park 变换，结果写入 foc_current_data.motor_a.id/iq
 void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle);
-
+// 函数简介    右电机dq轴电流更新
+// 传入参数    encoder_now         当前编码器值
+//            zero_location       电角度零点位置
+//            pole_pairs          极对数
+//            rotation_direction  旋转方向(1/-1)
+//            traction_angle      牵引角(兼容参数)
+// 返回参数    void
+// 使用示例    foc_current_dq_update_right(enc, zero, pp, dir, angle);
+// 备注信息    内部执行 Clarke + Park 变换，结果写入 foc_current_data.motor_b.id/iq
+void foc_current_dq_update_right(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle);
 // 函数简介    计算左电机电角度(度)
 // 传入参数    encoder_now         当前编码器值
 //            zero_location       电角度零点位置
@@ -96,6 +105,17 @@ void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 po
 // 使用示例    angle_deg = foc_calc_left_electrical_angle_deg(enc, zero, pp, dir, angle);
 // 备注信息    返回范围为单电周期 [0, 360)
 float foc_calc_left_electrical_angle_deg(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle);
+// 函数简介    计算右电机电角度(度)
+// 传入参数    encoder_now         当前编码器值
+//            zero_location       电角度零点位置
+//            pole_pairs          极对数
+//            rotation_direction  旋转方向(1/-1)
+//            traction_angle      牵引角(兼容参数)
+// 返回参数    电角度(单位: 度)
+// 使用示例    angle_deg = foc_calc_right_electrical_angle_deg(enc, zero, pp, dir, angle);
+// 备注信息    返回范围为单电周期 [0, 360)
+float foc_calc_right_electrical_angle_deg(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle);
+// 函数简介     ADC原始值转换电流值
 // 函数简介     ADC原始值转换电流值
 // 传入参数     raw      ADC原始采样值
 //             offset   ADC零点偏置
@@ -115,4 +135,10 @@ static void foc_clear_group(volatile foc_current_group_t *group);
 // 使用示例     foc_sample_left_ac_only(&foc_current_data.motor_a);
 // 备注信息     基于 ia + ib + ic = 0 计算 ib
 static void foc_sample_left_ac_only(volatile foc_current_group_t *group);
+// 函数简介     右电机两电阻采样(A/C相)并重构B相
+// 传入参数     group    目标电流数据结构指针
+// 返回参数     void
+// 使用示例     foc_sample_right_ac_only(&foc_current_data.motor_b);
+// 备注信息     基于 ia + ib + ic = 0 计算 ib
+static void foc_sample_right_ac_only(volatile foc_current_group_t *group);
 #endif
