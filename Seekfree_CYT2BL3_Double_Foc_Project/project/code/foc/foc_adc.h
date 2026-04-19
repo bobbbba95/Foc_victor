@@ -6,7 +6,7 @@
 //**************************** 参数配置 ****************************
 // 采样电阻10mR，运放增益20倍，12bit ADC默认3.3V参考
 // 若你的硬件使用其它分流电阻，请按实际值修改该宏（单位：欧姆）
-#define FOC_CURRENT_SHUNT_OHM      (0.01f)           //采样电阻阻值
+#define FOC_CURRENT_SHUNT_OHM      (0.005f)           //采样电阻阻值
 #define FOC_CURRENT_AMP_GAIN       (20.0f)           //采样电流放大倍数
 #define FOC_ADC_VREF               (3.3f)            //ADC参考电压
 #define FOC_ADC_FULL_SCALE         (4095.0f)         //ADC满量程对应的计数值（12bit为4095）

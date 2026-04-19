@@ -6,7 +6,6 @@
 #define FOC_ADC_PHASE_C_LEFT_CH (ADC1_CH05_P12_1)
 // 变量简介    全局电流采样与dq变换结果
 // 备注信息    在中断与控制环中被共同访问，使用 volatile 防止编译器优化误判
-extern volatile foc_current_data_t foc_current_data;
 // 全局电流采样与dq电流结果
 volatile foc_current_data_t foc_current_data;
 // 函数简介     FOC电流采样ADC初始化

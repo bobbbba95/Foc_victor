@@ -222,11 +222,11 @@ void motor_left_update_isr(void)
            motor_left.encoder_state             == ENCODER_ERROR  ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
         {
-            motor_left_duty_set(0, 0, 0);                                           // 输出保护状态 或者 磁编码器错误 则输出0占空比 刹车
+            motor_left_cc_set(0, 0, 0);                                           // 输出保护状态 或者 磁编码器错误 则输出0占空比 刹车
         }
         else
         {
-            motor_left_duty_set(motor_left_foc_closed_loop.compare_value[0],
+            motor_left_cc_set(motor_left_foc_closed_loop.compare_value[0],
                                 motor_left_foc_closed_loop.compare_value[1],
                                 motor_left_foc_closed_loop.compare_value[2]); // 闭环输出三相占空比
         }
@@ -275,53 +275,6 @@ void motor_right_update_isr(void)
     static uint32 right_protect_count = 0;                                      // 输出保护计次
 
     
-#if MOTOR_OVERLOAD_PROTECT      == DRIVER_ENABLE 
-    // ------------------------------ 入口保护：过载保护 ------------------------------
-    // 过载保护：占空比较大但速度跟不上时，认为电机可能处于重载/卡滞状态
-    if(func_abs(motor_right.motor_duty) > MOTOR_OVERLOAD_DUTY_MIN && motor_left.driver_mode != SENSORLESS)
-    {
-        float speed_ratio = func_limit_ab((func_abs(motor_right.motor_speed_filter) / (FOC_MOTOR_KV_NUM * battery_value.battery_voltage)), 0.0f, 1.0f);
-    
-        motor_right.overload_conefficient = (func_abs(motor_right.motor_duty) - speed_ratio) / (func_abs(motor_right.motor_duty) + speed_ratio);
-
-        if(motor_right.overload_conefficient >= MOTOR_OVERLOAD_COEFFICIENT)          // 判断是否过载 
-        {
-            motor_right.overload_count ++;
-            
-            if(MOTOR_DRIVER_MODE == HALL_SIX_STEP_MODE)
-            {
-                // 霍尔模式按较低环频计次阈值判定
-                if(motor_right.overload_count > (MOTOR_OVERLOAD_TIME))
-                {
-                    motor_right.overload_count = (MOTOR_OVERLOAD_TIME);
-                    
-                    motor_right.motor_protect_state = PROTECT_MODE;             // 条件成立  进入输出保护状态
-                    motor_right.motor_protect_cause = OVERLOAD_PROTECT;
-                }
-            }
-            else
-            {
-                // FOC模式按20kHz环频折算判定时间
-                if(motor_right.overload_count > (MOTOR_OVERLOAD_TIME * 20))
-                {
-                    motor_right.overload_count = (MOTOR_OVERLOAD_TIME * 20);
-                    
-                    motor_right.motor_protect_state = PROTECT_MODE;             // 条件成立  进入输出保护状态
-                    motor_right.motor_protect_cause = OVERLOAD_PROTECT;
-                }
-            }
-        }
-        else
-        {
-            motor_right.overload_count = 0;                                     // 否则清空保护计次
-        }
-    }
-    else
-    {
-        motor_right.overload_conefficient = 0;
-    }
-    
-#endif   
     
     // ------------------------------ 按驱动模式执行 ------------------------------
     if(motor_right.driver_mode == FAST_FOC)
@@ -389,11 +342,11 @@ void motor_right_update_isr(void)
            motor_right.encoder_state            == ENCODER_ERROR        ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
         {
-            motor_right_duty_set(0, 0, 0);                                          // 保护状态输出0占空比 刹车
+            motor_right_cc_set(0, 0, 0);                                          // 保护状态输出0占空比 刹车
         }
         else
         {
-            motor_right_duty_set(motor_right_foc_driver.ouput_duty[0], motor_right_foc_driver.ouput_duty[1], motor_right_foc_driver.ouput_duty[2]);     // 输出三相占空比
+            motor_right_cc_set(motor_right_foc_driver.ouput_duty[0], motor_right_foc_driver.ouput_duty[1], motor_right_foc_driver.ouput_duty[2]);     // 输出三相占空比
         }
     }
     else if(motor_right.driver_mode == HALL_SIX_STEP)
