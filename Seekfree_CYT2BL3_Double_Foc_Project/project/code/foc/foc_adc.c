@@ -2,8 +2,8 @@
 #include "foc_transform.h"
 #include "zf_common_headfile.h"
 // 仅保留两路相电流采样：A相(P18.1) + C相(P12.1)
-#define FOC_ADC_PHASE_A_CH (ADC2_CH01_P18_1)
-#define FOC_ADC_PHASE_C_CH (ADC1_CH05_P12_1)
+#define FOC_ADC_PHASE_A_LEFT_CH (ADC2_CH01_P18_1)
+#define FOC_ADC_PHASE_C_LEFT_CH (ADC1_CH05_P12_1)
 // 变量简介    全局电流采样与dq变换结果
 // 备注信息    在中断与控制环中被共同访问，使用 volatile 防止编译器优化误判
 extern volatile foc_current_data_t foc_current_data;
@@ -20,8 +20,8 @@ void foc_current_adc_init(void)
     foc_trig_lut_init();
 
     // 仅初始化A/C两路电流采样ADC，分辨率统一12bit
-    adc_init(FOC_ADC_PHASE_A_CH, ADC_12BIT);
-    adc_init(FOC_ADC_PHASE_C_CH, ADC_12BIT);
+    adc_init(FOC_ADC_PHASE_A_LEFT_CH, ADC_12BIT);
+    adc_init(FOC_ADC_PHASE_C_LEFT_CH, ADC_12BIT);
 
     // 使用12bit中点作为固定偏置，不进行动态零漂校准
     foc_clear_group(&foc_current_data.motor_a);
@@ -174,8 +174,8 @@ static float foc_raw_to_current(uint16 raw, int16 offset)
 // 备注信息     基于 ia + ib + ic = 0 计算 ib
 static void foc_sample_left_ac_only(volatile foc_current_group_t *group)
 {
-    group->raw_via = adc_convert(FOC_ADC_PHASE_A_CH);
-    group->raw_vic = adc_convert(FOC_ADC_PHASE_C_CH);
+    group->raw_via = adc_convert(FOC_ADC_PHASE_A_LEFT_CH);
+    group->raw_vic = adc_convert(FOC_ADC_PHASE_C_LEFT_CH);
     group->raw_vib = 0;
 
     group->ia = foc_raw_to_current(group->raw_via, group->offset_via);
