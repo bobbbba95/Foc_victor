@@ -141,14 +141,6 @@ void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 po
     foc_current_data.motor_a.iq = park_result.iq;
 }
 // 函数简介     右电机dq电流更新
-// 传入参数     encoder_now         当前编码器值
-//              zero_location       电角度零点
-//              pole_pairs          极对数
-//              rotation_direction  旋转方向(1/-1)
-//              traction_angle      牵引角(兼容参数)
-// 返回参数     void
-// 使用示例     foc_current_dq_update_right(enc, zero, pp, dir, angle);
-// 备注信息     内部流程: 电角度计算 -> Clarke -> Park -> 写回id/iq
 void foc_current_dq_update_right(int32 encoder_now, int16 zero_location, int16 pole_pairs, int16 rotation_direction, int32 traction_angle)
 {
     float electrical_angle_deg = 0.0f;
@@ -167,10 +159,19 @@ void foc_current_dq_update_right(int32 encoder_now, int16 zero_location, int16 p
                                      clarke_result.beta,
                                      electrical_angle_rad);
 
-    foc_current_data.motor_b.id = park_result.id;
-    foc_current_data.motor_b.iq = park_result.iq;
+    // =========================================================
+    // 修改这里：纠正右电机由于硬件相线错位导致的 DQ 轴反转问题
+    // 将标准 Park 变换解算出的 D 和 Q 结果强行互换
+    // =========================================================
+    foc_current_data.motor_b.id = park_result.iq; 
+    foc_current_data.motor_b.iq = park_result.id; 
+    
+    // 【调试建议】：互换之后再次运行开环强拖，抓取波形。
+    // 如果 IQ 有值了，但极性（正负号）与实际预期扭矩方向相反，
+    // 你可以在这里加个负号，比如：
+    // foc_current_data.motor_b.id = -park_result.iq; 
+    // foc_current_data.motor_b.iq = -park_result.id; 
 }
-
 
 
 
