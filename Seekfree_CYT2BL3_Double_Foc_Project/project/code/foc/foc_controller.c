@@ -1,24 +1,6 @@
 #include "foc_controller.h"
 
-// 内部工具函数：对输入值做上下限约束。
-// 调用场景：PI积分限幅、PI输出限幅、电流/电压参考限幅。
-// 参数含义：
-// value     待限幅的输入值
-// min_value 下限
-// max_value 上限
-// 返回值：约束后的数值，保证在 [min_value, max_value] 区间内。
-static float foc_limit_value(float value, float min_value, float max_value)
-{
-    if(value < min_value)
-    {
-        return min_value;
-    }
-    if(value > max_value)
-    {
-        return max_value;
-    }
-    return value;
-}
+
 
 // 函数作用：初始化一个通用PI控制器结构体。
 // 如何调用：通常在系统初始化阶段调用一次；参数更新后可再次调用以重装配置。
@@ -72,61 +54,34 @@ void foc_pi_reset(foc_pi_t *pi)
 
     pi->integral = 0.0f;
 }
-
-// 函数作用：执行一次离散PI更新，输出控制量。
-// 如何调用：在固定周期控制回调中周期调用（周期由上层ISR频率决定）。
-// 参数说明：
-// pi   PI实例指针
-// err  当前误差（参考值 - 反馈值）
-// 返回值：本次PI输出。
-// 内部计算逻辑：
-// 1) 积分前保存 integral_before，用于后续抗积分饱和回退
-// 2) 积分更新：integral += ki * err
-// 3) 积分限幅：integral 限制在 [integral_min, integral_max]
-// 4) 比例计算：proportional = kp * err
-// 5) 输出合成：out_value = proportional + integral
-// 6) 输出限幅与抗积分饱和：
-//    当输出已饱和且误差仍推动同方向饱和时，撤销本次积分更新
-//    可降低饱和区积分累积导致的恢复迟滞
-float foc_pi_update(foc_pi_t *pi, float err)
+// 函数作用：复位闭环运行态，保留参数，仅清状态。
+// 如何调用：停车、重新启动、模式切换、保护恢复后建议调用。
+// 参数说明：ctrl 为闭环实例。
+// 内部逻辑：
+// 1) 复位速度环PI、电流环PI积分
+// 2) 清空速度环分频计数和速度环输出iq_ref
+// 3) 清空内环电压输出与PWM比较值
+void foc_closed_loop_reset(foc_closed_loop_t *ctrl)
 {
-    float integral_before = 0.0f;
-    float proportional = 0.0f;
-    float out_value = 0.0f;
-
-    if(NULL == pi)
+    if(NULL == ctrl)
     {
-        return 0.0f;
+        return;
     }
 
-    integral_before = pi->integral;
-    pi->integral += pi->ki * err;
-    pi->integral = foc_limit_value(pi->integral, pi->integral_min, pi->integral_max);
+    foc_pi_reset(&ctrl->speed_loop.speed_pi);
+    foc_pi_reset(&ctrl->current_loop.id_pi);
+    foc_pi_reset(&ctrl->current_loop.iq_pi);
 
-    proportional = pi->kp * err;
-    out_value = proportional + pi->integral;
+    ctrl->speed_loop.counter = 0;
+    ctrl->speed_loop.speed_ref_enable = 0;
+    ctrl->speed_loop.iq_ref = 0.0f;
 
-    // 抗积分饱和：当输出饱和且误差仍推动同方向饱和时，撤销本次积分
-    if(out_value > pi->out_max)
-    {
-        if(err > 0.0f)
-        {
-            pi->integral = integral_before;
-        }
-        out_value = pi->out_max;
-    }
-    else if(out_value < pi->out_min)
-    {
-        if(err < 0.0f)
-        {
-            pi->integral = integral_before;
-        }
-        out_value = pi->out_min;
-    }
-
-    return out_value;
+    ctrl->current_loop.vd = 0.0f;
+    ctrl->current_loop.vq = 0.0f;
+    ctrl->compare_value[0] = 0;
+    ctrl->compare_value[1] = 0;
+    ctrl->compare_value[2] = 0;
 }
-
 // 函数作用：初始化FOC双环控制器（速度环+电流环）及调制输出状态。
 // 如何调用：系统启动时调用一次；若参数在线更新后也可重新调用。
 // 参数说明：
@@ -221,35 +176,62 @@ void foc_closed_loop_init(foc_closed_loop_t *ctrl,
     ctrl->compare_value[1] = 0;
     ctrl->compare_value[2] = 0;
 }
-
-// 函数作用：复位闭环运行态，保留参数，仅清状态。
-// 如何调用：停车、重新启动、模式切换、保护恢复后建议调用。
-// 参数说明：ctrl 为闭环实例。
-// 内部逻辑：
-// 1) 复位速度环PI、电流环PI积分
-// 2) 清空速度环分频计数和速度环输出iq_ref
-// 3) 清空内环电压输出与PWM比较值
-void foc_closed_loop_reset(foc_closed_loop_t *ctrl)
+// 函数作用：执行一次离散PI更新，输出控制量。
+// 如何调用：在固定周期控制回调中周期调用（周期由上层ISR频率决定）。
+// 参数说明：
+// pi   PI实例指针
+// err  当前误差（参考值 - 反馈值）
+// 返回值：本次PI输出。
+// 内部计算逻辑：
+// 1) 积分前保存 integral_before，用于后续抗积分饱和回退
+// 2) 积分更新：integral += ki * err
+// 3) 积分限幅：integral 限制在 [integral_min, integral_max]
+// 4) 比例计算：proportional = kp * err
+// 5) 输出合成：out_value = proportional + integral
+// 6) 输出限幅与抗积分饱和：
+//    当输出已饱和且误差仍推动同方向饱和时，撤销本次积分更新
+//    可降低饱和区积分累积导致的恢复迟滞
+float foc_pi_update(foc_pi_t *pi, float err)
 {
-    if(NULL == ctrl)
+    float integral_before = 0.0f;
+    float proportional = 0.0f;
+    float out_value = 0.0f;
+
+    if(NULL == pi)
     {
-        return;
+        return 0.0f;
     }
 
-    foc_pi_reset(&ctrl->speed_loop.speed_pi);
-    foc_pi_reset(&ctrl->current_loop.id_pi);
-    foc_pi_reset(&ctrl->current_loop.iq_pi);
+    integral_before = pi->integral;
+    pi->integral += pi->ki * err;
+    pi->integral = foc_limit_value(pi->integral, pi->integral_min, pi->integral_max);
 
-    ctrl->speed_loop.counter = 0;
-    ctrl->speed_loop.speed_ref_enable = 0;
-    ctrl->speed_loop.iq_ref = 0.0f;
+    proportional = pi->kp * err;
+    out_value = proportional + pi->integral;
 
-    ctrl->current_loop.vd = 0.0f;
-    ctrl->current_loop.vq = 0.0f;
-    ctrl->compare_value[0] = 0;
-    ctrl->compare_value[1] = 0;
-    ctrl->compare_value[2] = 0;
+    // 抗积分饱和：当输出饱和且误差仍推动同方向饱和时，撤销本次积分
+    if(out_value > pi->out_max)
+    {
+        if(err > 0.0f)
+        {
+            pi->integral = integral_before;
+        }
+        out_value = pi->out_max;
+    }
+    else if(out_value < pi->out_min)
+    {
+        if(err < 0.0f)
+        {
+            pi->integral = integral_before;
+        }
+        out_value = pi->out_min;
+    }
+
+    return out_value;
 }
+
+
+
 
 // 函数作用：设置速度环目标值（RPM）。
 // 如何调用：上层速度指令更新时调用，可每个控制周期调用也可按需调用。
@@ -436,4 +418,23 @@ void foc_closed_loop_step(foc_closed_loop_t *ctrl,
                          duty_max,
                          &ctrl->svpwm_duty,
                          ctrl->compare_value);
+}
+// 内部工具函数：对输入值做上下限约束。
+// 调用场景：PI积分限幅、PI输出限幅、电流/电压参考限幅。
+// 参数含义：
+// value     待限幅的输入值
+// min_value 下限
+// max_value 上限
+// 返回值：约束后的数值，保证在 [min_value, max_value] 区间内。
+static float foc_limit_value(float value, float min_value, float max_value)
+{
+    if(value < min_value)
+    {
+        return min_value;
+    }
+    if(value > max_value)
+    {
+        return max_value;
+    }
+    return value;
 }

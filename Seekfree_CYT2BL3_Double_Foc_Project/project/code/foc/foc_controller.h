@@ -197,5 +197,13 @@ void foc_closed_loop_step(foc_closed_loop_t *ctrl,
                           float electrical_angle_deg,
                           float bus_voltage,
                           uint16 duty_max);
+                          // 内部工具函数：对输入值做上下限约束。
+// 调用场景：PI积分限幅、PI输出限幅、电流/电压参考限幅。
+// 参数含义：
+// value     待限幅的输入值
+// min_value 下限
+// max_value 上限
+// 返回值：约束后的数值，保证在 [min_value, max_value] 区间内。
+static float foc_limit_value(float value, float min_value, float max_value);
 
 #endif

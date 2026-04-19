@@ -9,18 +9,51 @@
 extern volatile foc_current_data_t foc_current_data;
 // 全局电流采样与dq电流结果
 volatile foc_current_data_t foc_current_data;
-// ADC每个计数对应的电流值(A/count)
-static float foc_current_per_count = 0.0f;
-// 函数简介     ADC原始值转换电流值
-// 传入参数     raw      ADC原始采样值
-//             offset   ADC零点偏置
-// 返回参数     float    电流值(A)
-// 使用示例     ia = foc_raw_to_current(raw_ia, offset_ia);
-// 备注信息     使用线性比例换算，比例系数由 foc_current_adc_init 计算
-static float foc_raw_to_current(uint16 raw, int16 offset)
+// 函数简介     FOC电流采样ADC初始化
+// 传入参数     void
+// 返回参数     void
+// 使用示例     foc_current_adc_init();
+// 备注信息     初始化A/C两路ADC并计算电流换算系数
+void foc_current_adc_init(void)
 {
-    int32 delta = (int32)raw - (int32)offset;
-    return (float)delta * foc_current_per_count;
+    // 先构建三角函数查找表，避免控制环首周期触发建表
+    foc_trig_lut_init();
+
+    // 仅初始化A/C两路电流采样ADC，分辨率统一12bit
+    adc_init(FOC_ADC_PHASE_A_CH, ADC_12BIT);
+    adc_init(FOC_ADC_PHASE_C_CH, ADC_12BIT);
+
+    // 使用12bit中点作为固定偏置，不进行动态零漂校准
+    foc_clear_group(&foc_current_data.motor_a);
+    foc_clear_group(&foc_current_data.motor_b);
+}
+// 函数简介     左电机采样中断服务函数
+// 传入参数     void
+// 返回参数     void
+// 使用示例     在PWM中断调用 foc_current_adc_sample_left_isr();
+// 备注信息     完成一次A/C相采样与B相重构
+void foc_current_adc_sample_left_isr(void)
+{
+    foc_sample_left_ac_only(&foc_current_data.motor_a);
+}
+
+// 函数简介     右电机采样中断服务函数
+// 传入参数     void
+// 返回参数     void
+// 使用示例     在PWM中断调用 foc_current_adc_sample_right_isr();
+// 备注信息     当前右路无硬件采样，数据固定置零
+void foc_current_adc_sample_right_isr(void)
+{
+    // 右电机无电流采样，所有数据固定为0
+    foc_current_data.motor_b.raw_via = 0;
+    foc_current_data.motor_b.raw_vib = 0;
+    foc_current_data.motor_b.raw_vic = 0;
+
+    foc_current_data.motor_b.ia = 0.0f;
+    foc_current_data.motor_b.ib = 0.0f;
+    foc_current_data.motor_b.ic = 0.0f;
+    foc_current_data.motor_b.id = 0.0f;
+    foc_current_data.motor_b.iq = 0.0f;
 }
 // 函数简介     计算左电机电角度(度)
 // 传入参数     encoder_now         当前机械编码器值
@@ -70,45 +103,6 @@ float foc_calc_left_electrical_angle_deg(int32 encoder_now, int16 zero_location,
     return (float)encoder_temp * 360.0f / (float)encoder_per_electrical;
 }
 
-// 函数简介     清零并初始化单电机电流数据结构
-// 传入参数     group    目标电流数据结构指针
-// 返回参数     void
-// 使用示例     foc_clear_group(&foc_current_data.motor_a);
-// 备注信息     偏置默认置为12bit中点(2048)
-static void foc_clear_group(volatile foc_current_group_t *group)
-{
-    group->raw_via = 0;
-    group->raw_vib = 0;
-    group->raw_vic = 0;
-
-    group->offset_via = 2048;  // ADC 12bit 中点作为偏置
-    group->offset_vib = 2048;
-    group->offset_vic = 2048;
-
-    group->ia = 0.0f;
-    group->ib = 0.0f;
-    group->ic = 0.0f;
-    group->id = 0.0f;
-    group->iq = 0.0f;
-}
-
-// 函数简介     左电机两电阻采样(A/C相)并重构B相
-// 传入参数     group    目标电流数据结构指针
-// 返回参数     void
-// 使用示例     foc_sample_left_ac_only(&foc_current_data.motor_a);
-// 备注信息     基于 ia + ib + ic = 0 计算 ib
-static void foc_sample_left_ac_only(volatile foc_current_group_t *group)
-{
-    group->raw_via = adc_convert(FOC_ADC_PHASE_A_CH);
-    group->raw_vic = adc_convert(FOC_ADC_PHASE_C_CH);
-    group->raw_vib = 0;
-
-    group->ia = foc_raw_to_current(group->raw_via, group->offset_via);
-    group->ic = foc_raw_to_current(group->raw_vic, group->offset_vic);
-    // 两电阻采样重构B相电流：ia + ib + ic = 0
-    group->ib = -(group->ia + group->ic);
-}
-
 // 函数简介     左电机dq电流更新
 // 传入参数     encoder_now         当前编码器值
 //              zero_location       电角度零点
@@ -140,6 +134,9 @@ void foc_current_dq_update_left(int32 encoder_now, int16 zero_location, int16 po
     foc_current_data.motor_a.iq = park_result.iq;
 }
 
+
+
+
 // 函数简介     电流采样偏置校准
 // 传入参数     sample_count  期望校准样本数(当前未使用)
 // 返回参数     void
@@ -158,54 +155,52 @@ void foc_current_adc_calibrate(uint16 sample_count)
     foc_current_data.motor_b.offset_vic = 2048;
     foc_current_data.motor_b.offset_vib = 2048;
 }
-
-// 函数简介     FOC电流采样ADC初始化
-// 传入参数     void
-// 返回参数     void
-// 使用示例     foc_current_adc_init();
-// 备注信息     初始化A/C两路ADC并计算电流换算系数
-void foc_current_adc_init(void)
+// 函数简介     ADC原始值转换电流值
+// 传入参数     raw      ADC原始采样值
+//             offset   ADC零点偏置
+// 返回参数     float    电流值(A)
+// 使用示例     ia = foc_raw_to_current(raw_ia, offset_ia);
+// 备注信息     使用线性比例换算，比例系数由 foc_current_adc_init 计算
+static float foc_raw_to_current(uint16 raw, int16 offset)
 {
-    // 先构建三角函数查找表，避免控制环首周期触发建表
-    foc_trig_lut_init();
-
-    // 仅初始化A/C两路电流采样ADC，分辨率统一12bit
-    adc_init(FOC_ADC_PHASE_A_CH, ADC_12BIT);
-    adc_init(FOC_ADC_PHASE_C_CH, ADC_12BIT);
-
-    // I = V / (R * Gain)，V = ADC * Vref / 4095
-    foc_current_per_count = (FOC_ADC_VREF / FOC_ADC_FULL_SCALE) / (FOC_CURRENT_SHUNT_OHM * FOC_CURRENT_AMP_GAIN);
-
-    // 使用12bit中点作为固定偏置，不进行动态零漂校准
-    foc_clear_group(&foc_current_data.motor_a);
-    foc_clear_group(&foc_current_data.motor_b);
+    int32 delta = (int32)raw - (int32)offset;
+    //原始采样值乘上一个ADC计数对应的电压值，再除以采样电阻和放大倍数，即可得到电流值
+    return (float)delta * FOC_CURRENT_PER_COUNT;
 }
-
-// 函数简介     左电机采样中断服务函数
-// 传入参数     void
+// 函数简介     左电机两电阻采样(A/C相)并重构B相
+// 传入参数     group    目标电流数据结构指针
 // 返回参数     void
-// 使用示例     在PWM中断调用 foc_current_adc_sample_left_isr();
-// 备注信息     完成一次A/C相采样与B相重构
-void foc_current_adc_sample_left_isr(void)
+// 使用示例     foc_sample_left_ac_only(&foc_current_data.motor_a);
+// 备注信息     基于 ia + ib + ic = 0 计算 ib
+static void foc_sample_left_ac_only(volatile foc_current_group_t *group)
 {
-    foc_sample_left_ac_only(&foc_current_data.motor_a);
+    group->raw_via = adc_convert(FOC_ADC_PHASE_A_CH);
+    group->raw_vic = adc_convert(FOC_ADC_PHASE_C_CH);
+    group->raw_vib = 0;
+
+    group->ia = foc_raw_to_current(group->raw_via, group->offset_via);
+    group->ic = foc_raw_to_current(group->raw_vic, group->offset_vic);
+    // 两电阻采样重构B相电流：ia + ib + ic = 0
+    group->ib = -(group->ia + group->ic);
 }
-
-// 函数简介     右电机采样中断服务函数
-// 传入参数     void
+// 函数简介     清零并初始化单电机电流数据结构
+// 传入参数     group    目标电流数据结构指针
 // 返回参数     void
-// 使用示例     在PWM中断调用 foc_current_adc_sample_right_isr();
-// 备注信息     当前右路无硬件采样，数据固定置零
-void foc_current_adc_sample_right_isr(void)
+// 使用示例     foc_clear_group(&foc_current_data.motor_a);
+// 备注信息     偏置默认置为12bit中点(2048)
+static void foc_clear_group(volatile foc_current_group_t *group)
 {
-    // 右电机无电流采样，所有数据固定为0
-    foc_current_data.motor_b.raw_via = 0;
-    foc_current_data.motor_b.raw_vib = 0;
-    foc_current_data.motor_b.raw_vic = 0;
+    group->raw_via = 0;
+    group->raw_vib = 0;
+    group->raw_vic = 0;
 
-    foc_current_data.motor_b.ia = 0.0f;
-    foc_current_data.motor_b.ib = 0.0f;
-    foc_current_data.motor_b.ic = 0.0f;
-    foc_current_data.motor_b.id = 0.0f;
-    foc_current_data.motor_b.iq = 0.0f;
+    group->offset_via = 2048;  // ADC 12bit 中点作为偏置
+    group->offset_vib = 2048;
+    group->offset_vic = 2048;
+
+    group->ia = 0.0f;
+    group->ib = 0.0f;
+    group->ic = 0.0f;
+    group->id = 0.0f;
+    group->iq = 0.0f;
 }

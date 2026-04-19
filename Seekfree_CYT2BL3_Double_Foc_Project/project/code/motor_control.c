@@ -695,10 +695,10 @@ void motor_foc_control_init(void)
     motor_right.menc15a_reduction_max   = (int32)((float)ENCODER_PRECISION * FOC_MOTOR_REDUCTION_RATIO);
     
     menc15a_init();                                             // 磁编码器初始化
-
+    //foc控制专用初始化
     foc_current_adc_init();                                      // 电流采样初始化
     foc_current_adc_calibrate(FOC_CURRENT_CALIB_SAMPLES);        // 保留接口，当前实现使用固定2048偏置
-
+    //设置闭环传递函数的参数，以及电流环和速度环的频率和限幅
     foc_closed_loop_init(&motor_left_foc_closed_loop,
                          LEFT_FOC_SPEED_KP,
                          LEFT_FOC_SPEED_KI,
@@ -710,7 +710,9 @@ void motor_foc_control_init(void)
                          LEFT_FOC_SPEED_LOOP_HZ,
                          LEFT_FOC_IQ_LIMIT_A,
                          LEFT_FOC_VDQ_LIMIT_V);
+    // 清空速度环参数
     foc_closed_loop_clear_speed_ref(&motor_left_foc_closed_loop);
+    //ID电流参考为0，防止电机发烫
     foc_closed_loop_set_id_ref(&motor_left_foc_closed_loop, 0.0f);
       
     fast_foc_init(&motor_left_foc_driver,  ENCODER_PRECISION, OUTPUT_DUTY_MAX, motor_left.pole_pairs,  motor_left.zero_location,  motor_left.rotation_direction );     // 左侧电机 FAST_FOC 功能初始化

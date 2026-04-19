@@ -11,8 +11,8 @@
 #define FOC_ADC_VREF               (3.3f)            //ADC参考电压
 #define FOC_ADC_FULL_SCALE         (4095.0f)         //ADC满量程对应的计数值（12bit为4095）
 #define FOC_CURRENT_CALIB_SAMPLES  (512)             //电流采样零点标定时的期望采样点数（当前未使用，保留接口兼容上层调用）
+#define FOC_CURRENT_PER_COUNT      ((FOC_ADC_VREF / FOC_ADC_FULL_SCALE) / (FOC_CURRENT_SHUNT_OHM * FOC_CURRENT_AMP_GAIN))
 //**************************** 参数配置 ****************************
-
 // 结构体简介  单电机相电流与dq电流数据
 // 成员说明    raw_vix: 原始ADC值   offset_vix: 零点偏置
 //            ia/ib/ic: 三相电流(A)  id/iq: dq轴电流(A)
@@ -103,5 +103,16 @@ float foc_calc_left_electrical_angle_deg(int32 encoder_now, int16 zero_location,
 // 使用示例     ia = foc_raw_to_current(raw_ia, offset_ia);
 // 备注信息     使用线性比例换算，比例系数由 foc_current_adc_init 计算
 static float foc_raw_to_current(uint16 raw, int16 offset);
-
+// 函数简介     清零并初始化单电机电流数据结构
+// 传入参数     group    目标电流数据结构指针
+// 返回参数     void
+// 使用示例     foc_clear_group(&foc_current_data.motor_a);
+// 备注信息     偏置默认置为12bit中点(2048)
+static void foc_clear_group(volatile foc_current_group_t *group);
+// 函数简介     左电机两电阻采样(A/C相)并重构B相
+// 传入参数     group    目标电流数据结构指针
+// 返回参数     void
+// 使用示例     foc_sample_left_ac_only(&foc_current_data.motor_a);
+// 备注信息     基于 ia + ib + ic = 0 计算 ib
+static void foc_sample_left_ac_only(volatile foc_current_group_t *group);
 #endif
