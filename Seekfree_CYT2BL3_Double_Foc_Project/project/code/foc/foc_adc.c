@@ -163,8 +163,8 @@ void foc_current_dq_update_right(int32 encoder_now, int16 zero_location, int16 p
     // 修改这里：纠正右电机由于硬件相线错位导致的 DQ 轴反转问题
     // 将标准 Park 变换解算出的 D 和 Q 结果强行互换
     // =========================================================
-    foc_current_data.motor_b.id = park_result.iq; 
-    foc_current_data.motor_b.iq = park_result.id; 
+    foc_current_data.motor_b.id = park_result.id; 
+    foc_current_data.motor_b.iq = park_result.iq; 
     
     // 【调试建议】：互换之后再次运行开环强拖，抓取波形。
     // 如果 IQ 有值了，但极性（正负号）与实际预期扭矩方向相反，

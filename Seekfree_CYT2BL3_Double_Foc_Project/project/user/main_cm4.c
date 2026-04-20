@@ -67,9 +67,9 @@ int main(void)
     
     interrupt_global_enable(0);							                            // 开启全局中断
     
-    motor_left_torque_ref_set(1);    
+    motor_left_torque_ref_set(0.5f);     // 左侧电机力矩参考设置为0.5A 右侧电机在ISR中设置了速度参考 因此这里不设置力矩参考 直接进入速度闭环控制路径
     //目前采样数据为Ia,ib,ic,id,iq和速度，单位分别为mA和RPM，方便上位机直接画图与比对
-     motor_right.motor_duty =  0.1f;
+    motor_right_torque_ref_set(0);    
 
     foc_debug_capture_and_send(SAMPLE_COUNT, 1, (int32)TARGET_SPEED_RPM);       
 
@@ -78,7 +78,6 @@ int main(void)
         driver_adc_loop();                                                      // 驱动 ADC 循环检测函数
         driver_gpio_loop();                                                     // 驱动 GPIO 循环检测函数
         driver_cmd_loop();                                                      // 驱动 控制指令 循环响应函数
-        motor_right.motor_duty =  0.1f;
         // 每100ms通过UART0输出一次电池电压和原始ADC采样值
         voltage_send_elapsed_ms += DRIVER_RESPONSE_CYCLE;
         if(voltage_send_elapsed_ms >= 100)
