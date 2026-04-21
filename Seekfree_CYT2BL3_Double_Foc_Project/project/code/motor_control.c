@@ -240,11 +240,11 @@ void motor_left_update_isr(void)
            motor_left.encoder_state             == ENCODER_ERROR  ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
         {
-            motor_left_cc_set(0, 0, 0);                                           // 输出保护状态 或者 磁编码器错误 则输出0占空比 刹车
+            motor_left_duty_set(0, 0, 0);                                           // 输出保护状态 或者 磁编码器错误 则输出0占空比 刹车
         }
         else
         {
-            motor_left_cc_set(motor_left_foc_closed_loop.compare_value[0],
+            motor_left_duty_set(motor_left_foc_closed_loop.compare_value[0],
                                 motor_left_foc_closed_loop.compare_value[1],
                                 motor_left_foc_closed_loop.compare_value[2]); // 闭环输出三相占空比
         }
@@ -435,13 +435,13 @@ void motor_right_update_isr(void)
            motor_right.encoder_state            == ENCODER_ERROR        ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
         {
-            motor_right_cc_set(0, 0, 0);                                          // 保护状态输出0占空比 刹车
+            motor_right_duty_set(0, 0, 0);                                          // 保护状态输出0占空比 刹车
         }
         else
         {
-            motor_right_cc_set(motor_right_foc_closed_loop.compare_value[0],
-                                motor_right_foc_closed_loop.compare_value[1],
-                                motor_right_foc_closed_loop.compare_value[2]); // 闭环输出三相占空比
+            motor_right_duty_set(motor_right_foc_closed_loop.compare_value[0],
+                                 motor_right_foc_closed_loop.compare_value[1],
+                                 motor_right_foc_closed_loop.compare_value[2]); // 闭环输出三相占空比
         }
     }
     else if(motor_right.driver_mode == HALL_SIX_STEP)
@@ -721,7 +721,6 @@ void motor_zero_calibration(void)
     interrupt_global_enable(0);							// 开启全局中断
 }
 
-
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     双电机FOC控制初始化
 // 参数说明     void
@@ -789,9 +788,9 @@ void motor_foc_control_init(void)
     motor_right_output_init(PWM_PRIOD_LOAD, 1);                 // 右侧电机三相 PWM 输出初始化
 
     motor_left_startup_align_calibration();                      // 上电后先执行一次A相对齐校准
+
     motor_right_startup_align_calibration();
 }
-
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     双电机BLDC控制初始化

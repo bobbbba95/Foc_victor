@@ -67,9 +67,11 @@ int main(void)
     
     interrupt_global_enable(0);							                            // 开启全局中断
     
-    motor_left_torque_ref_set(0.5f);     // 左侧电机力矩参考设置为0.5A 右侧电机在ISR中设置了速度参考 因此这里不设置力矩参考 直接进入速度闭环控制路径
+    //motor_left_torque_ref_set(1.5f);     // 左侧电机力矩参考设置为0.5A 右侧电机在ISR中设置了速度参考 因此这里不设置力矩参考 直接进入速度闭环控制路径
     //目前采样数据为Ia,ib,ic,id,iq和速度，单位分别为mA和RPM，方便上位机直接画图与比对
-    motor_right_torque_ref_set(0);    
+    //motor_right_torque_ref_set(1.5f);    
+    motor_right_speed_ref_set(500);
+    motor_left_speed_ref_set(500);
 
     foc_debug_capture_and_send(SAMPLE_COUNT, 1, (int32)TARGET_SPEED_RPM);       
 
