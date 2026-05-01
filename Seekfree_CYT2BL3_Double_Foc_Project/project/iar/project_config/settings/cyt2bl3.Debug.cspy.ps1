@@ -23,9 +23,9 @@
 
 if ($debugfile -eq "")
 {
-& "G:\IAR\common\bin\cspybat" -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" --backend -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
+& "G:\IAR\common\bin\cspybat" -f "G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" --backend -f "G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
 }
 else
 {
-& "G:\IAR\common\bin\cspybat" -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" --debug_file=$debugfile --backend -f "G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
+& "G:\IAR\common\bin\cspybat" -f "G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.general.xcl" --debug_file=$debugfile --backend -f "G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\settings\cyt2bl3.Debug.driver.xcl" 
 }
