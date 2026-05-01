@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <settings>
     <Jet>
-        <JetConnSerialNo>ZF-WLFS-CMSIS-DAP:80942004-50787D1933D4</JetConnSerialNo>
+        <JetConnSerialNo>ZF-WLFS-CMSIS-DAP:809420A0-FC012CC4FCE0</JetConnSerialNo>
         <JetConnFoundProbes />
         <DisableInterrupts>0</DisableInterrupts>
         <LeaveRunning>0</LeaveRunning>
@@ -29,8 +29,8 @@
     <SWOManager>
         <SamplingDivider>8192</SamplingDivider>
         <OverrideClock>0</OverrideClock>
-        <CpuClock>172052037</CpuClock>
-        <SwoClock>1684104530</SwoClock>
+        <CpuClock>1953721961</CpuClock>
+        <SwoClock>1376416626</SwoClock>
         <DataLogMode>0</DataLogMode>
         <ItmPortsEnabled>63</ItmPortsEnabled>
         <ItmTermIOPorts>1</ItmTermIOPorts>

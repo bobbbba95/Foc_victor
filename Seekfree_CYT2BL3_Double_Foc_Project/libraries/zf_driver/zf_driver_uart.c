@@ -519,7 +519,7 @@ void uart_init (uart_index_enum uart_n, uint32 baud, uart_tx_pin_enum tx_pin, ua
     uart_irq_cfg.sysIntSrc = uart_pin_config.uart_irqn;
     uart_irq_cfg.intIdx    = UART_USE_ISR;
     uart_irq_cfg.isEnabled = true;
-    interrupt_init(&uart_irq_cfg, uart_isr_func[uart_n], 0);
+    interrupt_init(&uart_irq_cfg, uart_isr_func[uart_n], 1);
     
     fifo_init(&uart_data_fifo_interior[uart_n], FIFO_DATA_8BIT, &uart_data_buffer_interior[uart_n][0], 64);  
 }

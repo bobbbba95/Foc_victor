@@ -45,14 +45,14 @@ motor_struct motor_right;
 // 左电机FOC闭环参数（20kHz电流环，2kHz速度环）
 #define LEFT_FOC_CURRENT_LOOP_HZ       (20000)
 #define LEFT_FOC_SPEED_LOOP_HZ         (2000)
-#define LEFT_FOC_SPEED_KP              (0.0450f)
-#define LEFT_FOC_SPEED_KI              (0.0000f)
+#define LEFT_FOC_SPEED_KP              (0.0300f)
+#define LEFT_FOC_SPEED_KI              (0.0001f)
 #define LEFT_FOC_ID_KP                 (0.1338f)
 #define LEFT_FOC_ID_KI                 (0.09424f)
 #define LEFT_FOC_IQ_KP                 (0.1338f)
 #define LEFT_FOC_IQ_KI                 (0.09424f)
-#define LEFT_FOC_IQ_LIMIT_A            (5.0f)
-#define LEFT_FOC_VDQ_LIMIT_V           (1.8f)
+#define LEFT_FOC_IQ_LIMIT_A            (7.0f)
+#define LEFT_FOC_VDQ_LIMIT_V           (12.0f)
 #define LEFT_FOC_STARTUP_ALIGN_ENABLE     (1)
 #define LEFT_FOC_STARTUP_ALIGN_DUTY_DIV   (30)
 #define LEFT_FOC_STARTUP_ALIGN_TIME_MS    (200)
@@ -63,14 +63,14 @@ static foc_closed_loop_t motor_left_foc_closed_loop;
 // 右电机FOC闭环参数（20kHz电流环，2kHz速度环）
 #define RIGHT_FOC_CURRENT_LOOP_HZ      (20000)
 #define RIGHT_FOC_SPEED_LOOP_HZ        (2000)
-#define RIGHT_FOC_SPEED_KP             (0.0450f)
-#define RIGHT_FOC_SPEED_KI             (0.0000f)
+#define RIGHT_FOC_SPEED_KP             (0.0300f)
+#define RIGHT_FOC_SPEED_KI             (0.0001f)
 #define RIGHT_FOC_ID_KP                (0.1338f)
 #define RIGHT_FOC_ID_KI                (0.09424f)
 #define RIGHT_FOC_IQ_KP                (0.1338f)
 #define RIGHT_FOC_IQ_KI                (0.09424f)
-#define RIGHT_FOC_IQ_LIMIT_A           (5.0f)
-#define RIGHT_FOC_VDQ_LIMIT_V          (1.8f)
+#define RIGHT_FOC_IQ_LIMIT_A           (7.0f)
+#define RIGHT_FOC_VDQ_LIMIT_V          (12.0f)
 #define RIGHT_FOC_STARTUP_ALIGN_ENABLE     (1)
 #define RIGHT_FOC_STARTUP_ALIGN_DUTY_DIV   (30)
 #define RIGHT_FOC_STARTUP_ALIGN_TIME_MS    (200)
@@ -1096,7 +1096,7 @@ void motor_left_startup_align_calibration(void)
         return;
     }
 
-    align_duty = (uint16)(OUTPUT_DUTY_MAX / LEFT_FOC_STARTUP_ALIGN_DUTY_DIV);
+    align_duty = 2000;
     if(align_duty == 0)
     {
         align_duty = 1;
@@ -1159,7 +1159,7 @@ void motor_right_startup_align_calibration(void)
         return;
     }
 
-    align_duty = (uint16)(OUTPUT_DUTY_MAX / RIGHT_FOC_STARTUP_ALIGN_DUTY_DIV);
+    align_duty = 2000;
     if(align_duty == 0)
     {
         align_duty = 1;
