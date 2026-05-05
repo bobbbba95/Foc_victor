@@ -1,138 +1,138 @@
 ###############################################################################
 #
-# IAR ELF Linker V9.40.1.364/W64 for ARM                  20/Apr/2026  05:58:28
+# IAR ELF Linker V9.40.1.364/W64 for ARM                  01/May/2026  11:15:38
 # Copyright 2007-2023 IAR Systems AB.
 #
 #    Output file  =
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out
 #    Map file     =
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\List\cyt2bl3.map
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\List\cyt2bl3.map
 #    Command line =
 #        -f
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out.rsp
-#        (G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir\cm4_isr.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\adc_11722776235721520015.dir\cy_adc.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\button_4990804375159372270.dir\cy_button.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\canfd_1800690984773873875.dir\cy_canfd.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\cpu_15938736945165268644.dir\cy_cpu.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\crypto_1190170608956581615.dir\cy_crypto_config.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\evtgen_3404189088603873129.dir\cy_evtgen.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_8529866181315662935.dir\cy_flash.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\gpio_3999404635324069351.dir\cy_gpio.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_6162237342861132223.dir\cy_interrupt_map.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir\cy_ipc_drv.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir\cy_ipc_pipe.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir\cy_ipc_sema.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lin_18429031207028094880.dir\cy_lin.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lvd_6353935867039560245.dir\cy_lvd.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mcwdt_4052485907822033969.dir\cy_mcwdt.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir\cy_mdma.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mpu_5663187252346826382.dir\cy_mpu.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_864493325053435817.dir\cy_mw_flash.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir\cy_pdma.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\prot_10722960861768657883.dir\cy_prot.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_common.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_ezi2c.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_i2c.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_spi.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_uart.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\semihosting_143864889731838620.dir\cy_semihosting.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smartio_5451710003740070188.dir\cy_smartio.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir\cy_smif.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir\cy_smif_memslot.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir\cy_smif_ver_specific.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\srom_13018798572330080582.dir\cy_srom.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sw_timer_4215635015939382130.dir\cy_sw_tmr.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysclk_16149231235676103872.dir\cy_sysclk.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysflt_12293435975120599261.dir\cy_sysflt.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysint_7435970359207984181.dir\cy_sysint.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir\cy_syslib.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir\cy_syslib_iar.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syspm_10887939769544754770.dir\cy_syspm.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysreset_14586141425677365288.dir\cy_sysreset.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysrtc_10747768817563771611.dir\cy_sysrtc.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\systick_16016591671695740695.dir\cy_systick.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syswdt_9118657615806274156.dir\cy_syswdt.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_counter.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_pwm.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_quaddec.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_sr.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\trigmux_9729677290734583340.dir\cy_trigmux.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\driver_adc.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\driver_gpio.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\fast_foc.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_adc.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_controller.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_debug_log.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_svpwm.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\hall_gather.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir\main_cm4.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_control.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_driver_uart_control.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_flash.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_voice.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\pwm_output.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir\seekfree_assistant.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir\seekfree_assistant_interface.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\sensorless_control.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir\startup.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir\startup_cm4.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_4986922561640112550.dir\system_tviibe4m_cm4.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\user_pwm_in.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_clock.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_debug.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_fifo.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_font.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_function.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_interrupt.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_absolute_encoder.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_ble6a20.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_bluetooth_ch9141.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_dl1a.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_dl1b.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_gnss.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_icm20602.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_imu660ra.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_imu963ra.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_ips114.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_ips200.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_key.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_menc15a.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_mpu6050.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_mt9v03x.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_oled.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_tft180.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_tsl1401.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_type.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_uart_receiver.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_virtual_oscilloscope.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_wifi_uart.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_wireless_uart.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_adc.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_delay.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_encoder.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_exti.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_flash.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_gpio.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_pit.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_pwm.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_soft_iic.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_soft_spi.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_spi.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_timer.o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_uart.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out.rsp
+#        (G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir\cm4_isr.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\adc_11722776235721520015.dir\cy_adc.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\button_4990804375159372270.dir\cy_button.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\canfd_1800690984773873875.dir\cy_canfd.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\cpu_15938736945165268644.dir\cy_cpu.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\crypto_1190170608956581615.dir\cy_crypto_config.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\evtgen_3404189088603873129.dir\cy_evtgen.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_8529866181315662935.dir\cy_flash.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\gpio_3999404635324069351.dir\cy_gpio.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_6162237342861132223.dir\cy_interrupt_map.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir\cy_ipc_drv.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir\cy_ipc_pipe.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir\cy_ipc_sema.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lin_18429031207028094880.dir\cy_lin.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lvd_6353935867039560245.dir\cy_lvd.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mcwdt_4052485907822033969.dir\cy_mcwdt.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir\cy_mdma.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mpu_5663187252346826382.dir\cy_mpu.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_864493325053435817.dir\cy_mw_flash.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir\cy_pdma.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\prot_10722960861768657883.dir\cy_prot.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_common.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_ezi2c.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_i2c.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_spi.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir\cy_scb_uart.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\semihosting_143864889731838620.dir\cy_semihosting.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smartio_5451710003740070188.dir\cy_smartio.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir\cy_smif.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir\cy_smif_memslot.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir\cy_smif_ver_specific.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\srom_13018798572330080582.dir\cy_srom.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sw_timer_4215635015939382130.dir\cy_sw_tmr.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysclk_16149231235676103872.dir\cy_sysclk.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysflt_12293435975120599261.dir\cy_sysflt.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysint_7435970359207984181.dir\cy_sysint.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir\cy_syslib.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir\cy_syslib_iar.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syspm_10887939769544754770.dir\cy_syspm.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysreset_14586141425677365288.dir\cy_sysreset.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysrtc_10747768817563771611.dir\cy_sysrtc.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\systick_16016591671695740695.dir\cy_systick.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syswdt_9118657615806274156.dir\cy_syswdt.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_counter.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_pwm.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_quaddec.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir\cy_tcpwm_sr.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\trigmux_9729677290734583340.dir\cy_trigmux.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\driver_adc.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\driver_gpio.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\fast_foc.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_adc.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_controller.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_debug_log.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir\foc_svpwm.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\hall_gather.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir\main_cm4.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_control.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_driver_uart_control.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_flash.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\motor_voice.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\pwm_output.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir\seekfree_assistant.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir\seekfree_assistant_interface.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\sensorless_control.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir\startup.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir\startup_cm4.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_4986922561640112550.dir\system_tviibe4m_cm4.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir\user_pwm_in.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_clock.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_debug.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_fifo.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_font.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_function.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir\zf_common_interrupt.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_absolute_encoder.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_ble6a20.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_bluetooth_ch9141.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_dl1a.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_dl1b.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_gnss.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_icm20602.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_imu660ra.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_imu963ra.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_ips114.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_ips200.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_key.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_menc15a.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_mpu6050.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_mt9v03x.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_oled.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_tft180.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_tsl1401.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_type.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_uart_receiver.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_virtual_oscilloscope.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_wifi_uart.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir\zf_device_wireless_uart.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_adc.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_delay.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_encoder.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_exti.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_flash.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_gpio.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_pit.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_pwm.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_soft_iic.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_soft_spi.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_spi.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_timer.o
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir\zf_driver_uart.o
 #        --no_out_extension -o
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out
 #        --config_def _CORE_cm4_=0 --config_def _LINK_flash_=0 --map
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\List\cyt2bl3.map
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\List\cyt2bl3.map
 #        --config
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\..\icf\linker_directives_tviibe4m.icf
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\..\icf\linker_directives_tviibe4m.icf
 #        --semihosting
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\..\..\..\libraries\zf_device\zf_device_config.a
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\project_config\..\..\..\libraries\zf_device\zf_device_config.a
 #        --entry __iar_program_start --vfe --text_out locale --cpu=Cortex-M4
 #        --fpu=VFPv4_sp) --dependencies=n
-#        G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out.iar_deps
+#        G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Exe\cyt2bl3.out.iar_deps
 #
 ###############################################################################
 
@@ -293,7 +293,7 @@ No sections matched the following patterns:
   .intvec            ro code  0x1008'0000      0x80  startup_cm4.o [26]
                             - 0x1008'0080      0x80
 
-"P1":                                      0x1'7662
+"P1":                                      0x1'7732
   .rodata            const    0x1008'0080    0x4924  fast_foc.o [5]
   .rodata            const    0x1008'49a4    0x42c0  motor_voice.o [5]
   .text              ro code  0x1008'8c64    0x1d78  sensorless_control.o [5]
@@ -383,148 +383,148 @@ No sections matched the following patterns:
   .text              ro code  0x1009'6454     0x14c  cy_interrupt_map.o [20]
   .text              ro code  0x1009'65a0     0x11e  driver_gpio.o [5]
   .text              ro code  0x1009'66c0     0x110  zf_device_key.o [42]
-  .text              ro code  0x1009'67d0      0x98  main_cm4.o [39]
-  .text              ro code  0x1009'6868      0x1c  zf_common_clock.o [40]
-  .rodata            const    0x1009'6884      0x88  system_tviibe4m_cm4.o [19]
-  .rodata            const    0x1009'690c      0x84  cy_sysclk.o [28]
-  .rodata            const    0x1009'6990      0x84  cy_sysclk.o [28]
-  .rodata            const    0x1009'6a14      0x80  cy_mw_flash.o [11]
-  .rodata            const    0x1009'6a94      0x80  cy_srom.o [25]
-  .rodata            const    0x1009'6b14      0x78  zf_common_function.o [40]
-  .rodata            const    0x1009'6b8c      0x74  zf_common_fifo.o [40]
-  .rodata            const    0x1009'6c00      0x74  zf_device_key.o [42]
-  .rodata            const    0x1009'6c74      0x74  zf_driver_adc.o [43]
-  .rodata            const    0x1009'6ce8      0x74  zf_driver_flash.o [43]
-  .rodata            const    0x1009'6d5c      0x74  zf_driver_pwm.o [43]
-  .rodata            const    0x1009'6dd0      0x74  zf_driver_spi.o [43]
-  .rodata            const    0x1009'6e44      0x74  zf_driver_uart.o [43]
-  .rodata            const    0x1009'6eb8      0x44  foc_debug_log.o [1]
-  .text              ro code  0x1009'6efc      0x44  startup_cm4.o [26]
-  .text              ro code  0x1009'6f40      0x38  zero_init3.o [46]
-  .rodata            const    0x1009'6f78      0x34  foc_debug_log.o [1]
-  .rodata            const    0x1009'6fac      0x30  motor_control.o [5]
-  .rodata            const    0x1009'6fdc      0x30  motor_control.o [5]
-  .rodata            const    0x1009'700c      0x30  motor_control.o [5]
-  .rodata            const    0x1009'703c      0x28  motor_control.o [5]
-  .rodata            const    0x1009'7064      0x28  motor_control.o [5]
-  .rodata            const    0x1009'708c      0x28  motor_control.o [5]
-  .text              ro code  0x1009'70b4      0x28  data_init.o [46]
-  .rodata            const    0x1009'70dc      0x24  motor_control.o [5]
-  .rodata            const    0x1009'7100      0x24  motor_control.o [5]
-  .rodata            const    0x1009'7124      0x24  motor_control.o [5]
-  .text              ro code  0x1009'7148      0x22  fpinit_M.o [45]
-  .iar.init_table    const    0x1009'716c      0x20  - Linker created -
-  .text              ro code  0x1009'718c      0x20  startup_cm4.o [26]
-  .text              ro code  0x1009'71ac      0x20  putchar.o [44]
-  .text              ro code  0x1009'71d0      0x1e  cy_syslib_iar.o [31]
-  .text              ro code  0x1009'71f0      0x1e  cmain.o [46]
-  .text              ro code  0x1009'7210       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7214       0x4  exit.o [44]
-  .text              ro code  0x1009'7218       0xa  cexit.o [46]
-  .rodata            const    0x1009'7224      0x1c  foc_debug_log.o [1]
-  .rodata            const    0x1009'7240      0x1c  main_cm4.o [39]
-  .rodata            const    0x1009'725c      0x1c  zf_common_debug.o [40]
-  .text              ro code  0x1009'7278      0x1c  startup_cm4.o [26]
-  .text              ro code  0x1009'7294      0x1c  cstartup_M.o [46]
-  .rodata            const    0x1009'72b0      0x18  motor_control.o [5]
-  .rodata            const    0x1009'72c8      0x18  system_tviibe4m_cm4.o [19]
-  .rodata            const    0x1009'72e0      0x18  zf_common_debug.o [40]
-  .text              ro code  0x1009'72f8      0x16  xprout.o [44]
-  .rodata            const    0x1009'7310      0x14  cy_flash.o [10]
-  .rodata            const    0x1009'7324      0x14  motor_control.o [5]
-  .rodata            const    0x1009'7338      0x14  motor_control.o [5]
-  .rodata            const    0x1009'734c      0x14  motor_control.o [5]
-  .rodata            const    0x1009'7360      0x10  motor_control.o [5]
-  .rodata            const    0x1009'7370      0x10  motor_control.o [5]
-  .rodata            const    0x1009'7380      0x10  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7390      0x10  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'73a0      0x10  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'73b0      0x10  zf_common_debug.o [40]
-  .rodata            const    0x1009'73c0      0x10  zf_common_debug.o [40]
-  .rodata            const    0x1009'73d0       0xc  motor_control.o [5]
-  .rodata            const    0x1009'73dc       0xc  motor_control.o [5]
-  .rodata            const    0x1009'73e8       0xc  motor_control.o [5]
-  .rodata            const    0x1009'73f4       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7400       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'740c       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7418       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7424       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7430       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'743c       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7448       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7454       0xc  motor_driver_uart_control.o [5]
-  .rodata            const    0x1009'7460       0xc  zf_common_debug.o [40]
-  .rodata            const    0x1009'746c       0xc  zf_common_debug.o [40]
-  .text              ro code  0x1009'7478       0xc  cy_syslib.o [31]
-  .rodata            const    0x1009'7484       0x8  cy_mw_flash.o [11]
-  .rodata            const    0x1009'748c       0x8  cy_srom.o [25]
-  .rodata            const    0x1009'7494       0x8  motor_control.o [5]
-  .rodata            const    0x1009'749c       0x8  motor_control.o [5]
-  .rodata            const    0x1009'74a4       0x8  motor_control.o [5]
-  .rodata            const    0x1009'74ac       0x8  startup.o [26]
-  .rodata            const    0x1009'74b4       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74b8       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74bc       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74c0       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74c4       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74c8       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74cc       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74d0       0x4  cy_adc.o [2]
-  .rodata            const    0x1009'74d4       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'74d8       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'74dc       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'74e0       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'74e4       0x4  cy_interrupt_map.o [20]
-  .rodata            const    0x1009'74e8       0x4  cy_ipc_drv.o [13]
-  .rodata            const    0x1009'74ec       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'74f0       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'74f4       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'74f8       0x4  cy_scb_spi.o [21]
-  .rodata            const    0x1009'74fc       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7500       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7504       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7508       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'750c       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7510       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7514       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7518       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'751c       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7520       0x4  cy_scb_uart.o [21]
-  .rodata            const    0x1009'7524       0x4  cy_srom.o [25]
-  .rodata            const    0x1009'7528       0x4  cy_srom.o [25]
-  .rodata            const    0x1009'752c       0x4  cy_sysint.o [30]
-  .rodata            const    0x1009'7530       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7534       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7538       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'753c       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7540       0x4  cy_tcpwm_counter.o [37]
-  .rodata            const    0x1009'7544       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7548       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'754c       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7550       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7554       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7558       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'755c       0x4  cy_tcpwm_pwm.o [37]
-  .rodata            const    0x1009'7560       0x4  zf_device_key.o [42]
-  .text              ro code  0x1009'7564       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7568       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'756c       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7570       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7574       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7578       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'757c       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7580       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7584       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7588       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'758c       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7590       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7594       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'7598       0x4  startup_cm4.o [26]
-  .text              ro code  0x1009'759c       0x4  startup_cm4.o [26]
-  .rodata            const    0x1009'75a0       0x0  zero_init3.o [46]
-  .rodata            const    0x1009'75a0       0x0  lz77_init_single.o [46]
-  Initializer bytes  const    0x1009'75a0      0x9e  <for P2-1>
-                            - 0x1009'763e  0x1'75be
+  .rodata            const    0x1009'67d0      0x98  system_tviibe4m_cm4.o [19]
+  .text              ro code  0x1009'6868      0x98  main_cm4.o [39]
+  .text              ro code  0x1009'6900      0x1c  zf_common_clock.o [40]
+  .rodata            const    0x1009'691c      0x94  cy_sysclk.o [28]
+  .rodata            const    0x1009'69b0      0x94  cy_sysclk.o [28]
+  .rodata            const    0x1009'6a44      0x90  cy_mw_flash.o [11]
+  .rodata            const    0x1009'6ad4      0x90  cy_srom.o [25]
+  .rodata            const    0x1009'6b64      0x88  zf_common_function.o [40]
+  .rodata            const    0x1009'6bec      0x84  zf_common_fifo.o [40]
+  .rodata            const    0x1009'6c70      0x84  zf_device_key.o [42]
+  .rodata            const    0x1009'6cf4      0x84  zf_driver_adc.o [43]
+  .rodata            const    0x1009'6d78      0x84  zf_driver_flash.o [43]
+  .rodata            const    0x1009'6dfc      0x84  zf_driver_pwm.o [43]
+  .rodata            const    0x1009'6e80      0x84  zf_driver_spi.o [43]
+  .rodata            const    0x1009'6f04      0x84  zf_driver_uart.o [43]
+  .rodata            const    0x1009'6f88      0x44  foc_debug_log.o [1]
+  .text              ro code  0x1009'6fcc      0x44  startup_cm4.o [26]
+  .text              ro code  0x1009'7010      0x38  zero_init3.o [46]
+  .rodata            const    0x1009'7048      0x34  foc_debug_log.o [1]
+  .rodata            const    0x1009'707c      0x30  motor_control.o [5]
+  .rodata            const    0x1009'70ac      0x30  motor_control.o [5]
+  .rodata            const    0x1009'70dc      0x30  motor_control.o [5]
+  .rodata            const    0x1009'710c      0x28  motor_control.o [5]
+  .rodata            const    0x1009'7134      0x28  motor_control.o [5]
+  .rodata            const    0x1009'715c      0x28  motor_control.o [5]
+  .text              ro code  0x1009'7184      0x28  data_init.o [46]
+  .rodata            const    0x1009'71ac      0x24  motor_control.o [5]
+  .rodata            const    0x1009'71d0      0x24  motor_control.o [5]
+  .rodata            const    0x1009'71f4      0x24  motor_control.o [5]
+  .text              ro code  0x1009'7218      0x22  fpinit_M.o [45]
+  .iar.init_table    const    0x1009'723c      0x20  - Linker created -
+  .text              ro code  0x1009'725c      0x20  startup_cm4.o [26]
+  .text              ro code  0x1009'727c      0x20  putchar.o [44]
+  .text              ro code  0x1009'72a0      0x1e  cy_syslib_iar.o [31]
+  .text              ro code  0x1009'72c0      0x1e  cmain.o [46]
+  .text              ro code  0x1009'72e0       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'72e4       0x4  exit.o [44]
+  .text              ro code  0x1009'72e8       0xa  cexit.o [46]
+  .rodata            const    0x1009'72f4      0x1c  foc_debug_log.o [1]
+  .rodata            const    0x1009'7310      0x1c  main_cm4.o [39]
+  .rodata            const    0x1009'732c      0x1c  zf_common_debug.o [40]
+  .text              ro code  0x1009'7348      0x1c  startup_cm4.o [26]
+  .text              ro code  0x1009'7364      0x1c  cstartup_M.o [46]
+  .rodata            const    0x1009'7380      0x18  motor_control.o [5]
+  .rodata            const    0x1009'7398      0x18  system_tviibe4m_cm4.o [19]
+  .rodata            const    0x1009'73b0      0x18  zf_common_debug.o [40]
+  .text              ro code  0x1009'73c8      0x16  xprout.o [44]
+  .rodata            const    0x1009'73e0      0x14  cy_flash.o [10]
+  .rodata            const    0x1009'73f4      0x14  motor_control.o [5]
+  .rodata            const    0x1009'7408      0x14  motor_control.o [5]
+  .rodata            const    0x1009'741c      0x14  motor_control.o [5]
+  .rodata            const    0x1009'7430      0x10  motor_control.o [5]
+  .rodata            const    0x1009'7440      0x10  motor_control.o [5]
+  .rodata            const    0x1009'7450      0x10  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7460      0x10  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7470      0x10  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7480      0x10  zf_common_debug.o [40]
+  .rodata            const    0x1009'7490      0x10  zf_common_debug.o [40]
+  .rodata            const    0x1009'74a0       0xc  motor_control.o [5]
+  .rodata            const    0x1009'74ac       0xc  motor_control.o [5]
+  .rodata            const    0x1009'74b8       0xc  motor_control.o [5]
+  .rodata            const    0x1009'74c4       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'74d0       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'74dc       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'74e8       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'74f4       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7500       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'750c       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7518       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7524       0xc  motor_driver_uart_control.o [5]
+  .rodata            const    0x1009'7530       0xc  zf_common_debug.o [40]
+  .rodata            const    0x1009'753c       0xc  zf_common_debug.o [40]
+  .text              ro code  0x1009'7548       0xc  cy_syslib.o [31]
+  .rodata            const    0x1009'7554       0x8  cy_mw_flash.o [11]
+  .rodata            const    0x1009'755c       0x8  cy_srom.o [25]
+  .rodata            const    0x1009'7564       0x8  motor_control.o [5]
+  .rodata            const    0x1009'756c       0x8  motor_control.o [5]
+  .rodata            const    0x1009'7574       0x8  motor_control.o [5]
+  .rodata            const    0x1009'757c       0x8  startup.o [26]
+  .rodata            const    0x1009'7584       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7588       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'758c       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7590       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7594       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'7598       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'759c       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'75a0       0x4  cy_adc.o [2]
+  .rodata            const    0x1009'75a4       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'75a8       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'75ac       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'75b0       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'75b4       0x4  cy_interrupt_map.o [20]
+  .rodata            const    0x1009'75b8       0x4  cy_ipc_drv.o [13]
+  .rodata            const    0x1009'75bc       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'75c0       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'75c4       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'75c8       0x4  cy_scb_spi.o [21]
+  .rodata            const    0x1009'75cc       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75d0       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75d4       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75d8       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75dc       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75e0       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75e4       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75e8       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75ec       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75f0       0x4  cy_scb_uart.o [21]
+  .rodata            const    0x1009'75f4       0x4  cy_srom.o [25]
+  .rodata            const    0x1009'75f8       0x4  cy_srom.o [25]
+  .rodata            const    0x1009'75fc       0x4  cy_sysint.o [30]
+  .rodata            const    0x1009'7600       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7604       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7608       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'760c       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7610       0x4  cy_tcpwm_counter.o [37]
+  .rodata            const    0x1009'7614       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'7618       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'761c       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'7620       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'7624       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'7628       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'762c       0x4  cy_tcpwm_pwm.o [37]
+  .rodata            const    0x1009'7630       0x4  zf_device_key.o [42]
+  .text              ro code  0x1009'7634       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7638       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'763c       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7640       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7644       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7648       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'764c       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7650       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7654       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7658       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'765c       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7660       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7664       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'7668       0x4  startup_cm4.o [26]
+  .text              ro code  0x1009'766c       0x4  startup_cm4.o [26]
+  .rodata            const    0x1009'7670       0x0  zero_init3.o [46]
+  .rodata            const    0x1009'7670       0x0  lz77_init_single.o [46]
+  Initializer bytes  const    0x1009'7670      0x9e  <for P2-1>
+                            - 0x1009'770e  0x1'768e
 
 Unused ranges:
 
@@ -533,7 +533,7 @@ Unused ranges:
    0x802'06a1   0x802'06a3        0x3
    0x803'78d4   0x803'7bff      0x32c
    0x803'7c80   0x807'dfff   0x4'6380
-  0x1009'76e2  0x1040'ffff  0x37'891e
+  0x1009'77b2  0x1040'ffff  0x37'884e
 
 
 *******************************************************************************
@@ -548,7 +548,7 @@ Zero (__iar_zero_init3)
 
 Copy/lz77 (__iar_lz77_init_single3)
     1 source range, total size 0x9e (9% of destination):
-          0x1009'75a0      0x9e
+          0x1009'7670      0x9e
     1 destination range, total size 0x6a1:
            0x802'0000     0x6a1
 
@@ -564,7 +564,7 @@ command line/config:
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir: [1]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir: [1]
     foc_adc.o                      1'112            32'833
     foc_controller.o               1'030
     foc_debug_log.o                  612      148   24'000
@@ -572,20 +572,20 @@ G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\pro
     ------------------------------------------------------
     Total:                         3'878      148   89'602
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\adc_11722776235721520015.dir: [2]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\adc_11722776235721520015.dir: [2]
     cy_adc.o                         732       32
     ------------------------------------------------------
     Total:                           732       32
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\button_4990804375159372270.dir: [3]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\button_4990804375159372270.dir: [3]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\canfd_1800690984773873875.dir: [4]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\canfd_1800690984773873875.dir: [4]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir: [5]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir: [5]
     driver_adc.o                     328                40
     driver_gpio.o                    286                 6
     fast_foc.o                       352   18'724       80
@@ -599,194 +599,194 @@ G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\pro
     ------------------------------------------------------
     Total:                        21'050   36'518    1'970
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\cpu_15938736945165268644.dir: [6]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\cpu_15938736945165268644.dir: [6]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\crypto_1190170608956581615.dir: [7]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\crypto_1190170608956581615.dir: [7]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir: [8]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir: [8]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\evtgen_3404189088603873129.dir: [9]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\evtgen_3404189088603873129.dir: [9]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_8529866181315662935.dir: [10]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_8529866181315662935.dir: [10]
     cy_flash.o                     1'232       20
     ------------------------------------------------------
     Total:                         1'232       20
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_864493325053435817.dir: [11]
-    cy_mw_flash.o                    732      136        2
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_864493325053435817.dir: [11]
+    cy_mw_flash.o                    732      152        2
     ------------------------------------------------------
-    Total:                           732      136        2
+    Total:                           732      152        2
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\gpio_3999404635324069351.dir: [12]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\gpio_3999404635324069351.dir: [12]
     cy_gpio.o                        408
     ------------------------------------------------------
     Total:                           408
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir: [13]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir: [13]
     cy_ipc_drv.o                      96        4
     ------------------------------------------------------
     Total:                            96        4
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lin_18429031207028094880.dir: [14]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lin_18429031207028094880.dir: [14]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lvd_6353935867039560245.dir: [15]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lvd_6353935867039560245.dir: [15]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mcwdt_4052485907822033969.dir: [16]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mcwdt_4052485907822033969.dir: [16]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mpu_5663187252346826382.dir: [17]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mpu_5663187252346826382.dir: [17]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\prot_10722960861768657883.dir: [18]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\prot_10722960861768657883.dir: [18]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_4986922561640112550.dir: [19]
-    system_tviibe4m_cm4.o            236      160       20
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_4986922561640112550.dir: [19]
+    system_tviibe4m_cm4.o            236      176       20
     ------------------------------------------------------
-    Total:                           236      160       20
+    Total:                           236      176       20
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_6162237342861132223.dir: [20]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_6162237342861132223.dir: [20]
     cy_interrupt_map.o               332      163    1'536
     ------------------------------------------------------
     Total:                           332      163    1'536
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir: [21]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir: [21]
     cy_scb_spi.o                     496       16
     cy_scb_uart.o                    788       40
     ------------------------------------------------------
     Total:                         1'284       56
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\semihosting_143864889731838620.dir: [22]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\semihosting_143864889731838620.dir: [22]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smartio_5451710003740070188.dir: [23]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smartio_5451710003740070188.dir: [23]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir: [24]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir: [24]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\srom_13018798572330080582.dir: [25]
-    cy_srom.o                        748      144       24
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\srom_13018798572330080582.dir: [25]
+    cy_srom.o                        748      160       24
     ------------------------------------------------------
-    Total:                           748      144       24
+    Total:                           748      160       24
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir: [26]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir: [26]
     startup.o                        368        8
     startup_cm4.o                    334               128
     ------------------------------------------------------
     Total:                           702        8      128
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sw_timer_4215635015939382130.dir: [27]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sw_timer_4215635015939382130.dir: [27]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysclk_16149231235676103872.dir: [28]
-    cy_sysclk.o                    1'656      264       25
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysclk_16149231235676103872.dir: [28]
+    cy_sysclk.o                    1'656      296       25
     ------------------------------------------------------
-    Total:                         1'656      264       25
+    Total:                         1'656      296       25
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysflt_12293435975120599261.dir: [29]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysflt_12293435975120599261.dir: [29]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysint_7435970359207984181.dir: [30]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysint_7435970359207984181.dir: [30]
     cy_sysint.o                       92        4
     ------------------------------------------------------
     Total:                            92        4
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir: [31]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir: [31]
     cy_syslib.o                      204               140
     cy_syslib_iar.o                   30
     ------------------------------------------------------
     Total:                           234               140
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syspm_10887939769544754770.dir: [32]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syspm_10887939769544754770.dir: [32]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysreset_14586141425677365288.dir: [33]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysreset_14586141425677365288.dir: [33]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysrtc_10747768817563771611.dir: [34]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysrtc_10747768817563771611.dir: [34]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\systick_16016591671695740695.dir: [35]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\systick_16016591671695740695.dir: [35]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syswdt_9118657615806274156.dir: [36]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syswdt_9118657615806274156.dir: [36]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir: [37]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir: [37]
     cy_tcpwm.o                        12
     cy_tcpwm_counter.o               460       20
     cy_tcpwm_pwm.o                   602       28
     ------------------------------------------------------
     Total:                         1'074       48
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\trigmux_9729677290734583340.dir: [38]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\trigmux_9729677290734583340.dir: [38]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir: [39]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir: [39]
     cm4_isr.o                        224
     main_cm4.o                       152       28
     ------------------------------------------------------
     Total:                           376       28
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir: [40]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir: [40]
     zf_common_clock.o                 28                 4
     zf_common_debug.o              1'080      108      112
-    zf_common_fifo.o               1'304      116
-    zf_common_function.o             100      120
+    zf_common_fifo.o               1'304      132
+    zf_common_function.o             100      136
     zf_common_interrupt.o            226                 4
     ------------------------------------------------------
-    Total:                         2'738      344      120
+    Total:                         2'738      376      120
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir: [41]
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir: [41]
     ------------------------------------------------------
     Total:
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir: [42]
-    zf_device_key.o                  272      120       24
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir: [42]
+    zf_device_key.o                  272      136       24
     zf_device_menc15a.o              288                 8
     ------------------------------------------------------
-    Total:                           560      120       32
+    Total:                           560      136       32
 
-G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir: [43]
-    zf_driver_adc.o                1'136      117       84
+G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir: [43]
+    zf_driver_adc.o                1'136      133       84
     zf_driver_delay.o                628        1        2
     zf_driver_exti.o                 200
-    zf_driver_flash.o                476      116    2'050
+    zf_driver_flash.o                476      132    2'050
     zf_driver_gpio.o                 316
     zf_driver_pit.o                  784        6       60
-    zf_driver_pwm.o                1'744      116
-    zf_driver_spi.o                2'036      117       24
+    zf_driver_pwm.o                1'744      132
+    zf_driver_spi.o                2'036      133       24
     zf_driver_timer.o                564                 4
-    zf_driver_uart.o               2'148      120      760
+    zf_driver_uart.o               2'148      136      760
     ------------------------------------------------------
-    Total:                        10'032      593    2'984
+    Total:                        10'032      673    2'984
 
 dl7M_tln.a: [44]
     abort.o                            6
@@ -852,7 +852,7 @@ shb_l.a: [47]
     Gaps                              46        6        4
     Linker created                             32    8'192
 ----------------------------------------------------------
-    Grand Total:                  56'978   38'828  104'783
+    Grand Total:                  56'978   39'036  104'783
 
 
 *******************************************************************************
@@ -861,20 +861,20 @@ shb_l.a: [47]
 
 Entry                       Address    Size  Type      Object
 -----                       -------    ----  ----      ------
-.iar.init_table$$Base   0x1009'716c           --   Gb  - Linker created -
-.iar.init_table$$Limit  0x1009'718c           --   Gb  - Linker created -
-?main                   0x1009'71f1          Code  Gb  cmain.o [46]
-BusFault_Handler        0x1009'756d          Code  Wk  startup_cm4.o [26]
+.iar.init_table$$Base   0x1009'723c           --   Gb  - Linker created -
+.iar.init_table$$Limit  0x1009'725c           --   Gb  - Linker created -
+?main                   0x1009'72c1          Code  Gb  cmain.o [46]
+BusFault_Handler        0x1009'763d          Code  Wk  startup_cm4.o [26]
 CSTACK$$Base             0x807'e000           --   Gb  - Linker created -
 CSTACK$$Limit            0x808'0000           --   Gb  - Linker created -
 CopyVectorTable         0x1009'6309    0x34  Code  Lc  startup.o [26]
 CpuUserInt0_Handler     0x1009'6473    0x26  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt10_Handler    0x1009'7589          Code  Wk  startup_cm4.o [26]
-CpuUserInt11_Handler    0x1009'758d          Code  Wk  startup_cm4.o [26]
-CpuUserInt12_Handler    0x1009'7591          Code  Wk  startup_cm4.o [26]
-CpuUserInt13_Handler    0x1009'7595          Code  Wk  startup_cm4.o [26]
-CpuUserInt14_Handler    0x1009'7599          Code  Wk  startup_cm4.o [26]
-CpuUserInt15_Handler    0x1009'759d          Code  Wk  startup_cm4.o [26]
+CpuUserInt10_Handler    0x1009'7659          Code  Wk  startup_cm4.o [26]
+CpuUserInt11_Handler    0x1009'765d          Code  Wk  startup_cm4.o [26]
+CpuUserInt12_Handler    0x1009'7661          Code  Wk  startup_cm4.o [26]
+CpuUserInt13_Handler    0x1009'7665          Code  Wk  startup_cm4.o [26]
+CpuUserInt14_Handler    0x1009'7669          Code  Wk  startup_cm4.o [26]
+CpuUserInt15_Handler    0x1009'766d          Code  Wk  startup_cm4.o [26]
 CpuUserInt1_Handler     0x1009'6499    0x26  Code  Gb  cy_interrupt_map.o [20]
 CpuUserInt2_Handler     0x1009'64bf    0x26  Code  Gb  cy_interrupt_map.o [20]
 CpuUserInt3_Handler     0x1009'64e5     0xe  Code  Gb  cy_interrupt_map.o [20]
@@ -882,8 +882,8 @@ CpuUserInt4_Handler     0x1009'64f3     0xe  Code  Gb  cy_interrupt_map.o [20]
 CpuUserInt5_Handler     0x1009'6501    0x26  Code  Gb  cy_interrupt_map.o [20]
 CpuUserInt6_Handler     0x1009'6527    0x26  Code  Gb  cy_interrupt_map.o [20]
 CpuUserInt7_Handler     0x1009'654d    0x1e  Code  Gb  cy_interrupt_map.o [20]
-CpuUserInt8_Handler     0x1009'7581          Code  Wk  startup_cm4.o [26]
-CpuUserInt9_Handler     0x1009'7585          Code  Wk  startup_cm4.o [26]
+CpuUserInt8_Handler     0x1009'7651          Code  Wk  startup_cm4.o [26]
+CpuUserInt9_Handler     0x1009'7655          Code  Wk  startup_cm4.o [26]
 Cy_Adc_Channel_DeInit   0x1009'48bb    0x2c  Code  Gb  cy_adc.o [2]
 Cy_Adc_Channel_Disable  0x1009'48f3     0xc  Code  Gb  cy_adc.o [2]
 Cy_Adc_Channel_Enable   0x1009'48e7     0xc  Code  Gb  cy_adc.o [2]
@@ -1142,18 +1142,18 @@ Cy_SysInt_SystemIrqUserTableRamPointer
                          0x802'05fc     0x4  Data  Gb  cy_interrupt_map.o [20]
 Cy_SysLib_CleanCoreDCacheByAddr
                         0x1009'527f     0x2  Code  Gb  cy_syslib.o [31]
-Cy_SysLib_DelayCycles   0x1009'71d1          Code  Gb  cy_syslib_iar.o [31]
+Cy_SysLib_DelayCycles   0x1009'72a1          Code  Gb  cy_syslib_iar.o [31]
 Cy_SysLib_EnterCriticalSection
-                        0x1009'71e1          Code  Gb  cy_syslib_iar.o [31]
+                        0x1009'72b1          Code  Gb  cy_syslib_iar.o [31]
 Cy_SysLib_ExitCriticalSection
-                        0x1009'71e9          Code  Gb  cy_syslib_iar.o [31]
+                        0x1009'72b9          Code  Gb  cy_syslib_iar.o [31]
 Cy_SysLib_FaultHandler  0x1009'51d9    0x90  Code  Gb  cy_syslib.o [31]
 Cy_SysLib_Halt          0x1009'51d5     0x4  Code  Gb  cy_syslib.o [31]
 Cy_SysLib_InvalidateCoreDCacheByAddr
                         0x1009'527d     0x2  Code  Gb  cy_syslib.o [31]
 Cy_SysLib_ProcessingFault
                         0x1009'57b1    0x14  Code  Wk  cy_syslib.o [31]
-Cy_SysLib_SvcHandler    0x1009'7479     0xc  Code  Wk  cy_syslib.o [31]
+Cy_SysLib_SvcHandler    0x1009'7549     0xc  Code  Wk  cy_syslib.o [31]
 Cy_SystemInitFpuEnable  0x1009'63f5    0x1e  Code  Gb  system_tviibe4m_cm4.o [19]
 Cy_SystemIrqUserTable    0x802'0000   0x5fc  Data  Gb  cy_interrupt_map.o [20]
 Cy_Tcpwm_Counter_ClearTC_Intr
@@ -1180,32 +1180,32 @@ Cy_Tcpwm_Pwm_Init       0x1008'd8d5   0x1e8  Code  Gb  cy_tcpwm_pwm.o [37]
 Cy_Tcpwm_TriggerStart   0x1008'c3b1     0xc  Code  Gb  cy_tcpwm.o [37]
 Cy_WorkFlashBlankCheck  0x1009'4cfd    0x8c  Code  Gb  cy_mw_flash.o [11]
 Cy_u32StartupStackEndAddress
-                        0x1009'6f3c          Data  Gb  startup_cm4.o [26]
+                        0x1009'700c          Data  Gb  startup_cm4.o [26]
 Cy_u32StartupStackStartAddress
-                        0x1009'6f38          Data  Gb  startup_cm4.o [26]
-DebugMon_Handler        0x1009'7575          Code  Wk  startup_cm4.o [26]
+                        0x1009'7008          Data  Gb  startup_cm4.o [26]
+DebugMon_Handler        0x1009'7645          Code  Wk  startup_cm4.o [26]
 HEAP_STACK$$Base         0x807'e000           --   Gb  - Linker created -
 HEAP_STACK$$Limit        0x808'0000           --   Gb  - Linker created -
-HardFault_Handler       0x1009'718d          Code  Wk  startup_cm4.o [26]
+HardFault_Handler       0x1009'725d          Code  Wk  startup_cm4.o [26]
 InitRamEcc              0x1009'61f9    0xfe  Code  Lc  startup.o [26]
 InitRamEccClearArea     0x1009'62f7    0x12  Code  Lc  startup.o [26]
-MemManage_Handler       0x1009'7569          Code  Wk  startup_cm4.o [26]
-NMI_Handler             0x1009'7565          Code  Wk  startup_cm4.o [26]
-PendSV_Handler          0x1009'7579          Code  Wk  startup_cm4.o [26]
-Region$$Table$$Base     0x1009'716c           --   Gb  - Linker created -
-Region$$Table$$Limit    0x1009'718c           --   Gb  - Linker created -
-Reset_Handler           0x1009'6efd          Code  Wk  startup_cm4.o [26]
-SVC_Handler             0x1009'7279          Code  Wk  startup_cm4.o [26]
+MemManage_Handler       0x1009'7639          Code  Wk  startup_cm4.o [26]
+NMI_Handler             0x1009'7635          Code  Wk  startup_cm4.o [26]
+PendSV_Handler          0x1009'7649          Code  Wk  startup_cm4.o [26]
+Region$$Table$$Base     0x1009'723c           --   Gb  - Linker created -
+Region$$Table$$Limit    0x1009'725c           --   Gb  - Linker created -
+Reset_Handler           0x1009'6fcd          Code  Wk  startup_cm4.o [26]
+SVC_Handler             0x1009'7349          Code  Wk  startup_cm4.o [26]
 Startup_Init            0x1009'61e9    0x10  Code  Gb  startup.o [26]
-SysTick_Handler         0x1009'757d          Code  Wk  startup_cm4.o [26]
+SysTick_Handler         0x1009'764d          Code  Wk  startup_cm4.o [26]
 SystemCoreClock          0x803'7888     0x4  Data  Gb  system_tviibe4m_cm4.o [19]
 SystemCoreClockUpdate   0x1009'6361    0x94  Code  Gb  system_tviibe4m_cm4.o [19]
 SystemInit              0x1009'6359     0x8  Code  Gb  system_tviibe4m_cm4.o [19]
-UsageFault_Handler      0x1009'7571          Code  Wk  startup_cm4.o [26]
+UsageFault_Handler      0x1009'7641          Code  Wk  startup_cm4.o [26]
 _LC                     0x1008'f265     0x6  Code  Lc  xprintffull_nomb.o [44]
 _LitobFullNoMb          0x1008'ff31   0x114  Code  Lc  xprintffull_nomb.o [44]
 _PrintfFullNoMb         0x1008'f26b   0xc98  Code  Gb  xprintffull_nomb.o [44]
-_Prout                  0x1009'72f9    0x16  Code  Gb  xprout.o [44]
+_Prout                  0x1009'73c9    0x16  Code  Gb  xprout.o [44]
 _PutcharsFullNoMb       0x1009'009d    0x2e  Code  Lc  xprintffull_nomb.o [44]
 _SNProut                0x1008'cb27    0x1a  Code  Gb  xsnprout.o [44]
 _SProut                 0x1008'cf07     0xa  Code  Gb  xsprout.o [44]
@@ -1241,7 +1241,7 @@ __aeabi_memcpy8         0x1009'0135          Code  Gb  ABImemcpy.o [46]
 __aeabi_memset          0x1008'cea1          Code  Gb  ABImemset.o [46]
 __aeabi_ui2d            0x1009'0df5          Code  Gb  U32ToDbl.o [45]
 __aeabi_uldivmod        0x1008'ed21          Code  Gb  I64DivMod.o [46]
-__cmain                 0x1009'71f1          Code  Gb  cmain.o [46]
+__cmain                 0x1009'72c1          Code  Gb  cmain.o [46]
 __ecc_init_sram_end_address {Abs}
                          0x807'ffff          Data  Gb  <internal module>
 __ecc_init_sram_start_address {Abs}
@@ -1258,14 +1258,14 @@ __iar_Strchr            0x1009'08d1          Code  Gb  strchr.o [46]
 __iar_cos32             0x1009'3889     0x4  Code  Gb  cos_sin32.o [45]
 __iar_cos_medium32      0x1009'3889     0x4  Code  Gb  cos_sin32.o [45]
 __iar_cos_mediumf       0x1009'3889     0x4  Code  Gb  cos_sin32.o [45]
-__iar_data_init3        0x1009'70b5    0x28  Code  Gb  data_init.o [46]
+__iar_data_init3        0x1009'7185    0x28  Code  Gb  data_init.o [46]
 __iar_frexp             0x1009'098d          Code  Gb  frexp.o [45]
 __iar_frexpl            0x1009'098d          Code  Gb  frexp.o [45]
-__iar_init_vfp          0x1009'7149          Code  Gb  fpinit_M.o [45]
+__iar_init_vfp          0x1009'7219          Code  Gb  fpinit_M.o [45]
 __iar_ldexp64           0x1009'09f1          Code  Gb  ldexp.o [45]
 __iar_lz77_init_single3
                         0x1008'c7e3    0x7e  Code  Gb  lz77_init_single.o [46]
-__iar_program_start     0x1009'7295          Code  Gb  cstartup_M.o [46]
+__iar_program_start     0x1009'7365          Code  Gb  cstartup_M.o [46]
 __iar_round64           0x1009'30f1          Code  Gb  round.o [45]
 __iar_scalbln64         0x1009'09f1          Code  Gb  ldexp.o [45]
 __iar_scalbn64          0x1009'09f1          Code  Gb  ldexp.o [45]
@@ -1280,14 +1280,14 @@ __iar_vfp___iar_round64
                         0x1009'30e1          Code  Gb  round.o [45]
 __iar_vfp_round         0x1009'30e1          Code  Gb  round.o [45]
 __iar_vfp_roundl        0x1009'30e1          Code  Gb  round.o [45]
-__iar_zero_init3        0x1009'6f41    0x38  Code  Gb  zero_init3.o [46]
-__low_level_init        0x1009'7211          Code  Gb  startup_cm4.o [26]
+__iar_zero_init3        0x1009'7011    0x38  Code  Gb  zero_init3.o [46]
+__low_level_init        0x1009'72e1          Code  Gb  startup_cm4.o [26]
 __ramVectors             0x803'7c00          Data  Gb  startup_cm4.o [26]
 __vector_table          0x1008'0000          Data  Gb  startup_cm4.o [26]
 __vector_table_0x1c     0x1008'001c          Data  Gb  startup_cm4.o [26]
 __write                 0x1008'd7c1    0x12  Code  Gb  zf_common_debug.o [40]
-_call_main              0x1009'71fd          Code  Gb  cmain.o [46]
-_exit                   0x1009'7219          Code  Gb  cexit.o [46]
+_call_main              0x1009'72cd          Code  Gb  cmain.o [46]
+_exit                   0x1009'72e9          Code  Gb  cexit.o [46]
 abort                   0x1009'1f91     0x6  Code  Gb  abort.o [44]
 adc_convert             0x1009'3a87    0x5e  Code  Gb  zf_driver_adc.o [43]
 adc_init                0x1009'3b21   0x1b4  Code  Gb  zf_driver_adc.o [43]
@@ -1304,7 +1304,7 @@ battery_check::warning_count_num
 battery_value            0x803'7794    0x20  Data  Gb  driver_adc.o [5]
 calibration_uart0_printf
                         0x1009'1d7d    0x20  Code  Gb  motor_control.o [5]
-clock_init              0x1009'6869    0x16  Code  Gb  zf_common_clock.o [40]
+clock_init              0x1009'6901    0x16  Code  Gb  zf_common_clock.o [40]
 cosf                    0x1009'3889     0x4  Code  Gb  cos_sin32.o [45]
 cs_pin_save              0x803'78b4     0x4  Data  Gb  zf_driver_spi.o [43]
 cy_assertFileName        0x803'77cc    0x18  Data  Gb  cy_syslib.o [31]
@@ -1344,7 +1344,7 @@ driver_gpio_loop::high_freq_count
 driver_gpio_loop::low_freq_count
                          0x802'069d     0x1  Data  Lc  driver_gpio.o [5]
 driver_timer_mode        0x803'78bc     0x4  Data  Lc  zf_driver_timer.o [43]
-exit                    0x1009'7215     0x4  Code  Gb  exit.o [44]
+exit                    0x1009'72e5     0x4  Code  Gb  exit.o [44]
 exti_disable            0x1008'c1bd    0x22  Code  Gb  zf_driver_exti.o [43]
 exti_enable             0x1008'c19b    0x22  Code  Gb  zf_driver_exti.o [43]
 exti_flag_get           0x1008'c14f    0x4c  Code  Gb  zf_driver_exti.o [43]
@@ -1475,7 +1475,7 @@ interrupt_init          0x1008'd155    0x36  Code  Gb  zf_common_interrupt.o [40
 interrupt_set_priority  0x1008'd149     0xc  Code  Gb  zf_common_interrupt.o [40]
 key_clear_state         0x1009'6767     0xa  Code  Gb  zf_device_key.o [42]
 key_get_state           0x1009'675f     0x8  Code  Gb  zf_device_key.o [42]
-key_index               0x1009'7560     0x4  Data  Lc  zf_device_key.o [42]
+key_index               0x1009'7630     0x4  Data  Lc  zf_device_key.o [42]
 key_init                0x1009'6771    0x4a  Code  Gb  zf_device_key.o [42]
 key_press_time           0x803'7850    0x10  Data  Lc  zf_device_key.o [42]
 key_scanner             0x1009'66c1    0x9e  Code  Gb  zf_device_key.o [42]
@@ -1491,7 +1491,7 @@ left_mos_q5q2_open      0x1008'c00d    0x1c  Code  Gb  pwm_output.o [5]
 left_mos_q5q4_open      0x1008'c029    0x1c  Code  Gb  pwm_output.o [5]
 magnetic_encoder_get_offset
                         0x1009'27f9    0x38  Code  Lc  zf_device_menc15a.o [42]
-main                    0x1009'67d1    0x98  Code  Gb  main_cm4.o [39]
+main                    0x1009'6869    0x98  Code  Gb  main_cm4.o [39]
 memchr                  0x1009'0929          Code  Gb  memchr.o [46]
 menc15a_absolute_data    0x803'78ac     0x4  Data  Gb  zf_device_menc15a.o [42]
 menc15a_absolute_offset_data
@@ -1616,8 +1616,8 @@ pit_init                0x1008'd2c5   0x1bc  Code  Gb  zf_driver_pit.o [43]
 pit_isr_flag_clear      0x1008'd29b    0x2a  Code  Gb  zf_driver_pit.o [43]
 pit_isr_func             0x802'0628    0x3c  Data  Gb  zf_driver_pit.o [43]
 printf                  0x1009'31e1    0x28  Code  Gb  printf.o [44]
-programSizeBytesLut     0x1009'7310    0x14  Data  Lc  cy_flash.o [10]
-putchar                 0x1009'71ad    0x20  Code  Gb  putchar.o [44]
+programSizeBytesLut     0x1009'73e0    0x14  Data  Lc  cy_flash.o [10]
+putchar                 0x1009'727d    0x20  Code  Gb  putchar.o [44]
 pwm_all_channel_close   0x1008'adff    0x1a  Code  Gb  zf_driver_pwm.o [43]
 pwm_init                0x1008'aed9   0x1b4  Code  Gb  zf_driver_pwm.o [43]
 pwm_set_duty            0x1008'ae19    0xc0  Code  Gb  zf_driver_pwm.o [43]
@@ -1719,49 +1719,49 @@ zf_debug_assert_enable   0x802'069e     0x1  Data  Lc  zf_common_debug.o [40]
 zf_debug_init_flag       0x803'78cd     0x1  Data  Lc  zf_common_debug.o [40]
 
 
-[1] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir
-[2] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\adc_11722776235721520015.dir
-[3] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\button_4990804375159372270.dir
-[4] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\canfd_1800690984773873875.dir
-[5] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir
-[6] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\cpu_15938736945165268644.dir
-[7] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\crypto_1190170608956581615.dir
-[8] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir
-[9] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\evtgen_3404189088603873129.dir
-[10] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_8529866181315662935.dir
-[11] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_864493325053435817.dir
-[12] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\gpio_3999404635324069351.dir
-[13] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir
-[14] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lin_18429031207028094880.dir
-[15] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lvd_6353935867039560245.dir
-[16] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mcwdt_4052485907822033969.dir
-[17] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mpu_5663187252346826382.dir
-[18] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\prot_10722960861768657883.dir
-[19] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_4986922561640112550.dir
-[20] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_6162237342861132223.dir
-[21] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir
-[22] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\semihosting_143864889731838620.dir
-[23] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smartio_5451710003740070188.dir
-[24] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir
-[25] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\srom_13018798572330080582.dir
-[26] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir
-[27] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sw_timer_4215635015939382130.dir
-[28] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysclk_16149231235676103872.dir
-[29] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysflt_12293435975120599261.dir
-[30] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysint_7435970359207984181.dir
-[31] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir
-[32] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syspm_10887939769544754770.dir
-[33] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysreset_14586141425677365288.dir
-[34] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysrtc_10747768817563771611.dir
-[35] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\systick_16016591671695740695.dir
-[36] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syswdt_9118657615806274156.dir
-[37] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir
-[38] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\trigmux_9729677290734583340.dir
-[39] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir
-[40] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir
-[41] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir
-[42] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir
-[43] = G:\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir
+[1] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\Foc_11601868574911838443.dir
+[2] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\adc_11722776235721520015.dir
+[3] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\button_4990804375159372270.dir
+[4] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\canfd_1800690984773873875.dir
+[5] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\code_17896468042025673432.dir
+[6] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\cpu_15938736945165268644.dir
+[7] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\crypto_1190170608956581615.dir
+[8] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\dma_12106025507578611576.dir
+[9] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\evtgen_3404189088603873129.dir
+[10] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_8529866181315662935.dir
+[11] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\flash_864493325053435817.dir
+[12] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\gpio_3999404635324069351.dir
+[13] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\ipc_10145506163450686023.dir
+[14] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lin_18429031207028094880.dir
+[15] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\lvd_6353935867039560245.dir
+[16] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mcwdt_4052485907822033969.dir
+[17] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\mpu_5663187252346826382.dir
+[18] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\prot_10722960861768657883.dir
+[19] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_4986922561640112550.dir
+[20] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\rev_b_6162237342861132223.dir
+[21] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\scb_15490842639181808494.dir
+[22] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\semihosting_143864889731838620.dir
+[23] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smartio_5451710003740070188.dir
+[24] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\smif_427648126384146252.dir
+[25] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\srom_13018798572330080582.dir
+[26] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\startup_479057977785470282.dir
+[27] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sw_timer_4215635015939382130.dir
+[28] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysclk_16149231235676103872.dir
+[29] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysflt_12293435975120599261.dir
+[30] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysint_7435970359207984181.dir
+[31] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syslib_16330585751512546975.dir
+[32] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syspm_10887939769544754770.dir
+[33] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysreset_14586141425677365288.dir
+[34] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\sysrtc_10747768817563771611.dir
+[35] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\systick_16016591671695740695.dir
+[36] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\syswdt_9118657615806274156.dir
+[37] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\tcpwm_422923530147891246.dir
+[38] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\trigmux_9729677290734583340.dir
+[39] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\user_8514941877209965082.dir
+[40] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_common_1201165462030747823.dir
+[41] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_components_14936052685886095442.dir
+[42] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_device_6570275422786408770.dir
+[43] = G:\SmartCar\Project\CYT2BL3_Victor_foc\CYT2BL3_Victor_foc\Seekfree_CYT2BL3_Double_Foc_Project\project\iar\Debug_m4\Obj\zf_driver_11922370083829174090.dir
 [44] = dl7M_tln.a
 [45] = m7M_tls.a
 [46] = rt7M_tl.a
@@ -1769,7 +1769,7 @@ zf_debug_init_flag       0x803'78cd     0x1  Data  Lc  zf_common_debug.o [40]
 [48] = zf_device_config.a
 
    56'978 bytes of readonly  code memory
-   38'828 bytes of readonly  data memory
+   39'036 bytes of readonly  data memory
   104'783 bytes of readwrite data memory
 
 Errors: none
