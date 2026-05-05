@@ -40,7 +40,7 @@
 #include "zf_common_headfile.h"
 
 
-#define MOTOR_DRIVER_UART      UART_2 
+#define MOTOR_DRIVER_UART      UART_2
 #define MOTOR_DRIVER_TX        UART2_RX_P07_0 
 #define MOTOR_DRIVER_RX        UART2_TX_P07_1 
 
@@ -59,6 +59,12 @@ typedef enum
     GET_RDT_ANGLE,
     GET_PHASE_DUTY,
     GET_VOLTAGE,
+    
+    // ===== FOC 相关命令 =====
+    SET_FOC_TORQUE_REF,     // 设置FOC力矩参考（主板下发设 Iq 目标，0xA5 0x09）
+    GET_FOC_IQ,             // 持续上报 Iq 电流（字符串 GET-IQ 触发 / 上报 0xA5 0x07）
+    GET_UQ,                 // 持续上报 Uq（请求 0xA5 0x08 / 上报 0xA5 0x08）
+
     ERROR_CMD
 }control_mode_enum;
 
@@ -87,6 +93,12 @@ typedef struct
       int16                     receive_right_phase;
       int16                     receive_right_duty_data;
       
+      // ====== 补充 FOC 目标参数 ======
+      float                     left_id_target;
+      float                     left_iq_target;
+      float                     right_id_target;
+      float                     right_iq_target;
+
       control_mode_enum         immediate_command;
       
       control_mode_enum         continue_command;
@@ -96,9 +108,11 @@ typedef struct
       control_cmd_type_enum     cmd_type;
 }small_device_value_struct;
 
-
-
 extern small_device_value_struct motor_value;
+
+// 调试计数器：在 motor_driver_uart_control.c 中定义，
+// 每解析成功一次对应功能字就 +1，可用于 UART0 调试打印或 IAR Watch
+extern volatile uint32 cmd_07_recv_count;       // 0x09 下行设 Iq 解析次数（变量名保留以兼容旧调试代码）
 
 void motor_driver_control_callback(small_device_value_struct *device_value);
 
@@ -111,6 +125,24 @@ void motor_driver_send_speed(small_device_value_struct *device_value, int left_s
 void motor_driver_send_angle(small_device_value_struct *device_value, float left_angle, float right_angle);
 
 void motor_driver_send_reduction_angle(small_device_value_struct *device_value, float left_angle, float right_angle);
+
+//-------------------------------------------------------------------------------------------------------------------
+// ===== FOC 通信函数 =====
+//-------------------------------------------------------------------------------------------------------------------
+
+/**
+ * @brief 发送 Iq 电流（左右电机），7 字节小包
+ * @note  帧格式: 0xA5 0x07 LeftIq_H LeftIq_L RightIq_H RightIq_L SUM
+ *        缩放: uint16 = (int16)(iq * 100) + 3200, 量程 ±32A, 精度 0.01A
+ */
+void motor_driver_send_iq(small_device_value_struct *device_value, float left_iq, float right_iq);
+
+/**
+ * @brief 发送 Uq（左右电机 q 轴电压），7 字节小包
+ * @note  帧格式: 0xA5 0x08 LeftUq_H LeftUq_L RightUq_H RightUq_L SUM
+ *        缩放: int16 = uq * 1000, 量程 ±32.767V, 精度 0.001V
+ */
+void motor_driver_send_uq(small_device_value_struct *device_value, float left_uq, float right_uq);
 
 void motor_driver_uart_init(void);
 

@@ -173,8 +173,7 @@ void uart2_isr (void)
     {
         
       
-        motor_driver_control_callback(&motor_value);
-        
+                motor_driver_control_callback(&motor_value);
         
     }
     else                                // ´®¿Ú2·¢ËÍÖÐ¶Ï

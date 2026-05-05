@@ -78,6 +78,26 @@ static foc_closed_loop_t motor_left_foc_closed_loop;
 // 右电机速度在拟合时已乘以rotation_direction做方向对齐
 // 因此闭环速度反馈无需额外反相
 static foc_closed_loop_t motor_right_foc_closed_loop;
+
+
+//角度换算
+static float motor_get_output_shaft_angle_deg(const motor_struct *motor)
+{
+    int32 reduction_integral = 0;
+
+    if(motor->menc15a_reduction_max <= 0)
+    {
+        return 0.0f;
+    }
+
+    reduction_integral = motor->menc15a_reduction_integral % motor->menc15a_reduction_max;
+    if(reduction_integral < 0)
+    {
+        reduction_integral += motor->menc15a_reduction_max;
+    }
+
+    return (float)reduction_integral * 360.0f / (float)motor->menc15a_reduction_max;
+}
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     设置左电机速度参考（RPM）并使能速度参考输入
 // 参数说明     speed_ref_rpm     左电机目标转速（RPM）
@@ -240,11 +260,11 @@ void motor_left_update_isr(void)
            motor_left.encoder_state             == ENCODER_ERROR  ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
         {
-            motor_left_duty_set(0, 0, 0);                                           // 输出保护状态 或者 磁编码器错误 则输出0占空比 刹车
+            motor_left_cc_set(0, 0, 0);                                           // 输出保护状态 或者 磁编码器错误 则输出0占空比 刹车
         }
         else
         {
-            motor_left_duty_set(motor_left_foc_closed_loop.compare_value[0],
+            motor_left_cc_set(motor_left_foc_closed_loop.compare_value[0],
                                 motor_left_foc_closed_loop.compare_value[1],
                                 motor_left_foc_closed_loop.compare_value[2]); // 闭环输出三相占空比
         }
@@ -435,13 +455,13 @@ void motor_right_update_isr(void)
            motor_right.encoder_state            == ENCODER_ERROR        ||
            (battery_value.protect_flag == 1 && battery_value.battery_state == BATTERY_ERROR))
         {
-            motor_right_duty_set(0, 0, 0);                                          // 保护状态输出0占空比 刹车
+            motor_right_cc_set(0, 0, 0);                                          // 保护状态输出0占空比 刹车
         }
         else
         {
-            motor_right_duty_set(motor_right_foc_closed_loop.compare_value[0],
-                                 motor_right_foc_closed_loop.compare_value[1],
-                                 motor_right_foc_closed_loop.compare_value[2]); // 闭环输出三相占空比
+            motor_right_cc_set(motor_right_foc_closed_loop.compare_value[0],
+                                motor_right_foc_closed_loop.compare_value[1],
+                                motor_right_foc_closed_loop.compare_value[2]); // 闭环输出三相占空比
         }
     }
     else if(motor_right.driver_mode == HALL_SIX_STEP)
@@ -721,6 +741,7 @@ void motor_zero_calibration(void)
     interrupt_global_enable(0);							// 开启全局中断
 }
 
+
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     双电机FOC控制初始化
 // 参数说明     void
@@ -788,9 +809,9 @@ void motor_foc_control_init(void)
     motor_right_output_init(PWM_PRIOD_LOAD, 1);                 // 右侧电机三相 PWM 输出初始化
 
     motor_left_startup_align_calibration();                      // 上电后先执行一次A相对齐校准
-
     motor_right_startup_align_calibration();
 }
+
 
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     双电机BLDC控制初始化
@@ -878,6 +899,8 @@ void motor_control_init(void)
     {
         motor_sensorless_control_init();                // 无感电调模式初始化    
     }
+    
+
 }
 
 
@@ -912,7 +935,16 @@ void driver_cmd_forthwith(void)
                 motor_right.lose_control_protect_count = 0;
                 
             }break;
-            
+
+            case SET_FOC_TORQUE_REF:
+            {
+                motor_left_torque_ref_set(motor_value.left_iq_target);
+                motor_right_torque_ref_set(motor_value.right_iq_target);
+
+                motor_left.lose_control_protect_count = 0;
+                motor_right.lose_control_protect_count = 0;
+            }break;
+
             default:break;
         }
         
@@ -976,6 +1008,42 @@ void driver_cmd_loop(void)
     }
 
 #if USER_CONTROL_MODE == 0    
+    if(motor_value.cmd_type == BYTE_TYPE)
+    {
+        switch(motor_value.continue_command)
+        {
+            case GET_SPEED:
+            case GET_ANGLE:
+            case GET_FOC_IQ:
+            case GET_UQ:
+            {
+                 float left_angle_temp = motor_get_output_shaft_angle_deg(&motor_left);
+                 float right_angle_temp = motor_get_output_shaft_angle_deg(&motor_right);
+
+                motor_driver_send_speed(&motor_value,
+                                        (int32)motor_left.motor_speed_filter,
+                                        (int32)motor_right.motor_speed_filter);
+                motor_driver_send_angle(&motor_value, left_angle_temp, right_angle_temp);
+                motor_driver_send_iq(&motor_value,
+                                     motor_left_foc_closed_loop.current_loop.iq_fb,
+                                     motor_right_foc_closed_loop.current_loop.iq_fb);
+                motor_driver_send_uq(&motor_value,
+                                     motor_left_foc_closed_loop.current_loop.vq,
+                                     motor_right_foc_closed_loop.current_loop.vq);
+            }break;
+
+            default:break;
+        }
+
+        if(motor_value.continue_command == GET_SPEED ||
+           motor_value.continue_command == GET_ANGLE ||
+           motor_value.continue_command == GET_FOC_IQ ||
+           motor_value.continue_command == GET_UQ)
+        {
+            return;
+        }
+    }
+
     switch(motor_value.continue_command)        // 判断持续指令类型
     {
         case GET_SPEED:                         // 持续输出速度信息
@@ -1033,9 +1101,8 @@ void driver_cmd_loop(void)
         
         case GET_RDT_ANGLE:                         // 持续输出减速后的角度数据
         {
-            float left_reduction_angle = motor_left.menc15a_reduction_integral * 360.0f / (float)(motor_left.menc15a_reduction_max);
-            
-            float right_reduction_angle = motor_right.menc15a_reduction_integral * 360.0f / (float)(motor_right.menc15a_reduction_max);
+            float left_reduction_angle = motor_get_output_shaft_angle_deg(&motor_left);
+            float right_reduction_angle = motor_get_output_shaft_angle_deg(&motor_right);
                 
             if(motor_value.cmd_type == STRING_TYPE)             // 判断用户通讯类型
             {  
@@ -1052,6 +1119,20 @@ void driver_cmd_loop(void)
         {
             printf("voltage:%.2f\r\n", battery_value.battery_voltage);
   
+        }break;
+
+        case GET_FOC_IQ:                        // 持续上报 Iq 电流（7字节小包，0xA5 0x07）
+        {
+            motor_driver_send_iq(&motor_value,
+                                 motor_left_foc_closed_loop.current_loop.iq_fb,
+                                 motor_right_foc_closed_loop.current_loop.iq_fb);
+        }break;
+
+        case GET_UQ:                            // 持续上报 Uq（7字节小包，0xA5 0x08）
+        {
+            motor_driver_send_uq(&motor_value,
+                                 motor_left_foc_closed_loop.current_loop.vq,
+                                 motor_right_foc_closed_loop.current_loop.vq);
         }break;
             
         default:break;
@@ -1205,5 +1286,103 @@ void motor_right_startup_align_calibration(void)
 #endif
 }
 
-
-
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     LQR 和 VMC 控制处理函数
+// 参数说明     void
+// 返回参数     void
+// 使用示例     motor_control_lqr();
+// 备注信息     该函数应在主控制循环中定期调用（建议100Hz）
+//-------------------------------------------------------------------------------------------------------------------
+//void motor_control_lqr(void)
+//{
+//    // 仅当 LQR 启用时执行控制逻辑
+//    if (!lqr_enabled)
+//    {
+//        return;
+//    }
+//    
+//    // ========== 第一步：更新 LQR 状态向量 ==========
+//    // 从 IMU 和编码器读取传感器数据，构建完整的 6 维状态向量
+//    // 状态向量：x = [θ_pole, θ_pole_dot, x_wheel, v_wheel, θ_body, θ_body_dot]^T
+//    
+//    update_lqr_state_from_sensors();
+//    
+//    // ========== 第二步：执行 LQR 控制计算 ==========
+//    // 计算控制律：u = -K·x
+//    // 输出：τ_wheel 和 τ_hip
+//    
+//    LQR_Control_t lqr_out = LQR_Compute();
+//    
+//    // ========== 第三步：处理驱动轮力矩输出 ==========
+//    // 将 LQR 计算的力矩转换为电机力矩参考
+//    // 限制在合理范围内
+//    
+//    float tau_wheel = lqr_out.tau_wheel;
+//    
+//    // 力矩限制（防护）
+//    if (tau_wheel > LQR_TAU_WHEEL_MAX)
+//        tau_wheel = LQR_TAU_WHEEL_MAX;
+//    if (tau_wheel < -LQR_TAU_WHEEL_MAX)
+//        tau_wheel = -LQR_TAU_WHEEL_MAX;
+//    
+//    // 设置左电机力矩参考
+//    // 注意：需要根据你的电机驱动接口调整转换关系
+//    // 如果 motor_left_torque_ref_set() 的单位是电流(A)，则需要转换
+//    // motor_left_torque_ref_set(tau_wheel / TORQUE_TO_CURRENT_RATIO);
+//    
+//    // ========== 第四步：处理髋关节力矩输出（虚拟力 PD 控制器）==========
+//    // 核心改进：使用 PD 控制器计算虚拟力，而不是直接转换力矩
+//    // 
+//    // 虚拟力计算公式：
+//    // F = K_p * (L_ref - L_0) + K_d * (0 - L_dot) + M * g
+//    //
+//    // 其中：
+//    // - L_ref: 期望腿长（由用户设定，通常为常数）
+//    // - L_0: 当前腿长（通过正运动学计算）
+//    // - L_dot: 腿长变化率（通过微分得到）
+//    // - M·g: 重力补偿力，用于支撑车身重量
+//    
+//    // 第4a步：计算当前腿长（基于正运动学）
+//    float L_current = calculate_leg_length();
+//    
+//    // 第4b步：虚拟力 PD 控制器计算
+//    // F = K_p * (L_ref - L_0) + K_d * (0 - L_dot) + M * g
+//    float F_virtual = VMC_ComputeVirtualForce(L_current);
+//    
+//    // 第4c步：完整的 VMC 转换
+//    // 将虚拟力转换为关节电机的力矩指令
+//    VMC_MotorTorque_t motor_torques = {0};
+//    VMC_FullConversion(lqr_out.tau_hip, &motor_torques);
+//    
+//    // 第4d步：设置髋关节电机力矩参考
+//    // 注意：实际的力矩应该通过虚拟力和机构参数计算
+//    // 这里简化处理，可根据实际硬件接口调整
+//    // motor_right_torque_ref_set(motor_torques.tau_hip_motor / TORQUE_TO_CURRENT_RATIO);
+//    
+//    // ========== 第五步：调试和监控 ==========
+//    
+//    // 检查是否发生饱和
+//    if (LQR_IsSaturated())
+//    {
+//        // 控制输出已饱和，可能需要降低期望或检查参数
+//        // debug_log("LQR output saturated");
+//    }
+//    
+//    // 定期输出调试信息（包括虚拟力控制器状态）
+//    // static uint32 debug_counter = 0;
+//    // if (++debug_counter >= 100)  // 每 1 秒输出一次（100 * 10ms）
+//    // {
+//    //     print_lqr_state_debug();
+//    //     
+//    //     // 打印虚拟力控制器状态
+//    //     VMC_LegController_t leg_ctl = VMC_GetLegControllerState();
+//    //     char debug_buf[128];
+//    //     sprintf(debug_buf, "L_ref=%.3f L_cur=%.3f F_virtual=%.2f\r\n",
+//    //             leg_ctl.L_ref, leg_ctl.L_current, leg_ctl.F_virtual);
+//    //     uart_write_string(UART_0, debug_buf);
+//    //     
+//    //     debug_counter = 0;
+//    // }
+//}
+//
+//

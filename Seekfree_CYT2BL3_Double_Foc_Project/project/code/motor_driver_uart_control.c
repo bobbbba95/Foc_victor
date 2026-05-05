@@ -1,39 +1,6 @@
-/*********************************************************************************************************************
-* CYT2BL3 Opensourec Library 即（ CYT2BL3 开源库）是一个基于官方 SDK 接口的第三方开源库
-* Copyright (c) 2022 SEEKFREE 逐飞科技
-*
-* 本文件是 CYT2BL3 开源库的一部分
-*
-* CYT2BL3 开源库 是免费软件
-* 您可以根据自由软件基金会发布的 GPL（GNU General Public License，即 GNU通用公共许可证）的条款
-* 即 GPL 的第3版（即 GPL3.0）或（您选择的）任何后来的版本，重新发布和/或修改它
-*
-* 本开源库的发布是希望它能发挥作用，但并未对其作任何的保证
-* 甚至没有隐含的适销性或适合特定用途的保证
-* 更多细节请参见 GPL
-*
-* 您应该在收到本开源库的同时收到一份 GPL 的副本
-* 如果没有，请参阅<https://www.gnu.org/licenses/>
-*
-* 额外注明：
-* 本开源库使用 GPL3.0 开源许可证协议 以上许可申明为译文版本
-* 许可申明英文版在 libraries/doc 文件夹下的 GPL3_permission_statement.txt 文件中
-* 许可证副本在 libraries 文件夹下 即该文件夹下的 LICENSE 文件
-* 欢迎各位使用并传播本程序 但修改内容时必须保留逐飞科技的版权声明（即本声明）
-*
-* 文件名称          motor_driver_uart_control
-* 公司名称          成都逐飞科技有限公司
-* 版本信息          查看 libraries/doc 文件夹内 version 文件 版本说明
-* 开发环境          IAR 9.40.1
-* 适用平台          CYT2BL3
-* 店铺链接          https://seekfree.taobao.com/
-*
-* 修改记录
-* 日期              作者                备注
-* 2025-01-03       pudding            first version
-********************************************************************************************************************/
 
 #include "motor_driver_uart_control.h"
+#include "driver_gpio.h"        // 为了 BOARD_LED 宏
 
 small_device_value_struct motor_value;
 
@@ -44,6 +11,12 @@ uint8           driver_fifo_buffer[128];        // FIFO 指向的缓冲数组
 uint8           read_buffer[128];               // 解析时，读取数据的缓冲数组
 
 int16           receive_enter_flag = 0;         // 回车标志位
+
+char uart0_tx_buffer[128];
+
+// ===== 调试计数器：可在 IAR Watch 里看，用来验证命令是否被解析 =====
+volatile uint32 cmd_07_recv_count = 0;          // 成功解析 0x09（主板下发 Iq 设定）的次数，变量名保留以兼容旧调试代码
+
 
 
 //-------------------------------------------------------------------------------------------------------------------
@@ -112,6 +85,42 @@ void motor_driver_parse_statement(small_device_value_struct *device_value, uint8
                 
                 device_value->refresh_flag             = CMD_LOOP;              // 即时指令刷新标志位修正  无需马上执行
             }break;
+
+            // 功能字 0x07：上行专用（MCU→主板上报 Iq），驱动板不应在 RX 看到此功能字
+            // 若误收到，直接忽略，留校验/帧长走默认逻辑
+
+            case 0x08:{ 
+                // 7 字节包：0xA5 0x08 LeftUq_H LeftUq_L RightUq_H RightUq_L SUM
+                device_value->continue_command = GET_UQ; 
+            }break;
+
+            case 0x09: {
+                // 7 字节包：0xA5 0x09 LeftIq_H LeftIq_L RightIq_H RightIq_L SUM
+                // 主板→驱动板 下行电流控制指令：设置左右电机 Iq 目标
+                // 反算：iq = ((uint16)bytes - 3200) / 100，量程 ±32A，精度 0.01A，目标 Id 固定为 0
+                int16 l_iq = (int16)(((uint16)statement_buffer[2] << 8) | statement_buffer[3]);
+                int16 r_iq = (int16)(((uint16)statement_buffer[4] << 8) | statement_buffer[5]);
+
+                device_value->left_id_target  = 0.0f;
+                device_value->right_id_target = 0.0f;
+                device_value->left_iq_target  = (float)(l_iq - 3200) / 100.0f;
+                device_value->right_iq_target = (float)(r_iq - 3200) / 100.0f;
+
+                device_value->immediate_command = SET_FOC_TORQUE_REF;
+                device_value->refresh_flag      = CMD_FORTHWITH;
+                cmd_07_recv_count ++;           // 调试计数：记录 0x09 下行成功解析次数
+            } break;
+  
+
+            // 功能字 0x10: 紧急停止/使能指令 (新增)
+            case 0x10: {
+                if(statement_buffer[2] == 0x01) {
+                    // 使能电机
+                } else {
+                    // 强制进入所有 PWM 占空比为 0
+                }
+            } break;
+
             default:break;
         }
     }
@@ -270,6 +279,14 @@ void motor_driver_parse_statement(small_device_value_struct *device_value, uint8
             {
                 device_value->continue_command         = GET_VOLTAGE;           // 持续指令(串口持续输出)状态更新为 GET_VOLTAGE 
             }  
+            else if(strstr((const char *)statement_buffer, "GET-IQ"))          // 持续上报 Iq 电流
+            {
+                device_value->continue_command         = GET_FOC_IQ;
+            }
+            else if(strstr((const char *)statement_buffer, "GET-UQ"))          // 持续上报 Uq
+            {
+                device_value->continue_command         = GET_UQ;
+            }
             else                                                                // 当前指令非协议指令 输出提示 error cmd
             {   
                 device_value->immediate_command        = ERROR_CMD;             // 即时指令(仅响应一次)状态更新为 ERROR_CMD 
@@ -361,29 +378,49 @@ void motor_driver_control_loop(small_device_value_struct *device_value)
                 
                 fifo_read_buffer(&motor_driver_fifo, read_buffer, &read_length, FIFO_READ_ONLY);// 读取前两个数据
                 
-                if(read_buffer[0] == 0XA5)                                                      // 判断是否为帧头 若不是字节通讯的帧头 则判断是否为字符串通讯
+                if(read_buffer[0] == 0XA5)                                                      // 判断是否为帧头
                 {
-                    read_length = 7;                                                            // 成功判断到帧头 仅读取一包数据(长度为7位)
-                    
-                    fifo_read_buffer(&motor_driver_fifo, read_buffer, &read_length, FIFO_READ_ONLY);
-                    
-                    for(int i = 0; i < 6; i ++)                                                 // 和校验拟合
-                    {
-                        check_data += read_buffer[i];
+                    uint8 target_length = 7;                                                    // 默认长度设为7
+                    switch(read_buffer[1]) {
+                        case 0x02: target_length = 7;  break; // 速度请求包（主板→驱动板 触发上报）
+                        case 0x04: target_length = 7;  break; // 机械角度请求包（主板→驱动板 触发上报）
+                        case 0x08: target_length = 7;  break; // Uq 请求包（主板→驱动板 触发上报）
+                        case 0x09: target_length = 7;  break; // Iq 电流控制下行包（主板→驱动板 设 Iq 目标）
+                        // 注：0x07 仅作驱动板→主板的 Iq 上行上报，下行不应出现
                     }
-                    if(check_data == read_buffer[6])                                            // 判断和校验
-                    {   
-                        read_length = 7;                                                        // 成功通过和校验 从 FIFO 读取并擦除 一包数据(长度为7位)
-                        
-                        fifo_read_buffer(&motor_driver_fifo, read_buffer, &read_length, FIFO_READ_AND_CLEAN);
-                        
-                        device_value->cmd_type = BYTE_TYPE;                                     // 设置通讯类型为 字节通讯
-                        
-                        motor_driver_parse_statement(device_value, read_buffer);                // 调用数据解析      
-                    }
-                    else
+                    
+                    // 【关键修复1】必须检查 FIFO 里的数据是不是已经收全了整个长包！
+                    if(fifo_used(&motor_driver_fifo) >= target_length)
                     {
-                        motor_driver_fifo_clear(1);                                             // 和校验未通过 清除一个缓冲区数据（状态机机制）
+                        read_length = target_length;
+                        fifo_read_buffer(&motor_driver_fifo, read_buffer, &read_length, FIFO_READ_ONLY); // 完整读出
+                        
+                        // 【关键修复2】动态计算前 n-1 个字节的校验和
+                        check_data = 0;
+                        for(int i = 0; i < (read_length - 1); i ++) 
+                        {
+                            check_data += read_buffer[i];
+                        }
+                        
+                        // 【关键修复3】动态对比最后一位校验位
+                        if(check_data == read_buffer[read_length - 1]) 
+                        {   
+                            // 成功通过和校验 从 FIFO 读取并擦除完整的一包数据
+                            fifo_read_buffer(&motor_driver_fifo, read_buffer, &read_length, FIFO_READ_AND_CLEAN);
+                            
+                            device_value->cmd_type = BYTE_TYPE;                                     // 设置通讯类型为 字节通讯
+                            
+                            motor_driver_parse_statement(device_value, read_buffer);                // 调用数据解析      
+                        }
+                        else
+                        {
+                            motor_driver_fifo_clear(1);                                             // 和校验未通过 清除帧头，往后滑动一字节寻找新帧头
+                        }
+                    }
+                    else 
+                    {
+                        // 帧头是对的，但包还没收完，直接退出 while 循环，等待下一次串口接收中断
+                        break; 
                     }
                 }
                 else
@@ -519,6 +556,7 @@ void motor_driver_send_reduction_angle(small_device_value_struct *device_value, 
     uart_write_buffer(MOTOR_DRIVER_UART, device_value->send_data_buffer, 7);
 }
 
+
 //-------------------------------------------------------------------------------------------------------------------
 // 函数简介     串口通讯控制 回调函数
 // 参数说明     device_value        通讯参数结构体
@@ -535,6 +573,7 @@ void motor_driver_control_callback(small_device_value_struct *device_value)
     while(uart_query_byte(MOTOR_DRIVER_UART, &receive_data) == 1)               // 判断是否接收到串口数据
     {
         fifo_write_element(&motor_driver_fifo, receive_data);                   // 将数据写入 fifo
+        
         
         if(receive_data == '\n')                                                // 若接收到特殊指令 回车：'\n'  则将回车标志位置位 用于后续解析
         {
@@ -561,9 +600,72 @@ void motor_driver_uart_init(void)
 {
     fifo_init(&motor_driver_fifo, FIFO_DATA_8BIT, driver_fifo_buffer, 128);     // 初始化 fifo 结构体
       
-    uart_init(MOTOR_DRIVER_UART, 460800, MOTOR_DRIVER_RX, MOTOR_DRIVER_TX);     // 初始化 通讯调试串口 
-    
-    uart_rx_interrupt(MOTOR_DRIVER_UART, 1);                                    // 打开串口接收中断
+    uart_init(MOTOR_DRIVER_UART, 460800, MOTOR_DRIVER_RX, MOTOR_DRIVER_TX);     // 与主板 MAIN_BOARD_BAUDRATE 保持一致(921600)
+    // 底层 uart_query_byte 是从中断回调写入的内部 FIFO 读取数据，
+    // 因此命令口对应的 RX 中断必须打开。
+    uart_rx_interrupt(MOTOR_DRIVER_UART, 1);
+}
+
+
+
+
+
+// ===== FOC 通信函数实现 =====
+
+//===================================================================================================================
+
+
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     发送 Iq 电流（左右电机），7 字节小包
+// 帧格式      0xA5 0x07 LeftIq_H LeftIq_L RightIq_H RightIq_L SUM
+// 缩放        uint16 = (int16)(iq * 100) + 3200，量程 ±32A，精度 0.01A
+//-------------------------------------------------------------------------------------------------------------------
+void motor_driver_send_iq(small_device_value_struct *device_value, float left_iq, float right_iq)
+{
+    uint16 left_iq_int  = (uint16)((int16)(func_limit_ab(left_iq,  -32.0f, 32.0f) * 100.0f) + 3200);
+    uint16 right_iq_int = (uint16)((int16)(func_limit_ab(right_iq, -32.0f, 32.0f) * 100.0f) + 3200);
+
+    device_value->send_data_buffer[0] = 0xA5;
+    device_value->send_data_buffer[1] = 0x07;
+    device_value->send_data_buffer[2] = (uint8)((left_iq_int  & 0xFF00) >> 8);
+    device_value->send_data_buffer[3] = (uint8)( left_iq_int  & 0x00FF);
+    device_value->send_data_buffer[4] = (uint8)((right_iq_int & 0xFF00) >> 8);
+    device_value->send_data_buffer[5] = (uint8)( right_iq_int & 0x00FF);
+    device_value->send_data_buffer[6] = device_value->send_data_buffer[0] +
+                                        device_value->send_data_buffer[1] +
+                                        device_value->send_data_buffer[2] +
+                                        device_value->send_data_buffer[3] +
+                                        device_value->send_data_buffer[4] +
+                                        device_value->send_data_buffer[5];
+
+    uart_write_buffer(MOTOR_DRIVER_UART, device_value->send_data_buffer, 7);
+}
+
+//-------------------------------------------------------------------------------------------------------------------
+// 函数简介     发送 Uq（左右电机 q 轴电压），7 字节小包
+// 帧格式      0xA5 0x08 LeftUq_H LeftUq_L RightUq_H RightUq_L SUM
+// 缩放        int16 = uq * 1000，量程 ±32.767V，精度 0.001V
+//-------------------------------------------------------------------------------------------------------------------
+void motor_driver_send_uq(small_device_value_struct *device_value, float left_uq, float right_uq)
+{
+    int16 left_uq_int  = (int16)(func_limit_ab(left_uq,  -32.767f, 32.767f) * 1000.0f);
+    int16 right_uq_int = (int16)(func_limit_ab(right_uq, -32.767f, 32.767f) * 1000.0f);
+
+    device_value->send_data_buffer[0] = 0xA5;
+    device_value->send_data_buffer[1] = 0x08;
+    device_value->send_data_buffer[2] = (uint8)((left_uq_int  & 0xFF00) >> 8);
+    device_value->send_data_buffer[3] = (uint8)( left_uq_int  & 0x00FF);
+    device_value->send_data_buffer[4] = (uint8)((right_uq_int & 0xFF00) >> 8);
+    device_value->send_data_buffer[5] = (uint8)( right_uq_int & 0x00FF);
+    device_value->send_data_buffer[6] = device_value->send_data_buffer[0] +
+                                        device_value->send_data_buffer[1] +
+                                        device_value->send_data_buffer[2] +
+                                        device_value->send_data_buffer[3] +
+                                        device_value->send_data_buffer[4] +
+                                        device_value->send_data_buffer[5];
+
+    uart_write_buffer(MOTOR_DRIVER_UART, device_value->send_data_buffer, 7);
 }
 
 
@@ -572,9 +674,139 @@ void motor_driver_uart_init(void)
 
 
 
+// //-------------------------------------------------------------------------------------------------------------------
+
+// // 函数简介     发送轮编码器数据
+
+// // 参数说明     device_value        通讯参数结构体
+
+// // 参数说明     encoder_data        轮编码器数据结构体
+
+// // 返回参数     void
+
+// // 使用示例     motor_driver_send_wheel_encoder(&motor_value, &encoder_data);
+
+// // 备注信息     包含左右轮编码器计数
+
+// //-------------------------------------------------------------------------------------------------------------------
+
+// void motor_driver_send_wheel_encoder(small_device_value_struct *device_value, wheel_encoder_data_tx *encoder_data)
+
+// {
+
+//     uint8 send_buffer[20];
+
+//     uint8 check_sum = 0;
+
+   
+
+//     send_buffer[0] = 0xA5;                                          // 帧头
+
+//     send_buffer[1] = 0x0D;                                          // 功能字
+
+   
+
+//     // 左轮编码器（4字节）
+
+//     send_buffer[2] = (uint8)((encoder_data->left_encoder & 0xFF000000) >> 24);
+
+//     send_buffer[3] = (uint8)((encoder_data->left_encoder & 0x00FF0000) >> 16);
+
+//     send_buffer[4] = (uint8)((encoder_data->left_encoder & 0x0000FF00) >> 8);
+
+//     send_buffer[5] = (uint8)(encoder_data->left_encoder & 0x000000FF);
+
+   
+
+//     // 右轮编码器（4字节）
+
+//     send_buffer[6] = (uint8)((encoder_data->right_encoder & 0xFF000000) >> 24);
+
+//     send_buffer[7] = (uint8)((encoder_data->right_encoder & 0x00FF0000) >> 16);
+
+//     send_buffer[8] = (uint8)((encoder_data->right_encoder & 0x0000FF00) >> 8);
+
+//     send_buffer[9] = (uint8)(encoder_data->right_encoder & 0x000000FF);
+
+   
+
+//     // 计算校验和
+
+//     for(int i = 0; i < 10; i++)
+
+//     {
+
+//         check_sum += send_buffer[i];
+
+//     }
+
+//     send_buffer[10] = check_sum;
+
+   
+
+//     uart_write_buffer(MOTOR_DRIVER_UART, send_buffer, 11);
+
+// }
 
 
+// //-------------------------------------------------------------------------------------------------------------------
+// // 函数简介     发送驱动板电机状态（双电机：三相电流 + Iq力矩量 + 角度 + 速度）
+// // 参数说明     device_value        通讯参数结构体（仅用于复用其内部缓冲区，无内部状态依赖）
+// // 参数说明     status              双电机状态结构体（浮点）
+// // 返回参数     void
+// // 使用示例     motor_status_data_tx s = { ... };
+// //             motor_driver_send_motor_status(&motor_value, &s);
+// // 备注信息     帧格式：0xA5 0x20 + 左(Ia,Ib,Ic,Iq,Angle,Speed) + 右(同) + sum8
+// //             共 27 字节；电流/角度按 *100 缩放为 int16，转速按 RPM 直接 int16
+// //-------------------------------------------------------------------------------------------------------------------
+// void motor_driver_send_motor_status(small_device_value_struct *device_value, motor_status_data_tx *status)
+// {
+//     uint8 buf[27];
+//     uint8 sum = 0;
+//     uint8 i;
 
+//     // 局部内联：浮点 -> int16(限幅+四舍五入) -> 大端写入
+//     // 用宏避免函数调用开销，注意 ##__LINE__ 防止变量名冲突
+//     #define WRITE_INT16_BE(idx, fval, scale)                              \
+//         do {                                                              \
+//             float _v = (fval) * (scale);                                  \
+//             if(_v >  32767.0f) _v =  32767.0f;                            \
+//             if(_v < -32768.0f) _v = -32768.0f;                            \
+//             int16 _iv = (int16)(_v >= 0.0f ? (_v + 0.5f) : (_v - 0.5f));  \
+//             buf[(idx)    ] = (uint8)(((uint16)_iv >> 8) & 0xFF);          \
+//             buf[(idx) + 1] = (uint8)( (uint16)_iv       & 0xFF);          \
+//         } while(0)
 
+//     buf[0] = 0xA5;          // 帧头
+//     buf[1] = 0x20;          // 功能字：电机状态上报
 
+//     // 左电机：Ia, Ib, Ic, Iq, Angle(deg), Speed(rpm)
+//     WRITE_INT16_BE( 2, status->left.ia,        100.0f);
+//     WRITE_INT16_BE( 4, status->left.ib,        100.0f);
+//     WRITE_INT16_BE( 6, status->left.ic,        100.0f);
+//     WRITE_INT16_BE( 8, status->left.iq,        100.0f);
+//     WRITE_INT16_BE(10, status->left.angle_deg, 100.0f);
+//     WRITE_INT16_BE(12, status->left.speed_rpm,   1.0f);
 
+//     // 右电机
+//     WRITE_INT16_BE(14, status->right.ia,        100.0f);
+//     WRITE_INT16_BE(16, status->right.ib,        100.0f);
+//     WRITE_INT16_BE(18, status->right.ic,        100.0f);
+//     WRITE_INT16_BE(20, status->right.iq,        100.0f);
+//     WRITE_INT16_BE(22, status->right.angle_deg, 100.0f);
+//     WRITE_INT16_BE(24, status->right.speed_rpm,   1.0f);
+
+//     #undef WRITE_INT16_BE
+
+//     // 计算前26字节累加校验
+//     for(i = 0; i < 26; i++)
+//     {
+//         sum = (uint8)(sum + buf[i]);
+//     }
+//     buf[26] = sum;
+
+//     // 通过 UART2 发送（MOTOR_DRIVER_UART）
+//     uart_write_buffer(MOTOR_DRIVER_UART, buf, 27);
+
+//     (void)device_value;     // 当前实现未使用 device_value，保留参数以便后续扩展
+// }

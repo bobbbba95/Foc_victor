@@ -67,30 +67,20 @@ int main(void)
     
     interrupt_global_enable(0);							                            // 开启全局中断
     
-    //motor_left_torque_ref_set(1.5f);     // 左侧电机力矩参考设置为0.5A 右侧电机在ISR中设置了速度参考 因此这里不设置力矩参考 直接进入速度闭环控制路径
+     //motor_left_speed_ref_set(300);
+
+    //motor_left_torque_ref_set(0.5f);     // 左侧电机力矩参考设置为0.5A 右侧电机在ISR中设置了速度参考 因此这里不设置力矩参考 直接进入速度闭环控制路径
     //目前采样数据为Ia,ib,ic,id,iq和速度，单位分别为mA和RPM，方便上位机直接画图与比对
-    //motor_right_torque_ref_set(1.5f);    
-    motor_right_speed_ref_set(500);
-    motor_left_speed_ref_set(500);
+    //motor_left_torque_ref_set(0.5f);    
 
     foc_debug_capture_and_send(SAMPLE_COUNT, 1, (int32)TARGET_SPEED_RPM);       
 
     for(;;)
     {
+
         driver_adc_loop();                                                      // 驱动 ADC 循环检测函数
         driver_gpio_loop();                                                     // 驱动 GPIO 循环检测函数
         driver_cmd_loop();                                                      // 驱动 控制指令 循环响应函数
-        // 每100ms通过UART0输出一次电池电压和原始ADC采样值
-        voltage_send_elapsed_ms += DRIVER_RESPONSE_CYCLE;
-        if(voltage_send_elapsed_ms >= 100)
-        {
-            voltage_send_elapsed_ms = 0;
-            sprintf(uart0_tx_buffer,
-                    "VBAT:%.2fV, ADC_RAW:%u\r\n",
-                    battery_value.battery_voltage,
-                    battery_value.battery_adc_raw);
-            uart_write_string(UART_0, uart0_tx_buffer);
-        }
 
         system_delay_ms(DRIVER_RESPONSE_CYCLE);                                 // 主循环延时
     }

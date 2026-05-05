@@ -306,5 +306,4 @@ void motor_right_torque_ref_set(float iq_ref_a);
 //-------------------------------------------------------------------------------------------------------------------
 void motor_right_torque_ref_clear(void);
 
-
 #endif
